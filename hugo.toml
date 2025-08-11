@@ -1,0 +1,136 @@
+baseURL = 'https://example.org/'
+languageCode = 'zh-cn'
+title = 'Styx Blog'
+theme = 'Stack'
+
+[Params]
+	favicon = "mask.svg"
+	description = "Styx Blog 热爱编程 热爱生活"
+	enableSearch = true
+	mainSections = ["post"]
+
+	[Params.Sidebar]
+		emoji = "🧑‍💻"
+		subtitle = "欢迎来到我的博客"
+
+		[Params.Sidebar.Avatar]
+		src = "img/avatar.png"
+		local = true
+		enabled = true
+
+	[Params.Article]
+		toc = true
+		readingTime = true
+
+		[Params.Article.License]
+			enabled = true
+
+	[Params.Footer]
+		since = 2025
+		customText = """ """
+
+[Menu]
+
+	[[Menu.Social]]
+		name = "GitHub"
+		url = "https://github.com/OasisPioneer"
+		identifier = "GitHub"
+		[Menu.Social.Params]
+			icon = "brand-github"
+			newTab = true
+
+	[[Menu.Social]]
+		name = "Telegram"
+		url = "https://t.me/StyxTechStudio"
+		identifier = "Telegram"
+		[Menu.Social.Params]
+			icon = "brand-telegram"
+			newTab = true
+
+	[[Menu.Social]]
+		name = "Sitemap"
+		url = "/sitemap.xml"
+		identifier = "Sitemap"
+		[Menu.Social.Params]
+			icon = "sitemap"
+			newTab = true
+
+	[[Menu.Social]]
+		name = "Rss"
+		url = "/index.xml"
+		identifier = "Rss"
+		[Menu.Social.Params]
+			icon = "rss"
+			newTab = true
+
+	[[Menu.Main]]
+		name = "首页"
+		url = "/"
+		weight = 10
+		identifier = "Home"
+		[Menu.Main.Params]
+			icon = "home"
+			newTab = false
+
+	[[Menu.Main]]
+		name = "归档"
+		url = "/archives/"
+		weight = 20
+		identifier = "Archive"
+		[Menu.Main.Params]
+			icon = "archives"
+			newTab = false
+
+	[[Menu.Main]]
+		name = "分类"
+		url = "/categories/"
+		weight = 30
+		identifier = "Categories"
+		[Menu.Main.Params]
+			icon = "categories"
+			newTab = false
+
+	[[Menu.Main]]
+		name = "标签"
+		url = "/tags/"
+		weight = 40
+		identifier = "Label"
+		[Menu.Main.Params]
+			icon = "tag"
+			newTab = false
+
+	[[Menu.Main]]
+		name = "关于"
+		url = "/about/"
+		weight = 50
+		identifier = "About"
+		[Menu.Main.Params]
+			icon = "user"
+			newTab = false
+
+	[[Menu.Main]]
+		name = "搜索"
+		url = "/search/"
+		weight = 60
+		identifier = "Search"
+		[Menu.Main.Params]
+			icon = "search"
+			newTab = false
+
+[[Params.Widgets.Homepage]]
+	type = "search"
+
+[[Params.Widgets.Page]]
+	type = "toc"
+
+[[Params.Widgets.Homepage]]
+	type = "archives"
+	params.limit = 10
+
+[[Params.Widgets.Homepage]]
+	type = "categories"
+	params.limit = 10
+
+[[Params.Widgets.Homepage]]
+	type = "tag-cloud"
+	params.limit = 10

@@ -134,3 +134,20 @@ theme = 'Stack'
 [[Params.Widgets.Homepage]]
 	type = "tag-cloud"
 	params.limit = 10
+
+[Params.Comments]
+	enabled = true
+	provider = "giscus"
+[Params.Comments.Giscus]
+	repo = "OasisPioneer/OasisPioneer.GitHub.IO"
+    repoID = "R_kgDOPcBVMQ"
+    category="Announcements"
+    categoryID="DIC_kwDOPcBVMc4CuCsc"
+    mapping="pathname"
+    strict = "0"
+    lightTheme = "light"
+    darkTheme = "dark"
+    reactionsEnabled = "1"
+    emitMetadata = "0"
+    inputPosition = "top"
+    lang = "zh-CN"

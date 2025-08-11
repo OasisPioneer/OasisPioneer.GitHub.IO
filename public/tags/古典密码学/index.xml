@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>古典密码学 on Styx Blog</title>
-        <link>http://localhost:1313/tags/%E5%8F%A4%E5%85%B8%E5%AF%86%E7%A0%81%E5%AD%A6/</link>
+        <link>https://example.org/tags/%E5%8F%A4%E5%85%B8%E5%AF%86%E7%A0%81%E5%AD%A6/</link>
         <description>Recent content in 古典密码学 on Styx Blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <lastBuildDate>Mon, 11 Aug 2025 16:34:53 +0800</lastBuildDate><atom:link href="http://localhost:1313/tags/%E5%8F%A4%E5%85%B8%E5%AF%86%E7%A0%81%E5%AD%A6/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Mon, 11 Aug 2025 16:34:53 +0800</lastBuildDate><atom:link href="https://example.org/tags/%E5%8F%A4%E5%85%B8%E5%AF%86%E7%A0%81%E5%AD%A6/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>凯撒密码</title>
-        <link>http://localhost:1313/post/programmingtechnology/classicalcryptography/caesarcipher/</link>
+        <link>https://example.org/post/programmingtechnology/classicalcryptography/caesarcipher/</link>
         <pubDate>Mon, 11 Aug 2025 16:34:53 +0800</pubDate>
         
-        <guid>http://localhost:1313/post/programmingtechnology/classicalcryptography/caesarcipher/</guid>
+        <guid>https://example.org/post/programmingtechnology/classicalcryptography/caesarcipher/</guid>
         <description>&lt;h2 id=&#34;什么是凯撒密码&#34;&gt;什么是凯撒密码？
 &lt;/h2&gt;&lt;p&gt;凯撒密码是一种&lt;strong&gt;替换密码（Substitution Cipher）&lt;/strong&gt;，也被称为&lt;strong&gt;移位密码（Shift Cipher）&lt;/strong&gt;。它的加密过程非常简单：将明文中的每一个字母，用字母表上固定距离的另一个字母来替换。&lt;/p&gt;
 &lt;p&gt;这个“固定的距离”就是加密的&lt;strong&gt;密钥（Key）&lt;/strong&gt;。&lt;/p&gt;

@@ -103,9 +103,18 @@ defaultContentLanguage = "zh-cn"
 			newTab = false
 
 	[[Menu.Main]]
+		name = "友链"
+		url = "/links/"
+		weight = 50
+		identifier = "Link"
+		[Menu.Main.Params]
+			icon = "link"
+			newTab = false
+
+	[[Menu.Main]]
 		name = "关于"
 		url = "/about/"
-		weight = 50
+		weight = 60
 		identifier = "About"
 		[Menu.Main.Params]
 			icon = "user"
@@ -114,7 +123,7 @@ defaultContentLanguage = "zh-cn"
 	[[Menu.Main]]
 		name = "搜索"
 		url = "/search/"
-		weight = 60
+		weight = 70
 		identifier = "Search"
 		[Menu.Main.Params]
 			icon = "search"

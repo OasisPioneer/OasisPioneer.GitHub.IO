@@ -1,1 +1,54 @@
 /* Place your custom SCSS in HUGO_SITE_FOLDER/assets/scss/custom.scss */
+
+// ===== ===== 头像旋转 ===== =====
+.sidebar header .site-avatar .site-logo {
+  transition: transform 1s ease-in-out;
+}
+
+.sidebar header .site-avatar .site-logo:hover {
+  transform: rotate(360deg);
+}
+
+
+// ===== ===== 键盘样式 ===== =====
+kbd {
+  margin: 0 .1em;
+  padding: .1em .6em;
+  font-size: .8em;
+  color: #242729;
+  background: #fff;
+  border: 1px solid #adb3b9;
+  border-radius: 3px;
+  box-shadow: 0px 1px 0 rgba(12, 13, 14, 0.2), 0 0 0 2px #fff inset;
+  white-space: nowrap;
+  vertical-align: middle;
+  font-family: monospace;
+}
+
+// ===== ===== 双栏归档 ===== =====
+@media (min-width: 1024px) {
+  .article-list--compact {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background: none;
+    box-shadow: none;
+    gap: 1rem;
+
+    article {
+      background: var(--card-background);
+      border: none;
+      box-shadow: var(--shadow-l2);
+      margin-bottom: 8px;
+      border-radius: 16px;
+    }
+  }
+}
+
+// ===== ===== 归档卡片缩放 ===== =====
+.article-list--tile article {
+  transition: .6s ease;
+}
+
+.article-list--tile article:hover {
+  transform: scale(1.03, 1.03);
+}

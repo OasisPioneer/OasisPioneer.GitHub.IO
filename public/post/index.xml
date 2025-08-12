@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Posts on Styx Blog</title>
-        <link>http://localhost:1313/post/</link>
+        <link>https://example.org/post/</link>
         <description>Recent content in Posts on Styx Blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <lastBuildDate>Tue, 12 Aug 2025 17:15:00 +0800</lastBuildDate><atom:link href="http://localhost:1313/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Tue, 12 Aug 2025 17:15:00 +0800</lastBuildDate><atom:link href="https://example.org/post/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>仿射密码</title>
-        <link>http://localhost:1313/post/programmingtechnology/classicalcryptography/affinecipher/</link>
+        <link>https://example.org/post/programmingtechnology/classicalcryptography/affinecipher/</link>
         <pubDate>Tue, 12 Aug 2025 17:15:00 +0800</pubDate>
         
-        <guid>http://localhost:1313/post/programmingtechnology/classicalcryptography/affinecipher/</guid>
+        <guid>https://example.org/post/programmingtechnology/classicalcryptography/affinecipher/</guid>
         <description>&lt;h2 id=&#34;什么是仿射密码&#34;&gt;什么是仿射密码？
 &lt;/h2&gt;&lt;p&gt;仿射密码是一种&lt;strong&gt;替换密码（Substitution Cipher）&lt;/strong&gt;，它是凯撒密码的扩展，引入了更为复杂的数学运算。与凯撒密码仅仅通过加法进行位移不同，仿射密码结合了乘法和加法的线性变换。其核心在于将字母表中的每个字母映射到一个数值（通常A=0，B=1，&amp;hellip;，Z=25），然后通过一个仿射函数进行变换，最后再将变换后的数值映射回字母。&lt;/p&gt;
 &lt;h2 id=&#34;仿射密码的数学表示&#34;&gt;仿射密码的数学表示
@@ -215,10 +215,10 @@ A: D(0) = 21(0 - 8) mod 26 = 21 * (-8) mod 26 = -168 mod 26 = 10 * 26 - 168 mod 
         </item>
         <item>
         <title>凯撒密码</title>
-        <link>http://localhost:1313/post/programmingtechnology/classicalcryptography/caesarcipher/</link>
+        <link>https://example.org/post/programmingtechnology/classicalcryptography/caesarcipher/</link>
         <pubDate>Mon, 11 Aug 2025 16:34:53 +0800</pubDate>
         
-        <guid>http://localhost:1313/post/programmingtechnology/classicalcryptography/caesarcipher/</guid>
+        <guid>https://example.org/post/programmingtechnology/classicalcryptography/caesarcipher/</guid>
         <description>&lt;h2 id=&#34;什么是凯撒密码&#34;&gt;什么是凯撒密码？
 &lt;/h2&gt;&lt;p&gt;凯撒密码是一种&lt;strong&gt;替换密码（Substitution Cipher）&lt;/strong&gt;，也被称为&lt;strong&gt;移位密码（Shift Cipher）&lt;/strong&gt;。它的加密过程非常简单：将明文中的每一个字母，用字母表上固定距离的另一个字母来替换。&lt;/p&gt;
 &lt;p&gt;这个“固定的距离”就是加密的&lt;strong&gt;密钥（Key）&lt;/strong&gt;。&lt;/p&gt;

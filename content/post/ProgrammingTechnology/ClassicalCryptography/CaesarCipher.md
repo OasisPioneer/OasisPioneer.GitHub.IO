@@ -70,40 +70,34 @@ $$ P = (C - k) \pmod{26} $$
 ```cpp
 #include <iostream>
 #include <string>
-#include <cctype> // 包含 isalpha, isupper, islower 等函数
+#include <cctype>
 
-// 函数声明
-std::string caesarEncrypt(const std::string& text, int key);
-std::string caesarDecrypt(const std::string& text, int key);
+std::string caesarEncrypt(const std::string& text, int shift);
+std::string caesarDecrypt(const std::string& text, int shift);
 
 int main() {
     std::string message;
-    int key;
+    int shift;
 
-    std::cout << "======================================" << std::endl;
+    std::cout << "=====================================" << std::endl;
     std::cout << "      凯撒密码加密/解密程序" << std::endl;
-    std::cout << "======================================" << std::endl;
+    std::cout << "=====================================" << std::endl;
 
-    // 获取用户输入的明文
     std::cout << "\n请输入要处理的消息: ";
     std::getline(std::cin, message);
 
-    // 获取用户输入的密钥
-    std::cout << "请输入密钥 (1-25 之间的整数): ";
-    std::cin >> key;
+    std::cout << "请输入移位量 (0-25 之间的整数): ";
+    std::cin >> shift;
 
-    // 密钥合法性检查
-    if (key < 1 || key > 25) {
-        std::cout << "错误：密钥必须在 1 到 25 之间。" << std::endl;
-        return 1; // 返回错误码
+    shift = shift % 26;
+    if (shift < 0) {
+        shift += 26;
     }
 
-    // 执行加密
-    std::string encryptedMessage = caesarEncrypt(message, key);
+    std::string encryptedMessage = caesarEncrypt(message, shift);
     std::cout << "\n加密后的密文是: " << encryptedMessage << std::endl;
 
-    // 执行解密
-    std::string decryptedMessage = caesarDecrypt(encryptedMessage, key);
+    std::string decryptedMessage = caesarDecrypt(encryptedMessage, shift);
     std::cout << "解密后的明文是: " << decryptedMessage << std::endl;
 
     return 0;
@@ -112,17 +106,16 @@ int main() {
 /**
  * @brief 对给定的文本进行凯撒加密
  * @param text 要加密的明文
- * @param key  位移密钥 (1-25)
+ * @param shift 移位密钥 (0-25)
  * @return 加密后的密文
  */
-std::string caesarEncrypt(const std::string& text, int key) {
+std::string caesarEncrypt(const std::string& text, int shift) {
     std::string result = "";
     for (char c : text) {
-        // 只处理英文字母，其他字符（如空格、标点）保持原样
         if (isalpha(c)) {
             char base = isupper(c) ? 'A' : 'a';
-            // 应用加密公式: C = (P + k) % 26
-            result += static_cast<char>((c - base + key) % 26 + base);
+            // Apply encryption formula: C = (P + k) % 26
+            result += static_cast<char>((c - base + shift) % 26 + base);
         } else {
             result += c;
         }
@@ -133,17 +126,15 @@ std::string caesarEncrypt(const std::string& text, int key) {
 /**
  * @brief 对给定的文本进行凯撒解密
  * @param text 要解密的密文
- * @param key  位移密钥 (1-25)
+ * @param shift 移位密钥 (0-25)
  * @return 解密后的明文
  */
-std::string caesarDecrypt(const std::string& text, int key) {
+std::string caesarDecrypt(const std::string& text, int shift) {
     std::string result = "";
     for (char c : text) {
         if (isalpha(c)) {
             char base = isupper(c) ? 'A' : 'a';
-            // 应用解密公式: P = (C - k + 26) % 26
-            // 注意这里 +26 是为了处理负数情况，确保结果总为正
-            result += static_cast<char>((c - base - key + 26) % 26 + base);
+            result += static_cast<char>((c - base - shift + 26) % 26 + base);
         } else {
             result += c;
         }

@@ -15,3 +15,8 @@ slug: "about"
 ### 与我联系
 
 *	**Telegram** [https://t.me/StyxTechStudio](https://t.me/StyxTechStudio)
+
+### 赞助捐赠
+
+*	**Tron(USDT-TRC20)** `TGMPjDRU92JYjidTu6tRuqZezqrNhWZcYS`
+*	**Ethereum(ETH-ERC20)** `0x888888cFcD5aD452F18330ea2686c9389d57A32e`

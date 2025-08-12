@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
-    <head><meta charset='utf-8'>
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="本篇文章主要分享古典密码学的凯撒密码">
 <meta name="keywords" content="古典密码学, 凯撒密码, 加密算法, C&#43;&#43;"><title>凯撒密码</title>
 
-<link rel='canonical' href='https://example.org/post/programmingtechnology/classicalcryptography/caesarcipher/'>
+<link rel='canonical' href='http://localhost:1313/post/programmingtechnology/classicalcryptography/caesarcipher/'>
 
 <link rel="stylesheet" href="/scss/style.min.663803bebe609202d5b39d848f2d7c2dc8b598a2d879efa079fa88893d29c49c.css"><meta property='og:title' content="凯撒密码">
 <meta property='og:description' content="本篇文章主要分享古典密码学的凯撒密码">
-<meta property='og:url' content='https://example.org/post/programmingtechnology/classicalcryptography/caesarcipher/'>
+<meta property='og:url' content='http://localhost:1313/post/programmingtechnology/classicalcryptography/caesarcipher/'>
 <meta property='og:site_name' content='Styx Blog'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='古典密码学' /><meta property='article:tag' content='C&#43;&#43;' /><meta property='article:published_time' content='2025-08-11T16:34:53&#43;08:00'/><meta property='article:modified_time' content='2025-08-11T16:34:53&#43;08:00'/>
 <meta name="twitter:title" content="凯撒密码">
@@ -396,7 +396,7 @@
 
 
                 <time class="article-time--reading">
-                    3 minute read
+                    2 minute read
                 </time>
             </div>
         
@@ -456,40 +456,34 @@ $$ P = (C - k) \pmod{26} $$</p>
 </h2><p>下面是一个完整的 C++ 程序，它实现了凯撒密码的加密和解密功能。代码结构清晰，并包含了详细的注释。</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;string&gt;</span><span style="color:#75715e">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cctype&gt;</span><span style="color:#75715e"> </span><span style="color:#75715e">// 包含 isalpha, isupper, islower 等函数
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cctype&gt;</span><span style="color:#75715e">
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">// 函数声明
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>std<span style="color:#f92672">::</span>string caesarEncrypt(<span style="color:#66d9ef">const</span> std<span style="color:#f92672">::</span>string<span style="color:#f92672">&amp;</span> text, <span style="color:#66d9ef">int</span> key);
-</span></span><span style="display:flex;"><span>std<span style="color:#f92672">::</span>string caesarDecrypt(<span style="color:#66d9ef">const</span> std<span style="color:#f92672">::</span>string<span style="color:#f92672">&amp;</span> text, <span style="color:#66d9ef">int</span> key);
+</span></span><span style="display:flex;"><span>std<span style="color:#f92672">::</span>string caesarEncrypt(<span style="color:#66d9ef">const</span> std<span style="color:#f92672">::</span>string<span style="color:#f92672">&amp;</span> text, <span style="color:#66d9ef">int</span> shift);
+</span></span><span style="display:flex;"><span>std<span style="color:#f92672">::</span>string caesarDecrypt(<span style="color:#66d9ef">const</span> std<span style="color:#f92672">::</span>string<span style="color:#f92672">&amp;</span> text, <span style="color:#66d9ef">int</span> shift);
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() {
 </span></span><span style="display:flex;"><span>    std<span style="color:#f92672">::</span>string message;
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> key;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> shift;
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;======================================&#34;</span> <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl;
+</span></span><span style="display:flex;"><span>    std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;=====================================&#34;</span> <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl;
 </span></span><span style="display:flex;"><span>    std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;      凯撒密码加密/解密程序&#34;</span> <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl;
-</span></span><span style="display:flex;"><span>    std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;======================================&#34;</span> <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl;
+</span></span><span style="display:flex;"><span>    std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;=====================================&#34;</span> <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl;
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 获取用户输入的明文
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">请输入要处理的消息: &#34;</span>;
+</span></span><span style="display:flex;"><span>    std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">请输入要处理的消息: &#34;</span>;
 </span></span><span style="display:flex;"><span>    std<span style="color:#f92672">::</span>getline(std<span style="color:#f92672">::</span>cin, message);
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 获取用户输入的密钥
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;请输入密钥 (1-25 之间的整数): &#34;</span>;
-</span></span><span style="display:flex;"><span>    std<span style="color:#f92672">::</span>cin <span style="color:#f92672">&gt;&gt;</span> key;
+</span></span><span style="display:flex;"><span>    std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;请输入移位量 (0-25 之间的整数): &#34;</span>;
+</span></span><span style="display:flex;"><span>    std<span style="color:#f92672">::</span>cin <span style="color:#f92672">&gt;&gt;</span> shift;
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 密钥合法性检查
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">if</span> (key <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">||</span> key <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">25</span>) {
-</span></span><span style="display:flex;"><span>        std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;错误：密钥必须在 1 到 25 之间。&#34;</span> <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl;
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>; <span style="color:#75715e">// 返回错误码
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    }
+</span></span><span style="display:flex;"><span>    shift <span style="color:#f92672">=</span> shift <span style="color:#f92672">%</span> <span style="color:#ae81ff">26</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (shift <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>) {
+</span></span><span style="display:flex;"><span>        shift <span style="color:#f92672">+=</span> <span style="color:#ae81ff">26</span>;
+</span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 执行加密
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    std<span style="color:#f92672">::</span>string encryptedMessage <span style="color:#f92672">=</span> caesarEncrypt(message, key);
+</span></span><span style="display:flex;"><span>    std<span style="color:#f92672">::</span>string encryptedMessage <span style="color:#f92672">=</span> caesarEncrypt(message, shift);
 </span></span><span style="display:flex;"><span>    std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">加密后的密文是: &#34;</span> <span style="color:#f92672">&lt;&lt;</span> encryptedMessage <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl;
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 执行解密
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    std<span style="color:#f92672">::</span>string decryptedMessage <span style="color:#f92672">=</span> caesarDecrypt(encryptedMessage, key);
+</span></span><span style="display:flex;"><span>    std<span style="color:#f92672">::</span>string decryptedMessage <span style="color:#f92672">=</span> caesarDecrypt(encryptedMessage, shift);
 </span></span><span style="display:flex;"><span>    std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;解密后的明文是: &#34;</span> <span style="color:#f92672">&lt;&lt;</span> decryptedMessage <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl;
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
@@ -498,17 +492,16 @@ $$ P = (C - k) \pmod{26} $$</p>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">/**
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * @brief 对给定的文本进行凯撒加密
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * @param text 要加密的明文
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * @param key  位移密钥 (1-25)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * @param shift 移位密钥 (0-25)
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * @return 加密后的密文
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"> */</span>
-</span></span><span style="display:flex;"><span>std<span style="color:#f92672">::</span>string caesarEncrypt(<span style="color:#66d9ef">const</span> std<span style="color:#f92672">::</span>string<span style="color:#f92672">&amp;</span> text, <span style="color:#66d9ef">int</span> key) {
+</span></span><span style="display:flex;"><span>std<span style="color:#f92672">::</span>string caesarEncrypt(<span style="color:#66d9ef">const</span> std<span style="color:#f92672">::</span>string<span style="color:#f92672">&amp;</span> text, <span style="color:#66d9ef">int</span> shift) {
 </span></span><span style="display:flex;"><span>    std<span style="color:#f92672">::</span>string result <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>;
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">char</span> c : text) {
-</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// 只处理英文字母，其他字符（如空格、标点）保持原样
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">if</span> (isalpha(c)) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (isalpha(c)) {
 </span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">char</span> base <span style="color:#f92672">=</span> isupper(c) <span style="color:#f92672">?</span> <span style="color:#e6db74">&#39;A&#39;</span> <span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;a&#39;</span>;
-</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// 应用加密公式: C = (P + k) % 26
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            result <span style="color:#f92672">+=</span> <span style="color:#66d9ef">static_cast</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">char</span><span style="color:#f92672">&gt;</span>((c <span style="color:#f92672">-</span> base <span style="color:#f92672">+</span> key) <span style="color:#f92672">%</span> <span style="color:#ae81ff">26</span> <span style="color:#f92672">+</span> base);
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// Apply encryption formula: C = (P + k) % 26
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            result <span style="color:#f92672">+=</span> <span style="color:#66d9ef">static_cast</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">char</span><span style="color:#f92672">&gt;</span>((c <span style="color:#f92672">-</span> base <span style="color:#f92672">+</span> shift) <span style="color:#f92672">%</span> <span style="color:#ae81ff">26</span> <span style="color:#f92672">+</span> base);
 </span></span><span style="display:flex;"><span>        } <span style="color:#66d9ef">else</span> {
 </span></span><span style="display:flex;"><span>            result <span style="color:#f92672">+=</span> c;
 </span></span><span style="display:flex;"><span>        }
@@ -519,17 +512,15 @@ $$ P = (C - k) \pmod{26} $$</p>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">/**
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * @brief 对给定的文本进行凯撒解密
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * @param text 要解密的密文
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * @param key  位移密钥 (1-25)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * @param shift 移位密钥 (0-25)
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * @return 解密后的明文
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"> */</span>
-</span></span><span style="display:flex;"><span>std<span style="color:#f92672">::</span>string caesarDecrypt(<span style="color:#66d9ef">const</span> std<span style="color:#f92672">::</span>string<span style="color:#f92672">&amp;</span> text, <span style="color:#66d9ef">int</span> key) {
+</span></span><span style="display:flex;"><span>std<span style="color:#f92672">::</span>string caesarDecrypt(<span style="color:#66d9ef">const</span> std<span style="color:#f92672">::</span>string<span style="color:#f92672">&amp;</span> text, <span style="color:#66d9ef">int</span> shift) {
 </span></span><span style="display:flex;"><span>    std<span style="color:#f92672">::</span>string result <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>;
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">char</span> c : text) {
 </span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (isalpha(c)) {
 </span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">char</span> base <span style="color:#f92672">=</span> isupper(c) <span style="color:#f92672">?</span> <span style="color:#e6db74">&#39;A&#39;</span> <span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;a&#39;</span>;
-</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// 应用解密公式: P = (C - k + 26) % 26
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            <span style="color:#75715e">// 注意这里 +26 是为了处理负数情况，确保结果总为正
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            result <span style="color:#f92672">+=</span> <span style="color:#66d9ef">static_cast</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">char</span><span style="color:#f92672">&gt;</span>((c <span style="color:#f92672">-</span> base <span style="color:#f92672">-</span> key <span style="color:#f92672">+</span> <span style="color:#ae81ff">26</span>) <span style="color:#f92672">%</span> <span style="color:#ae81ff">26</span> <span style="color:#f92672">+</span> base);
+</span></span><span style="display:flex;"><span>            result <span style="color:#f92672">+=</span> <span style="color:#66d9ef">static_cast</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">char</span><span style="color:#f92672">&gt;</span>((c <span style="color:#f92672">-</span> base <span style="color:#f92672">-</span> shift <span style="color:#f92672">+</span> <span style="color:#ae81ff">26</span>) <span style="color:#f92672">%</span> <span style="color:#ae81ff">26</span> <span style="color:#f92672">+</span> base);
 </span></span><span style="display:flex;"><span>        } <span style="color:#66d9ef">else</span> {
 </span></span><span style="display:flex;"><span>            result <span style="color:#f92672">+=</span> c;
 </span></span><span style="display:flex;"><span>        }
@@ -729,7 +720,7 @@ $$ P = (C - k) \pmod{26} $$</p>
                 src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
                 
                 >
-            </script><script type="text/javascript" src="/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js" defer></script>
+            </script><script type="text/javascript" src="/ts/main.ae4aa0cefbc1cdd570aa3562ec0ebcf494c2e63e6e47f7bdbaa4bd63e849d17c.js" defer></script>
 <script>
     (function () {
         const customFont = document.createElement('link');

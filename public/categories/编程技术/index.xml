@@ -6,7 +6,214 @@
         <description>Recent content in 编程技术 on Styx Blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <lastBuildDate>Mon, 11 Aug 2025 16:34:53 +0800</lastBuildDate><atom:link href="http://localhost:1313/categories/%E7%BC%96%E7%A8%8B%E6%8A%80%E6%9C%AF/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Tue, 12 Aug 2025 17:15:00 +0800</lastBuildDate><atom:link href="http://localhost:1313/categories/%E7%BC%96%E7%A8%8B%E6%8A%80%E6%9C%AF/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>仿射密码</title>
+        <link>http://localhost:1313/post/programmingtechnology/classicalcryptography/affinecipher/</link>
+        <pubDate>Tue, 12 Aug 2025 17:15:00 +0800</pubDate>
+        
+        <guid>http://localhost:1313/post/programmingtechnology/classicalcryptography/affinecipher/</guid>
+        <description>&lt;h2 id=&#34;什么是仿射密码&#34;&gt;什么是仿射密码？
+&lt;/h2&gt;&lt;p&gt;仿射密码是一种&lt;strong&gt;替换密码（Substitution Cipher）&lt;/strong&gt;，它是凯撒密码的扩展，引入了更为复杂的数学运算。与凯撒密码仅仅通过加法进行位移不同，仿射密码结合了乘法和加法的线性变换。其核心在于将字母表中的每个字母映射到一个数值（通常A=0，B=1，&amp;hellip;，Z=25），然后通过一个仿射函数进行变换，最后再将变换后的数值映射回字母。&lt;/p&gt;
+&lt;h2 id=&#34;仿射密码的数学表示&#34;&gt;仿射密码的数学表示
+&lt;/h2&gt;&lt;p&gt;仿射密码的加密和解密过程都可以用数学语言精确地描述。我们将字母表中的每个字母映射为一个数字（例如，A=0, B=1, &amp;hellip;, Z=25）。&lt;/p&gt;
+&lt;h3 id=&#34;加密函数&#34;&gt;加密函数
+&lt;/h3&gt;&lt;p&gt;仿射密码的加密函数定义为：&lt;/p&gt;
+&lt;p&gt;$$E(x) = (ax + b) \pmod{m}$$&lt;/p&gt;
+&lt;p&gt;其中：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;x&lt;/code&gt; 代表明文字母对应的数值（0到 &lt;code&gt;m-1&lt;/code&gt;）。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;a&lt;/code&gt; 和 &lt;code&gt;b&lt;/code&gt; 是密钥，其中 &lt;code&gt;a&lt;/code&gt; 必须与 &lt;code&gt;m&lt;/code&gt; 互质（即它们的最大公约数为1）。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;m&lt;/code&gt; 是字母表中的字母数量，对于英文字母表，&lt;code&gt;m&lt;/code&gt; 通常取26。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;E(x)&lt;/code&gt; 代表密文字母对应的数值。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;互质条件的重要性：&lt;/strong&gt; &lt;code&gt;a&lt;/code&gt; 与 &lt;code&gt;m&lt;/code&gt; 互质是仿射密码能够成功解密的必要条件。如果 &lt;code&gt;a&lt;/code&gt; 和 &lt;code&gt;m&lt;/code&gt; 不互质，那么在加密过程中可能会出现不同的明文字母加密后得到相同的密文字母的情况，导致解密时无法唯一确定原始明文，从而无法正确解密。&lt;/p&gt;
+&lt;h3 id=&#34;解密函数&#34;&gt;解密函数
+&lt;/h3&gt;&lt;p&gt;解密是加密的逆过程。为了从密文 &lt;code&gt;y&lt;/code&gt; 恢复明文 &lt;code&gt;x&lt;/code&gt;，我们需要找到加密函数 &lt;code&gt;E(x) = (ax + b) mod m&lt;/code&gt; 的逆函数。从加密函数可以推导出：&lt;/p&gt;
+&lt;p&gt;$$y \equiv ax + b \pmod{m}$$
+$$y - b \equiv ax \pmod{m}$$&lt;/p&gt;
+&lt;p&gt;为了解出 &lt;code&gt;x&lt;/code&gt;，我们需要找到 &lt;code&gt;a&lt;/code&gt; 在模 &lt;code&gt;m&lt;/code&gt; 意义下的乘法逆元 &lt;code&gt;a^-1&lt;/code&gt;，即满足 &lt;code&gt;(a * a^-1) mod m = 1&lt;/code&gt; 的 &lt;code&gt;a^-1&lt;/code&gt;。只有当 &lt;code&gt;a&lt;/code&gt; 与 &lt;code&gt;m&lt;/code&gt; 互质时，&lt;code&gt;a^-1&lt;/code&gt; 才存在。&lt;/p&gt;
+&lt;p&gt;解密函数定义为：&lt;/p&gt;
+&lt;p&gt;$$D(y) = a^{-1}(y - b) \pmod{m}$$&lt;/p&gt;
+&lt;p&gt;其中：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;y&lt;/code&gt; 代表密文字母对应的数值。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;a^-1&lt;/code&gt; 是 &lt;code&gt;a&lt;/code&gt; 在模 &lt;code&gt;m&lt;/code&gt; 意义下的乘法逆元。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;b&lt;/code&gt; 是加密时使用的密钥 &lt;code&gt;b&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;D(y)&lt;/code&gt; 代表解密后明文字母对应的数值。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;寻找乘法逆元：&lt;/strong&gt; 乘法逆元 &lt;code&gt;a^-1&lt;/code&gt; 可以通过扩展欧几里得算法或穷举法（对于较小的 &lt;code&gt;m&lt;/code&gt; 值，如26）来找到。例如，当 &lt;code&gt;m=26&lt;/code&gt; 时，与26互质的 &lt;code&gt;a&lt;/code&gt; 值有1, 3, 5, 7, 9, 11, 15, 17, 19, 21, 23, 25。每个 &lt;code&gt;a&lt;/code&gt; 值都有其对应的唯一乘法逆元。&lt;/p&gt;
+&lt;h3 id=&#34;示例&#34;&gt;示例
+&lt;/h3&gt;&lt;p&gt;假设我们使用英文字母表（m=26），密钥 &lt;code&gt;a=5&lt;/code&gt;，&lt;code&gt;b=8&lt;/code&gt;。由于5和26互质，这是一个有效的密钥对。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;加密“HELLO”：&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;将明文字母转换为数值：
+H -&amp;gt; 7
+E -&amp;gt; 4
+L -&amp;gt; 11
+L -&amp;gt; 11
+O -&amp;gt; 14&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;应用加密函数 &lt;code&gt;E(x) = (5x + 8) mod 26&lt;/code&gt;：
+H: E(7) = (5&lt;em&gt;7 + 8) mod 26 = (35 + 8) mod 26 = 43 mod 26 = 17 -&amp;gt; R
+E: E(4) = (5&lt;/em&gt;4 + 8) mod 26 = (20 + 8) mod 26 = 28 mod 26 = 2 -&amp;gt; C
+L: E(11) = (5&lt;em&gt;11 + 8) mod 26 = (55 + 8) mod 26 = 63 mod 26 = 11 -&amp;gt; L
+L: E(11) = (5&lt;/em&gt;11 + 8) mod 26 = (55 + 8) mod 26 = 63 mod 26 = 11 -&amp;gt; L
+O: E(14) = (5*14 + 8) mod 26 = (70 + 8) mod 26 = 78 mod 26 = 0 -&amp;gt; A&lt;/p&gt;
+&lt;p&gt;加密后的密文是 &lt;strong&gt;RCLLA&lt;/strong&gt;。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;解密“RCLLA”：&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;首先找到 &lt;code&gt;a=5&lt;/code&gt; 在模26下的乘法逆元 &lt;code&gt;a^-1&lt;/code&gt;。我们需要找到一个数 &lt;code&gt;x&lt;/code&gt; 使得 &lt;code&gt;5x mod 26 = 1&lt;/code&gt;。通过计算可知 &lt;code&gt;5 * 21 = 105&lt;/code&gt;，&lt;code&gt;105 mod 26 = 1&lt;/code&gt;，所以 &lt;code&gt;a^-1 = 21&lt;/code&gt;。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;将密文字母转换为数值：
+R -&amp;gt; 17
+C -&amp;gt; 2
+L -&amp;gt; 11
+L -&amp;gt; 11
+A -&amp;gt; 0&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;应用解密函数 &lt;code&gt;D(y) = 21(y - 8) mod 26&lt;/code&gt;：
+R: D(17) = 21(17 - 8) mod 26 = 21 * 9 mod 26 = 189 mod 26 = 7 -&amp;gt; H
+C: D(2) = 21(2 - 8) mod 26 = 21 * (-6) mod 26 = -126 mod 26 = 10 * 26 - 126 mod 26 = 4 -&amp;gt; E
+L: D(11) = 21(11 - 8) mod 26 = 21 * 3 mod 26 = 63 mod 26 = 11 -&amp;gt; L
+L: D(11) = 21(11 - 8) mod 26 = 21 * 3 mod 26 = 63 mod 26 = 11 -&amp;gt; L
+A: D(0) = 21(0 - 8) mod 26 = 21 * (-8) mod 26 = -168 mod 26 = 10 * 26 - 168 mod 26 = 260 - 168 mod 26 = 92 mod 26 = 14 -&amp;gt; O&lt;/p&gt;
+&lt;p&gt;解密后的明文是 &lt;strong&gt;HELLO&lt;/strong&gt;。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;c-代码实现&#34;&gt;C++ 代码实现
+&lt;/h2&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-cpp&#34; data-lang=&#34;cpp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#include&lt;/span&gt; &lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;iostream&amp;gt;&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#include&lt;/span&gt; &lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;string&amp;gt;&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#include&lt;/span&gt; &lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;cctype&amp;gt;&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#include&lt;/span&gt; &lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;numeric&amp;gt;&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;modInverse&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; a, &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; m) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    a &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; a &lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt; m;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; x &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;; x &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt; m; x&lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; ((a &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; x) &lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt; m &lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; x;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;bool&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;isCoprime&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; a) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; std&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;gcd(a, &lt;span style=&#34;color:#ae81ff&#34;&gt;26&lt;/span&gt;) &lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;std&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;string encryptAffine(&lt;span style=&#34;color:#66d9ef&#34;&gt;const&lt;/span&gt; std&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;string&lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt; text, &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; a, &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; b) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    std&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;string result &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (&lt;span style=&#34;color:#66d9ef&#34;&gt;char&lt;/span&gt; c : text) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (isalpha(c)) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#66d9ef&#34;&gt;char&lt;/span&gt; base &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; islower(c) &lt;span style=&#34;color:#f92672&#34;&gt;?&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;a&amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;A&amp;#39;&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; x &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; c &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; base;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            result &lt;span style=&#34;color:#f92672&#34;&gt;+=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;static_cast&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;char&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt;(((a &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; x &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; b) &lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;26&lt;/span&gt;) &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; base);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        } &lt;span style=&#34;color:#66d9ef&#34;&gt;else&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            result &lt;span style=&#34;color:#f92672&#34;&gt;+=&lt;/span&gt; c;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; result;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;std&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;string decryptAffine(&lt;span style=&#34;color:#66d9ef&#34;&gt;const&lt;/span&gt; std&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;string&lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt; text, &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; a, &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; b) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    std&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;string result &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; a_inv &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; modInverse(a, &lt;span style=&#34;color:#ae81ff&#34;&gt;26&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (a_inv &lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#75715e&#34;&gt;// This case should ideally be handled before calling decrypt
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Error: Modular inverse does not exist. &amp;#39;a&amp;#39; must be coprime to 26.&amp;#34;&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (&lt;span style=&#34;color:#66d9ef&#34;&gt;char&lt;/span&gt; c : text) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (isalpha(c)) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#66d9ef&#34;&gt;char&lt;/span&gt; base &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; islower(c) &lt;span style=&#34;color:#f92672&#34;&gt;?&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;a&amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;A&amp;#39;&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; y &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; c &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; base;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#75715e&#34;&gt;// (y - b) might be negative, add 26 to make it positive before modulo
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;            result &lt;span style=&#34;color:#f92672&#34;&gt;+=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;static_cast&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;char&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt;(((a_inv &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; (y &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; b &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;26&lt;/span&gt;)) &lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;26&lt;/span&gt;) &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; base);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        } &lt;span style=&#34;color:#66d9ef&#34;&gt;else&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            result &lt;span style=&#34;color:#f92672&#34;&gt;+=&lt;/span&gt; c;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; result;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;main&lt;/span&gt;() {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    std&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;string text;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; a, b;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    std&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;cout &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;请输入要加密的文本: &amp;#34;&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    std&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;getline(std&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;cin, text);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    std&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;cout &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;请输入参数 a (必须与 26 互质，例如 1, 3, 5, 7, 9, 11, 15, 17, 19, 21, 23, 25): &amp;#34;&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    std&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;cin &lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&amp;gt;&lt;/span&gt; a;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#75715e&#34;&gt;// Validate &amp;#39;a&amp;#39;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;while&lt;/span&gt; (&lt;span style=&#34;color:#f92672&#34;&gt;!&lt;/span&gt;isCoprime(a &lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;26&lt;/span&gt;)) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        std&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;cout &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;参数 a 必须与 26 互质。请重新输入: &amp;#34;&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        std&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;cin &lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&amp;gt;&lt;/span&gt; a;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    a &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; a &lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;26&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    std&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;cout &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;请输入参数 b (0-25): &amp;#34;&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    std&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;cin &lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&amp;gt;&lt;/span&gt; b;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    b &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; b &lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;26&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    std&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;string encrypted_text &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; encryptAffine(text, a, b);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    std&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;cout &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;加密后的文本: &amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; encrypted_text &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; std&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;endl;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    std&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;string decrypted_text &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; decryptAffine(encrypted_text, a, b);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    std&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;cout &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;解密后的文本: &amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; decrypted_text &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; std&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;endl;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;如何破解仿射密码&#34;&gt;如何破解仿射密码？
+&lt;/h2&gt;&lt;p&gt;仿射密码的安全性非常低，因为它存在致命的弱点。主要有两种破解方法：&lt;/p&gt;
+&lt;h3 id=&#34;1-暴力破解-brute-force-attack&#34;&gt;1. 暴力破解 (Brute-force Attack)
+&lt;/h3&gt;&lt;p&gt;仿射密码的密钥由两个部分组成：&lt;code&gt;a&lt;/code&gt; 和 &lt;code&gt;b&lt;/code&gt;。对于26个英文字母的字母表（&lt;code&gt;m=26&lt;/code&gt;），&lt;code&gt;a&lt;/code&gt; 必须与26互质。与26互质的数有12个（1, 3, 5, 7, 9, 11, 15, 17, 19, 21, 23, 25）。&lt;code&gt;b&lt;/code&gt; 可以是0到25之间的任意整数，有26种可能。因此，仿射密码的总密钥空间大小为 &lt;code&gt;12 * 26 = 312&lt;/code&gt;。相较于现代密码学中动辄上百位的密钥长度，312种密钥组合是一个非常小的数字，这使得仿射密码极易受到暴力破解攻击。&lt;/p&gt;
+&lt;p&gt;攻击者可以简单地将所有可能的密钥组合全部尝试一遍，直到解密出的文本有意义为止。这个过程对于计算机来说是瞬时完成的。&lt;/p&gt;
+&lt;h3 id=&#34;2-频率分析-frequency-analysis&#34;&gt;2. 频率分析 (Frequency Analysis)
+&lt;/h3&gt;&lt;p&gt;仿射密码属于单表替换密码的范畴，这意味着明文中的每一个特定字母，在加密过程中都会被唯一地替换为密文中的一个特定字母。在任何一种自然语言中，不同字母的出现频率是有统计规律的。例如，在英语中，字母 &lt;code&gt;E&lt;/code&gt; 的出现频率最高，其次是 &lt;code&gt;T&lt;/code&gt;, &lt;code&gt;A&lt;/code&gt;, &lt;code&gt;O&lt;/code&gt; 等。&lt;/p&gt;
+&lt;p&gt;攻击者可以统计密文中每个字母的出现频率，找到出现次数最多的那个密文字母。它有极大的概率对应明文中的 &lt;code&gt;E&lt;/code&gt;。一旦确定了这一对映射关系，就可以结合数学原理推算出密钥 &lt;code&gt;a&lt;/code&gt; 和 &lt;code&gt;b&lt;/code&gt;，从而破解整个密码。&lt;/p&gt;
+&lt;h2 id=&#34;仿射密码的特点与应用&#34;&gt;仿射密码的特点与应用
+&lt;/h2&gt;&lt;p&gt;仿射密码作为古典密码的一种，具有其独特的特点，这些特点也决定了其在现代密码学中的地位和应用场景。&lt;/p&gt;
+&lt;h3 id=&#34;特点&#34;&gt;特点
+&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;单表替换密码：&lt;/strong&gt; 仿射密码属于单表替换密码的范畴，明文中的每一个特定字母，在加密过程中都会被唯一地替换为密文中的一个特定字母。这种一对一的映射关系是单表替换密码的显著特征。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;与凯撒密码的关系：&lt;/strong&gt; 凯撒密码可以看作是仿射密码的一种特殊情况。当仿射密码的密钥 &lt;code&gt;a=1&lt;/code&gt; 时，加密函数变为 &lt;code&gt;E(x) = (1 * x + b) mod m = (x + b) mod m&lt;/code&gt;，这正是凯撒密码的加密函数。因此，凯撒密码是仿射密码的一个子集。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;应用&#34;&gt;应用
+&lt;/h3&gt;&lt;p&gt;尽管仿射密码在现代通信中不再用于保护敏感信息，但它在密码学教育和入门领域仍有其价值：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;密码学教学：&lt;/strong&gt; 仿射密码是理解古典密码原理、加密解密过程以及密钥概念的优秀教学工具。通过学习仿射密码，学生可以直观地了解替换密码的工作方式，以及模运算在密码学中的应用。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;频率分析演示：&lt;/strong&gt; 仿射密码是演示频率分析攻击原理的理想示例。教师可以通过仿射密码的加密和解密过程，向学生展示如何利用语言的统计特性来破解简单的替换密码。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;编程实践：&lt;/strong&gt; 实现仿射密码的加密和解密算法是初学者进行密码学编程实践的良好起点。这有助于培养编程技能，并加深对密码学算法的理解。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;历史研究：&lt;/strong&gt; 作为古典密码的一部分，仿射密码在密码学发展史上占有一席之地。研究仿射密码有助于了解密码学从简单替换到复杂算法的演变过程。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;总而言之，仿射密码虽然在实际应用中已不再具备安全性，但其在密码学教育和历史研究中仍然发挥着重要的作用，为我们理解更复杂的加密技术提供了基础。&lt;/p&gt;
+&lt;h2 id=&#34;总结&#34;&gt;总结
+&lt;/h2&gt;&lt;p&gt;仿射密码作为古典密码学中的一个重要组成部分，以其简洁的数学原理和直观的加密过程，为我们理解密码学的基本概念提供了宝贵的视角。它通过线性函数 &lt;code&gt;E(x) = (ax + b) mod m&lt;/code&gt; 将明文转换为密文，并通过其逆函数 &lt;code&gt;D(y) = a^-1(y - b) mod m&lt;/code&gt; 进行解密。其中，密钥 &lt;code&gt;a&lt;/code&gt; 与字母表大小 &lt;code&gt;m&lt;/code&gt; 互质是确保可逆性的关键条件。&lt;/p&gt;
+&lt;p&gt;尽管仿射密码在现代密码学中因其极小的密钥空间和易受频率分析攻击的弱点而不再具备实际的安全性，但它在密码学教育、历史研究以及编程实践中仍然扮演着不可或缺的角色。通过学习和实现仿射密码，我们不仅能够掌握古典密码的基本原理，还能为理解更复杂的加密算法和现代密码学奠定坚实的基础。&lt;/p&gt;
+&lt;p&gt;从凯撒密码到仿射密码，再到更复杂的加密技术，密码学的发展史是一部不断演进的攻防史。每一次加密技术的进步都伴随着破解技术的突破，反之亦然。仿射密码正是这一演进过程中的一个重要里程碑，它以其独特的数学美感和历史意义，继续在密码学领域中闪耀着光芒。&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>凯撒密码</title>
         <link>http://localhost:1313/post/programmingtechnology/classicalcryptography/caesarcipher/</link>
         <pubDate>Mon, 11 Aug 2025 16:34:53 +0800</pubDate>
@@ -59,8 +266,7 @@ $$ P = (C - k) \pmod{26} $$&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#include&lt;/span&gt; &lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;string&amp;gt;&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#include&lt;/span&gt; &lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;cctype&amp;gt;&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;// Function declarations
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;std&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;string caesarEncrypt(&lt;span style=&#34;color:#66d9ef&#34;&gt;const&lt;/span&gt; std&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;string&lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt; text, &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; shift);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;std&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;string caesarEncrypt(&lt;span style=&#34;color:#66d9ef&#34;&gt;const&lt;/span&gt; std&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;string&lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt; text, &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; shift);
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;std&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;string caesarDecrypt(&lt;span style=&#34;color:#66d9ef&#34;&gt;const&lt;/span&gt; std&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;string&lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt; text, &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; shift);
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;main&lt;/span&gt;() {

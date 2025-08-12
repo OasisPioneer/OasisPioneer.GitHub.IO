@@ -1,7 +1,7 @@
 #!/bin/bash
 
 set -e
-set -x
+# set -x
 
 GREEN='\033[0;32m'
 YELLOW='\033[1;33m'

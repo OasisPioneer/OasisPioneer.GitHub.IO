@@ -3,6 +3,8 @@ languageCode = 'zh-cn'
 title = 'Styx Blog'
 theme = 'Stack'
 
+defaultContentLanguage = "zh-cn"
+
 [Params]
 	favicon = "mask.svg"
 	description = "Styx Blog 热爱编程 热爱生活"

@@ -30,7 +30,7 @@ defaultContentLanguage = "zh-cn"
 
 	[Params.Footer]
 		since = 2025
-		customText = """ """
+		customText = """ 本站文章均为原创 转载请标注文章来源 """
 
 [Menu]
 

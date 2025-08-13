@@ -1,5 +1,205 @@
 /* Place your custom SCSS in HUGO_SITE_FOLDER/assets/scss/custom.scss */
 
+// ===== ===== 页面配色 ===== =====
+:root {
+  --main-top-padding: 30px;
+  --card-border-radius: 25px;
+  --tag-border-radius: 8px;
+  --section-separation: 40px;
+  --article-font-size: 1.8rem;
+  --code-background-color: #f8f8f8;
+  --code-text-color: #e96900;
+  &[data-scheme="dark"] {
+    --code-background-color: #ff6d1b17;
+    --code-text-color: #e96900;
+  }
+}
+
+a {
+  word-break: break-all;
+}
+
+code {
+  word-break: break-all;
+}
+
+// ===== ===== 图片样式 ===== =====
+.article-page .main-article .article-content {
+  img {
+    max-width: 96% !important;
+    height: auto !important;
+    border-radius: 8px;
+  }
+}
+
+// ===== ===== 文章引用 ===== =====
+.article-content {
+  blockquote {
+    border-left: 6px solid #358b9a1f !important;
+    background: #3a97431f;
+  }
+}
+
+// ===== ===== 代码样式 ===== =====
+.highlight {
+  max-width: 102% !important;
+  background-color: var(--pre-background-color);
+  padding: var(--card-padding);
+  position: relative;
+  border-radius: 20px;
+  margin-left: -7px !important;
+  margin-right: -12px;
+  box-shadow: var(--shadow-l1) !important;
+
+  &:hover {
+    .copyCodeButton {
+      opacity: 1;
+    }
+  }
+
+  // keep Codeblocks LTR
+  [dir="rtl"] & {
+    direction: ltr;
+  }
+
+  pre {
+    margin: initial;
+    padding: 0;
+    margin: 0;
+    width: auto;
+  }
+}
+
+// ===== ===== 代码样式 ===== =====
+[data-scheme="light"] .article-content .highlight {
+  background-color: #fff9f3;
+}
+
+[data-scheme="light"] .chroma {
+  color: #ff6f00;
+  background-color: #fff9f3cc;
+}
+
+// ===== ===== 选中样式 ===== =====
+::selection {
+  color: #fff;
+  background: #34495e;
+}
+
+a {
+  text-decoration: none;
+  color: var(--accent-color);
+
+  &:hover {
+    color: var(--accent-color-darker);
+  }
+
+  &.link {
+    color: #4288b9ad;
+    font-weight: 600;
+    padding: 0 2px;
+    text-decoration: none;
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+// ===== ===== 封面高度 ===== =====
+.article-list article .article-image img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+
+  @include respond(md) {
+    height: 200px;
+  }
+
+  @include respond(xl) {
+    height: 305px;
+  }
+}
+
+// ===== ===== 页面布局 ===== =====
+.main-container {
+  min-height: 100vh;
+  align-items: flex-start;
+  padding: 0 15px;
+  gap: var(--section-separation);
+  padding-top: var(--main-top-padding);
+
+  @include respond(md) {
+    padding: 0 37px;
+  }
+}
+
+// ===== ===== 页面宽度 ===== =====
+.container {
+  margin-left: auto;
+  margin-right: auto;
+
+  .left-sidebar {
+    order: -3;
+    max-width: var(--left-sidebar-max-width);
+  }
+
+  .right-sidebar {
+    order: -1;
+    max-width: var(--right-sidebar-max-width);
+
+    /// Display right sidebar when min-width: lg
+    @include respond(lg) {
+      display: flex;
+    }
+  }
+
+  &.extended {
+    @include respond(md) {
+      max-width: 1024px;
+      --left-sidebar-max-width: 25%;
+      --right-sidebar-max-width: 22% !important;
+    }
+
+    @include respond(lg) {
+      max-width: 1280px;
+      --left-sidebar-max-width: 20%;
+      --right-sidebar-max-width: 30%;
+    }
+
+    @include respond(xl) {
+      max-width: 1453px; //1536px;
+      --left-sidebar-max-width: 15%;
+      --right-sidebar-max-width: 25%;
+    }
+  }
+
+  &.compact {
+    @include respond(md) {
+      --left-sidebar-max-width: 25%;
+      max-width: 768px;
+    }
+
+    @include respond(lg) {
+      max-width: 1024px;
+      --left-sidebar-max-width: 20%;
+    }
+
+    @include respond(xl) {
+      max-width: 1280px;
+    }
+  }
+}
+
+// ===== ===== 图片微调 ===== =====
+.article-list--compact article .article-image img {
+  width: var(--image-size);
+  height: var(--image-size);
+  object-fit: cover;
+  border-radius: 17%;
+}
+
 // ===== ===== 头像旋转 ===== =====
 .sidebar header .site-avatar .site-logo {
   transition: transform 1s ease-in-out;
@@ -8,7 +208,6 @@
 .sidebar header .site-avatar .site-logo:hover {
   transform: rotate(360deg);
 }
-
 
 // ===== ===== 键盘样式 ===== =====
 kbd {

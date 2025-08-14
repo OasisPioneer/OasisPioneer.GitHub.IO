@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
     <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="本篇文章主要分享古典密码学的ROT13密码">
-<meta name="keywords" content="古典密码学, ROT13密码, 加密算法, C&#43;&#43;"><title>ROT13密码</title>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="本篇文章主要分享如何选择一个更加安全的多币种钱包">
+<meta name="keywords" content="加密货币, 虚拟币, 区块链, 热钱包, 硬件钱包, 软件钱包, 冷钱包, 助记词, Web3, 私钥管理"><title>选择钱包</title>
 
-<link rel='canonical' href='http://localhost:1313/post/programmingtechnology/classicalcryptography/rot13cipher/'>
+<link rel='canonical' href='http://localhost:1313/post/cryptocurrency/choosewallet/'>
 
-<link rel="stylesheet" href="/scss/style.min.338053eda653cd6e6671308312787aee70bf27998a1cb63bd943908e55b48ced.css"><meta property='og:title' content="ROT13密码">
-<meta property='og:description' content="本篇文章主要分享古典密码学的ROT13密码">
-<meta property='og:url' content='http://localhost:1313/post/programmingtechnology/classicalcryptography/rot13cipher/'>
+<link rel="stylesheet" href="/scss/style.min.338053eda653cd6e6671308312787aee70bf27998a1cb63bd943908e55b48ced.css"><meta property='og:title' content="选择钱包">
+<meta property='og:description' content="本篇文章主要分享如何选择一个更加安全的多币种钱包">
+<meta property='og:url' content='http://localhost:1313/post/cryptocurrency/choosewallet/'>
 <meta property='og:site_name' content='Styx Blog'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='古典密码学' /><meta property='article:tag' content='C&#43;&#43;' /><meta property='article:published_time' content='2025-08-13T23:28:33&#43;08:00'/><meta property='article:modified_time' content='2025-08-13T23:28:33&#43;08:00'/>
-<meta name="twitter:title" content="ROT13密码">
-<meta name="twitter:description" content="本篇文章主要分享古典密码学的ROT13密码">
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='加密货币' /><meta property='article:tag' content='钱包' /><meta property='article:published_time' content='2025-08-14T17:10:00&#43;08:00'/><meta property='article:modified_time' content='2025-08-14T17:10:00&#43;08:00'/>
+<meta name="twitter:title" content="选择钱包">
+<meta name="twitter:description" content="本篇文章主要分享如何选择一个更加安全的多币种钱包">
     <link rel="shortcut icon" href="/mask.svg" />
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5303132509036035"
      crossorigin="anonymous"></script>
@@ -338,15 +338,16 @@
         <div class="widget--toc">
             <nav id="TableOfContents">
   <ul>
-    <li><a href="#什么是rot13密码">什么是ROT13密码？</a></li>
-    <li><a href="#rot13密码的数学表示">ROT13密码的数学表示</a></li>
-    <li><a href="#如何破解rot13密码">如何“破解”ROT13密码？</a>
+    <li><a href="#前言为什么钱包选择至关重要">前言：为什么钱包选择至关重要？</a></li>
+    <li><a href="#钱包的核心热钱包-vs-冷钱包">钱包的核心：热钱包 vs. 冷钱包</a></li>
+    <li><a href="#主流钱包类型深度解析">主流钱包类型深度解析</a>
       <ul>
-        <li><a href="#1-再次应用rot13算法">1. 再次应用ROT13算法</a></li>
-        <li><a href="#2-频率分析-frequency-analysis">2. 频率分析 (Frequency Analysis)</a></li>
+        <li><a href="#软件钱包-software-wallet---便捷的热钱包">软件钱包 (Software Wallet) - 便捷的热钱包</a></li>
+        <li><a href="#硬件钱包-hardware-wallet---最均衡的冷钱包">硬件钱包 (Hardware Wallet) - 最均衡的冷钱包</a></li>
+        <li><a href="#纸钱包-paper-wallet---极致安全的冷钱包">纸钱包 (Paper Wallet) - 极致安全的冷钱包</a></li>
       </ul>
     </li>
-    <li><a href="#c-代码实现">C++ 代码实现</a></li>
+    <li><a href="#总结与建议">总结与建议</a></li>
   </ul>
 </nav>
         </div>
@@ -365,8 +366,8 @@
     
     <header class="article-category">
         
-            <a href="/categories/%E7%BC%96%E7%A8%8B%E6%8A%80%E6%9C%AF/" >
-                编程技术
+            <a href="/categories/%E5%8A%A0%E5%AF%86%E8%B4%A7%E5%B8%81/" >
+                加密货币
             </a>
         
     </header>
@@ -374,12 +375,12 @@
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
-            <a href="/post/programmingtechnology/classicalcryptography/rot13cipher/">ROT13密码</a>
+            <a href="/post/cryptocurrency/choosewallet/">选择钱包</a>
         </h2>
     
         
         <h3 class="article-subtitle">
-            本篇文章主要分享古典密码学的ROT13密码
+            本篇文章主要分享如何选择一个更加安全的多币种钱包
         </h3>
         
     </div>
@@ -400,7 +401,7 @@
   <path d="M3 11h16" />
   <path d="M18 16.496v1.504l1 1" />
 </svg>
-                <time class="article-time--published">Aug 13, 2025</time>
+                <time class="article-time--published">Aug 14, 2025</time>
             </div>
         
 
@@ -415,7 +416,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 2 分钟
+                    阅读时长: 1 分钟
                 </time>
             </div>
         
@@ -430,91 +431,137 @@
     <section class="article-content">
     
     
-    <h2 id="什么是rot13密码">什么是ROT13密码？
-</h2><p>ROT13（“rotate by 13 places”的缩写，意为“循环左移13位”）是一种<strong>替换密码（Substitution Cipher）</strong>，它是凯撒密码的一种特殊形式。它的加密过程非常简单：将明文中的每一个字母，用字母表上向后移动13位的另一个字母来替换。</p>
-<p>由于英文字母表共有26个字母，而13正好是26的一半，这意味着对一个字母进行两次ROT13加密，就会回到原始字母。因此，ROT13既可以用于加密，也可以用于解密。</p>
-<p>例如，如果我们选择的移位量是 <strong>13</strong>，那么：</p>
+    <h2 id="前言为什么钱包选择至关重要">前言：为什么钱包选择至关重要？
+</h2><p>在 Web3 和加密货币的世界里，你的钱包就是你的银行账户、身份凭证和保险箱。与传统银行不同，这里没有客服电话可以帮你重置密码或追回被盗资金。你必须成为自己资产的唯一守护者。因此，选择一个安全可靠的钱包，是进入这个领域最重要的一步。</p>
+<h2 id="钱包的核心热钱包-vs-冷钱包">钱包的核心：热钱包 vs. 冷钱包
+</h2><p>在讨论具体类型之前，我们首先需要理解两个核心概念：<strong>热钱包</strong>和<strong>冷钱包</strong>。它们的根本区别在于私钥（访问你资产的唯一钥匙）是否接触互联网。</p>
 <ul>
-<li>字母 <code>A</code> 会被替换成字母表中向后移动 13 位的 <code>N</code>。</li>
-<li>字母 <code>B</code> 会被替换成 <code>O</code>。</li>
-<li>&hellip;</li>
-<li>字母 <code>M</code> 会被替换成 <code>Z</code>。</li>
-<li>字母 <code>N</code> 会被替换成 <code>A</code>。</li>
-<li>&hellip;</li>
-<li>字母 <code>Z</code> 会被替换成 <code>M</code>。</li>
-</ul>
-<p>这个过程就像是将整个字母表向左平移了 13 位，形成了一个新的对应关系。</p>
-<p><strong>加密示例:</strong></p>
+<li>
+<p><strong>热钱包 (Hot Wallet)</strong>: 指的是私钥存储在联网设备上的钱包，如手机 App 或浏览器插件。</p>
 <ul>
-<li><strong>明文 (Plaintext):</strong> <code>HELLO WORLD</code></li>
-<li><strong>密文 (Ciphertext):</strong> <code>URYYB JBEYQ</code></li>
+<li><strong>优点</strong>: 使用方便，适合日常交易和与 DApp 交互。</li>
+<li><strong>缺点</strong>: 始终在线，容易成为黑客攻击的目标，安全性相对较低。</li>
 </ul>
-<h2 id="rot13密码的数学表示">ROT13密码的数学表示
-</h2><p>ROT13密码的数学表示与凯撒密码类似。我们将字母表中的每个字母映射为一个数字（例如，A=0, B=1, &hellip;, Z=25）。</p>
-<p>设：</p>
+</li>
+<li>
+<p><strong>冷钱包 (Cold Wallet)</strong>: 指的是私钥离线存储的钱包，只有在签名交易时才短暂连接设备。</p>
 <ul>
-<li><code>P</code> 为明文字母对应的数字。</li>
-<li><code>C</code> 为密文字母对应的数字。</li>
-<li><code>k</code> 为移位量，对于ROT13，<code>k</code> 固定为 13。</li>
+<li><strong>优点</strong>: 物理隔离，安全性极高，是存储大额或长期持有资产的最佳选择。</li>
+<li><strong>缺点</strong>: 操作相对繁琐，不适合高频交易。</li>
 </ul>
-<p>那么，加密过程可以表示为：
-$$ C = (P + 13) \pmod{26} $$</p>
-<p>解密过程与加密过程相同，因为 <code>(X + 13 + 13) mod 26 = (X + 26) mod 26 = X mod 26</code>：
-$$ P = (C + 13) \pmod{26} $$</p>
-<p>这里的 <code>mod 26</code> (模26) 运算是关键，它完美地实现了字母表的循环。例如，当加密 <code>A</code> (0) 时：
-<code>C = (0 + 13) mod 26 = 13 mod 26 = 13</code>，对应的字母是 <code>N</code>。</p>
-<p>当加密 <code>N</code> (13) 时：
-<code>C = (13 + 13) mod 26 = 26 mod 26 = 0</code>，对应的字母是 <code>A</code>。</p>
-<h2 id="如何破解rot13密码">如何“破解”ROT13密码？
-</h2><p>ROT13密码的安全性极低，因为它本质上就是一种固定密钥的凯撒密码。它的“破解”方法非常简单，甚至可以说不需要破解，只需要再次应用ROT13算法即可。</p>
-<h3 id="1-再次应用rot13算法">1. 再次应用ROT13算法
-</h3><p>由于ROT13的移位量是13，而英文字母表有26个字母，13正好是26的一半。这意味着对一个字母进行两次ROT13加密操作，就会回到原始字母。例如，<code>A</code> 经过ROT13变成 <code>N</code>，<code>N</code> 再次经过ROT13又变回 <code>A</code>。因此，加密和解密使用相同的算法。</p>
-<p>这意味着，任何知道ROT13算法的人，都可以轻易地将ROT13加密的文本解密出来。它通常不用于保护敏感信息，而是用于隐藏一些剧透、谜题答案或不雅内容，以避免无意中看到。</p>
-<h3 id="2-频率分析-frequency-analysis">2. 频率分析 (Frequency Analysis)
-</h3><p>虽然可以直接解密，但频率分析仍然可以用于识别文本是否经过ROT13加密。如果密文的字母频率分布与原始语言的频率分布呈现出13位的偏移，那么很可能就是ROT13加密。例如，如果密文中出现频率最高的字母是 <code>N</code>，而明文中最常见的字母是 <code>E</code>，那么 <code>N</code> 到 <code>E</code> 的偏移量正好是13（反向），这可以作为ROT13的证据。</p>
-<h2 id="c-代码实现">C++ 代码实现
-</h2><p>下面是一个完整的 C++ 程序，它实现了ROT13密码的加密和解密功能。代码结构清晰，并包含了详细的注释。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;string&gt;</span><span style="color:#75715e">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cctype&gt;</span><span style="color:#75715e">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span>std<span style="color:#f92672">::</span>string rot13Cipher(<span style="color:#66d9ef">const</span> std<span style="color:#f92672">::</span>string<span style="color:#f92672">&amp;</span> text);
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() {
-</span></span><span style="display:flex;"><span>    std<span style="color:#f92672">::</span>string message;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;=====================================&#34;</span> <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl;
-</span></span><span style="display:flex;"><span>    std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;        ROT13密码加密/解密程序&#34;</span> <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl;
-</span></span><span style="display:flex;"><span>    std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;=====================================&#34;</span> <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">请输入要处理的消息: &#34;</span>;
-</span></span><span style="display:flex;"><span>    std<span style="color:#f92672">::</span>getline(std<span style="color:#f92672">::</span>cin, message);
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    std<span style="color:#f92672">::</span>string processedMessage <span style="color:#f92672">=</span> rot13Cipher(message);
-</span></span><span style="display:flex;"><span>    std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">处理后的消息是: &#34;</span> <span style="color:#f92672">&lt;&lt;</span> processedMessage <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">/**
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * @brief 对给定的文本进行ROT13加密或解密
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * @param text 要处理的文本
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * @return 处理后的文本
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> */</span>
-</span></span><span style="display:flex;"><span>std<span style="color:#f92672">::</span>string rot13Cipher(<span style="color:#66d9ef">const</span> std<span style="color:#f92672">::</span>string<span style="color:#f92672">&amp;</span> text) {
-</span></span><span style="display:flex;"><span>    std<span style="color:#f92672">::</span>string result <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>;
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">char</span> c : text) {
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (isalpha(c)) {
-</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">char</span> base <span style="color:#f92672">=</span> isupper(c) <span style="color:#f92672">?</span> <span style="color:#e6db74">&#39;A&#39;</span> <span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;a&#39;</span>;
-</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// Apply ROT13 formula: (P + 13) % 26
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            result <span style="color:#f92672">+=</span> <span style="color:#66d9ef">static_cast</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">char</span><span style="color:#f92672">&gt;</span>(base <span style="color:#f92672">+</span> (c <span style="color:#f92672">-</span> base <span style="color:#f92672">+</span> <span style="color:#ae81ff">13</span>) <span style="color:#f92672">%</span> <span style="color:#ae81ff">26</span>);
-</span></span><span style="display:flex;"><span>        } <span style="color:#66d9ef">else</span> {
-</span></span><span style="display:flex;"><span>            result <span style="color:#f92672">+=</span> c;
-</span></span><span style="display:flex;"><span>        }
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> result;
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div>
+</li>
+</ul>
+<h2 id="主流钱包类型深度解析">主流钱包类型深度解析
+</h2><p>了解了冷热之分后，我们再来看市面上主流的三种钱包形态。</p>
+<h3 id="软件钱包-software-wallet---便捷的热钱包">软件钱包 (Software Wallet) - 便捷的热钱包
+</h3><p>软件钱包是最常见的钱包类型，通常以桌面应用、浏览器插件或手机 App 的形式存在。</p>
+<ul>
+<li><strong>优点</strong>:
+<ul>
+<li><strong>极致便捷</strong>: 安装即可使用，转账、收款、与 DApp 交互都非常流畅。</li>
+<li><strong>免费</strong>: 大部分软件钱包都是免费的。</li>
+<li><strong>功能丰富</strong>: 通常集成了 DApp 浏览器、行情查看、多链支持等功能。</li>
+</ul>
+</li>
+<li><strong>缺点</strong>:
+<ul>
+<li><strong>安全风险高</strong>: 由于设备始终联网，面临的攻击面最广。常见的风险包括：
+<ul>
+<li><strong>木马病毒</strong>: 电脑或手机中毒，私钥或助记词被窃取。</li>
+<li><strong>钓鱼攻击</strong>: 访问了假的网站或 App，授权了恶意合约。</li>
+<li><strong>供应链攻击</strong>: 下载了被篡改的钱包应用。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>适用场景</strong>: 存放少量资金，用于日常小额交易和探索 Web3 应用。</li>
+<li><strong>代表产品</strong>: MetaMask, Trust Wallet, Phantom</li>
+</ul>
+<h3 id="硬件钱包-hardware-wallet---最均衡的冷钱包">硬件钱包 (Hardware Wallet) - 最均衡的冷钱包
+</h3><p>硬件钱包是一个专门设计用于存储私钥的物理设备，外形类似 U 盘。它通过将签名过程隔离在设备内部，实现了极高的安全性。</p>
+<ul>
+<li><strong>优点</strong>:
+<ul>
+<li><strong>安全性高</strong>: 私钥永不离开硬件设备，即使连接了中毒的电脑，资产依然安全。</li>
+<li><strong>物理确认</strong>: 所有交易都需要在设备上按下物理按键进行确认，有效防止远程攻击。</li>
+<li><strong>资产掌控感强</strong>: 让你真正拥有自己的私钥。</li>
+</ul>
+</li>
+<li><strong>缺点</strong>:
+<ul>
+<li><strong>需要购买</strong>: 价格从几百到上千元不等。</li>
+<li><strong>操作稍繁琐</strong>: 每次交易都需要连接设备并进行物理确认。</li>
+<li><strong>（极低概率）供应链风险</strong>: 理论上存在设备在生产或运输环节被植入后门的风险，因此务必从官方渠道购买。</li>
+</ul>
+</li>
+<li><strong>适用场景</strong>: 存储大额资产，或作为长期投资的安全保障。</li>
+<li><strong>代表产品</strong>: Ledger, Trezor, OneKey</li>
+</ul>
+<h3 id="纸钱包-paper-wallet---极致安全的冷钱包">纸钱包 (Paper Wallet) - 极致安全的冷钱包
+</h3><p>纸钱包本质上就是将你的公钥（地址）和私钥打印在一张纸上。这是一种最原始、最彻底的离线存储方式。</p>
+<ul>
+<li><strong>优点</strong>:
+<ul>
+<li><strong>安全性极高</strong>: 完全物理隔离，只要纸张本身安全，资产就绝对安全。</li>
+<li><strong>零成本</strong>: 你只需要一台安全的电脑和一台打印机。</li>
+</ul>
+</li>
+<li><strong>缺点</strong>:
+<ul>
+<li><strong>极其脆弱</strong>: 纸张容易因火灾、水浸、褪色等原因损毁，导致资产永久丢失。</li>
+<li><strong>操作极不方便</strong>: 使用时需要将私钥导入软件钱包，这会使其“变热”，通常是一次性使用。</li>
+<li><strong>易操作失误</strong>: 创建和使用过程对新手不友好，容易出错。</li>
+</ul>
+</li>
+<li><strong>适用场景</strong>: 适合作为“传家宝”式的长期、深度存储，且使用者具备足够的安全知识。</li>
+</ul>
+<h2 id="总结与建议">总结与建议
+</h2><div class="table-wrapper"><table>
+<thead>
+<tr>
+<th style="text-align:left">钱包类型</th>
+<th style="text-align:center">安全性</th>
+<th style="text-align:center">便捷性</th>
+<th style="text-align:center">成本</th>
+<th style="text-align:left">核心风险</th>
+<th style="text-align:left">推荐用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>软件钱包</strong></td>
+<td style="text-align:center">★☆☆☆☆</td>
+<td style="text-align:center">★★★★★</td>
+<td style="text-align:center">免费</td>
+<td style="text-align:left">木马、钓鱼、网络攻击</td>
+<td style="text-align:left">小额、高频交易</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>硬件钱包</strong></td>
+<td style="text-align:center">★★★★☆</td>
+<td style="text-align:center">★★★☆☆</td>
+<td style="text-align:center">较高</td>
+<td style="text-align:left">物理丢失、供应链攻击</td>
+<td style="text-align:left">大额、长期存储</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>纸钱包</strong></td>
+<td style="text-align:center">★★★★★</td>
+<td style="text-align:center">★☆☆☆☆</td>
+<td style="text-align:center">极低</td>
+<td style="text-align:left">物理损坏、丢失</td>
+<td style="text-align:left">终极离线备份</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>给新手的建议：</strong></p>
+<ol>
+<li><strong>组合使用</strong>: 不要把所有鸡蛋放在一个篮子里。使用一个<strong>硬件钱包</strong>存储你的大部分资产，再用一个<strong>软件钱包</strong>存放少量资金用于日常交互。</li>
+<li><strong>助记词是生命</strong>: 无论使用哪种钱包，<strong>物理备份</strong>并<strong>妥善保管</strong>你的助记词（通常是12或24个单词）。不要截图、不要发邮件、不要存云盘！</li>
+<li><strong>从官方渠道下载/购买</strong>: 永远只从官网或官方应用商店获取钱包应用和硬件设备。</li>
+</ol>
+<p>希望这篇文章能帮助你迈出安全进入加密世界的第一步。</p>
+
 </section>
 
 
@@ -522,9 +569,9 @@ $$ P = (C + 13) \pmod{26} $$</p>
     
     <section class="article-tags">
         
-            <a href="/tags/%E5%8F%A4%E5%85%B8%E5%AF%86%E7%A0%81%E5%AD%A6/">古典密码学</a>
+            <a href="/tags/%E5%8A%A0%E5%AF%86%E8%B4%A7%E5%B8%81/">加密货币</a>
         
-            <a href="/tags/c&#43;&#43;/">C&#43;&#43;</a>
+            <a href="/tags/%E9%92%B1%E5%8C%85/">钱包</a>
         
     </section>
 
@@ -550,54 +597,6 @@ $$ P = (C + 13) \pmod{26} $$</p>
     
 
     
-
-<aside class="related-content--wrapper">
-    <h2 class="section-title">相关文章</h2>
-    <div class="related-content">
-        <div class="flex article-list--tile">
-            
-                
-<article class="">
-    <a href="/post/programmingtechnology/classicalcryptography/atbashcipher/">
-        
-        
-
-        <div class="article-details">
-            <h2 class="article-title">阿特巴希密码</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="">
-    <a href="/post/programmingtechnology/classicalcryptography/affinecipher/">
-        
-        
-
-        <div class="article-details">
-            <h2 class="article-title">仿射密码</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="">
-    <a href="/post/programmingtechnology/classicalcryptography/caesarcipher/">
-        
-        
-
-        <div class="article-details">
-            <h2 class="article-title">凯撒密码</h2>
-        </div>
-    </a>
-</article>
-
-            
-        </div>
-    </div>
-</aside>
 
      
     

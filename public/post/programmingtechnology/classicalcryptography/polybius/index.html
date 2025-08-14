@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
     <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="本篇文章主要分享古典密码学中理论上绝对安全的一次性密码本">
-<meta name="keywords" content="古典密码学, 一次性密码本, 加密算法, C&#43;&#43;"><title>一次性密码本</title>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="本篇文章主要分享古典密码学的波利比奥斯方阵密码">
+<meta name="keywords" content="古典密码学, 波利比奥斯方阵密码, 加密算法, C&#43;&#43;"><title>波利比奥斯方阵密码</title>
 
-<link rel='canonical' href='http://localhost:1313/post/programmingtechnology/classicalcryptography/one-timepad/'>
+<link rel='canonical' href='http://localhost:1313/post/programmingtechnology/classicalcryptography/polybius/'>
 
-<link rel="stylesheet" href="/scss/style.min.338053eda653cd6e6671308312787aee70bf27998a1cb63bd943908e55b48ced.css"><meta property='og:title' content="一次性密码本">
-<meta property='og:description' content="本篇文章主要分享古典密码学中理论上绝对安全的一次性密码本">
-<meta property='og:url' content='http://localhost:1313/post/programmingtechnology/classicalcryptography/one-timepad/'>
+<link rel="stylesheet" href="/scss/style.min.338053eda653cd6e6671308312787aee70bf27998a1cb63bd943908e55b48ced.css"><meta property='og:title' content="波利比奥斯方阵密码">
+<meta property='og:description' content="本篇文章主要分享古典密码学的波利比奥斯方阵密码">
+<meta property='og:url' content='http://localhost:1313/post/programmingtechnology/classicalcryptography/polybius/'>
 <meta property='og:site_name' content='Styx Blog'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='古典密码学' /><meta property='article:tag' content='C&#43;&#43;' /><meta property='article:published_time' content='2025-08-13T23:41:29&#43;08:00'/><meta property='article:modified_time' content='2025-08-13T23:41:29&#43;08:00'/>
-<meta name="twitter:title" content="一次性密码本">
-<meta name="twitter:description" content="本篇文章主要分享古典密码学中理论上绝对安全的一次性密码本">
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='古典密码学' /><meta property='article:tag' content='C&#43;&#43;' /><meta property='article:published_time' content='2025-08-14T17:34:00&#43;08:00'/><meta property='article:modified_time' content='2025-08-14T17:34:00&#43;08:00'/>
+<meta name="twitter:title" content="波利比奥斯方阵密码">
+<meta name="twitter:description" content="本篇文章主要分享古典密码学的波利比奥斯方阵密码">
     <link rel="shortcut icon" href="/mask.svg" />
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5303132509036035"
      crossorigin="anonymous"></script>
@@ -338,9 +338,16 @@
         <div class="widget--toc">
             <nav id="TableOfContents">
   <ul>
-    <li><a href="#什么是一次性密码本">什么是一次性密码本？</a></li>
-    <li><a href="#一次性密码本的数学表示">一次性密码本的数学表示</a></li>
-    <li><a href="#一次性密码本为何不可破译">一次性密码本为何不可破译？</a></li>
+    <li><a href="#什么是波利比奥斯方阵密码">什么是波利比奥斯方阵密码？</a></li>
+    <li><a href="#波利比奥斯方阵密码的数学表示">波利比奥斯方阵密码的数学表示</a></li>
+    <li><a href="#如何破解波利比奥斯方阵密码">如何破解波利比奥斯方阵密码？</a>
+      <ul>
+        <li><a href="#1-频率分析-frequency-analysis">1. 频率分析 (Frequency Analysis)</a></li>
+        <li><a href="#2-暴力破解-brute-force-attack">2. 暴力破解 (Brute-force Attack)</a></li>
+        <li><a href="#3-已知明文攻击-known-plaintext-attack">3. 已知明文攻击 (Known-plaintext Attack)</a></li>
+        <li><a href="#4-字典攻击-dictionary-attack">4. 字典攻击 (Dictionary Attack)</a></li>
+      </ul>
+    </li>
     <li><a href="#c-代码实现">C++ 代码实现</a></li>
   </ul>
 </nav>
@@ -369,12 +376,12 @@
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
-            <a href="/post/programmingtechnology/classicalcryptography/one-timepad/">一次性密码本</a>
+            <a href="/post/programmingtechnology/classicalcryptography/polybius/">波利比奥斯方阵密码</a>
         </h2>
     
         
         <h3 class="article-subtitle">
-            本篇文章主要分享古典密码学中理论上绝对安全的一次性密码本
+            本篇文章主要分享古典密码学的波利比奥斯方阵密码
         </h3>
         
     </div>
@@ -395,7 +402,7 @@
   <path d="M3 11h16" />
   <path d="M18 16.496v1.504l1 1" />
 </svg>
-                <time class="article-time--published">Aug 13, 2025</time>
+                <time class="article-time--published">Aug 14, 2025</time>
             </div>
         
 
@@ -410,7 +417,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 3 分钟
+                    阅读时长: 4 分钟
                 </time>
             </div>
         
@@ -425,213 +432,295 @@
     <section class="article-content">
     
     
-    <h2 id="什么是一次性密码本">什么是一次性密码本？
-</h2><p>一次性密码本（One-Time Pad, OTP），又称“一次一密”，是古典密码学中一种理论上被证明<strong>绝对安全</strong>的加密算法。它由美国电话电报公司的吉尔伯特·维纳姆（Gilbert Vernam）于1917年发明，并由克劳德·香农（Claude Shannon）在信息论中证明了其不可破译性。</p>
-<p>一次性密码本的核心思想是使用一个<strong>与明文等长、完全随机且只使用一次的密钥</strong>。加密过程是将明文与密钥进行逐位（或逐字符）的异或（XOR）运算。由于密钥的随机性、等长性和一次性，即使攻击者截获了密文，也无法从中获取任何关于明文的信息。</p>
-<p><strong>一次性密码本的三个核心条件：</strong></p>
-<ol>
-<li><strong>密钥必须是真正随机的：</strong> 密钥的生成必须是完全不可预测的，不能有任何模式或可重复性。</li>
-<li><strong>密钥必须与明文等长：</strong> 密钥的长度必须至少与要加密的明文长度相同。</li>
-<li><strong>密钥必须只使用一次：</strong> 每个密钥只能用于加密一条消息，之后必须立即销毁，不能重复使用。</li>
-</ol>
-<p>如果这三个条件都得到满足，那么一次性密码本是唯一一种被数学证明为绝对安全的加密方案。任何密文都可能对应任何明文，因为存在一个密钥可以将密文转换为任何可能的明文，这使得攻击者无法区分真实的明文。</p>
-<p><strong>加密示例 (以字母为例，A=0, B=1, &hellip;, Z=25):</strong></p>
-<p>假设明文为 <code>HELLO</code>，密钥为 <code>XMCKL</code>。</p>
+    <h2 id="什么是波利比奥斯方阵密码">什么是波利比奥斯方阵密码？
+</h2><p>波利比奥斯方阵密码（Polybius Square Cipher），又称棋盘密码，是一种<strong>替换密码（Substitution Cipher）</strong>，由古希腊历史学家波利比奥斯（Polybius）在公元前2世纪发明。它将字母映射到数字对，从而实现加密。这种密码最初是为了通过火炬信号进行远距离通信而设计的，每个字母通过其在方阵中的坐标来表示。</p>
+<p>波利比奥斯方阵通常是一个5x5的网格，包含了25个英文字母。由于英文字母有26个，通常会将字母 <code>I</code> 和 <code>J</code> 合并处理，或者将 <code>K</code> 替换为 <code>C</code> 等，以适应25个格子的限制。每个字母由其所在的行号和列号组成的数字对来表示。</p>
+<p><strong>波利比奥斯方阵示例 (5x5):</strong></p>
 <div class="table-wrapper"><table>
 <thead>
 <tr>
-<th>明文 (P)</th>
-<th>H (7)</th>
-<th>E (4)</th>
-<th>L (11)</th>
-<th>L (11)</th>
-<th>O (14)</th>
+<th></th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>密钥 (K)</td>
-<td>X (23)</td>
-<td>M (12)</td>
-<td>C (2)</td>
-<td>K (10)</td>
-<td>L (11)</td>
-</tr>
-<tr>
-<td>加密 (P+K mod 26)</td>
-<td>(7+23)%26=4 (E)</td>
-<td>(4+12)%26=16 (Q)</td>
-<td>(11+2)%26=13 (N)</td>
-<td>(11+10)%26=21 (V)</td>
-<td>(14+11)%26=25 (Z)</td>
-</tr>
-<tr>
-<td>密文 (C)</td>
+<td>1</td>
+<td>A</td>
+<td>B</td>
+<td>C</td>
+<td>D</td>
 <td>E</td>
-<td>Q</td>
+</tr>
+<tr>
+<td>2</td>
+<td>F</td>
+<td>G</td>
+<td>H</td>
+<td>I/J</td>
+<td>K</td>
+</tr>
+<tr>
+<td>3</td>
+<td>L</td>
+<td>M</td>
 <td>N</td>
+<td>O</td>
+<td>P</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Q</td>
+<td>R</td>
+<td>S</td>
+<td>T</td>
+<td>U</td>
+</tr>
+<tr>
+<td>5</td>
 <td>V</td>
+<td>W</td>
+<td>X</td>
+<td>Y</td>
 <td>Z</td>
 </tr>
 </tbody>
 </table></div>
+<p><strong>加密过程：</strong></p>
+<ol>
+<li><strong>构建方阵：</strong> 确定一个5x5的方阵，将字母填入其中。通常 <code>I</code> 和 <code>J</code> 共用一个格子。</li>
+<li><strong>明文转换：</strong> 将明文中的每个字母替换为其在方阵中的坐标对。坐标通常是先行后列。</li>
+</ol>
+<p>例如，如果明文是 <code>HELLO</code>：</p>
+<ul>
+<li><code>H</code> 在第2行第3列，表示为 <code>23</code>。</li>
+<li><code>E</code> 在第1行第5列，表示为 <code>15</code>。</li>
+<li><code>L</code> 在第3行第1列，表示为 <code>31</code>。</li>
+<li><code>L</code> 在第3行第1列，表示为 <code>31</code>。</li>
+<li><code>O</code> 在第3行第4列，表示为 <code>34</code>。</li>
+</ul>
+<p><strong>加密示例:</strong></p>
 <ul>
 <li><strong>明文 (Plaintext):</strong> <code>HELLO</code></li>
-<li><strong>密钥 (Key):</strong> <code>XMCKL</code></li>
-<li><strong>密文 (Ciphertext):</strong> <code>EQNVZ</code></li>
+<li><strong>密文 (Ciphertext):</strong> <code>2315313134</code></li>
 </ul>
-<h2 id="一次性密码本的数学表示">一次性密码本的数学表示
-</h2><p>一次性密码本的数学表示通常使用异或（XOR）运算，尤其是在二进制层面。如果我们将明文和密钥都视为二进制序列，那么加密和解密过程可以表示为：</p>
+<h2 id="波利比奥斯方阵密码的数学表示">波利比奥斯方阵密码的数学表示
+</h2><p>波利比奥斯方阵密码的数学表示相对简单，它主要涉及将字母映射到二维坐标，然后将这些坐标串联起来。虽然没有像凯撒密码或维吉尼亚密码那样直接的模运算公式，但其核心是基于查表和坐标转换。</p>
 <p>设：</p>
 <ul>
-<li><code>P</code> 为明文（二进制序列）。</li>
-<li><code>K</code> 为密钥（二进制序列）。</li>
-<li><code>C</code> 为密文（二进制序列）。</li>
+<li>字母表 <code>Σ = {A, B, ..., Z}</code></li>
+<li>方阵 <code>M</code> 是一个 5x5 的矩阵，其中 <code>M[row][col]</code> 存储一个字母。</li>
+<li><code>char_to_coords(c)</code> 函数返回字母 <code>c</code> 在方阵 <code>M</code> 中的坐标 <code>(row, col)</code>。</li>
+<li><code>coords_to_char(row, col)</code> 函数返回坐标 <code>(row, col)</code> 在方阵 <code>M</code> 中对应的字母。</li>
 </ul>
-<p>那么，加密过程可以表示为：
-$$ C = P \oplus K $$</p>
-<p>解密过程则是：
-$$ P = C \oplus K $$</p>
-<p>其中 <code>$\oplus$</code> 表示异或运算。异或运算的特性是 <code>A \oplus B \oplus B = A</code>，这使得加密和解密可以使用相同的操作。当明文和密钥都是字母时，我们可以将它们转换为数字（例如，A=0, B=1, &hellip;, Z=25），然后进行模加运算，这与异或运算在概念上是相似的。</p>
-<p>设：</p>
-<ul>
-<li><code>P_i</code> 为明文的第 <code>i</code> 个字母对应的数字。</li>
-<li><code>K_i</code> 为密钥的第 <code>i</code> 个字母对应的数字。</li>
-<li><code>C_i</code> 为密文的第 <code>i</code> 个字母对应的数字。</li>
-</ul>
-<p>那么，加密过程可以表示为：
-$$ C_i = (P_i + K_i) \pmod{26} $$</p>
-<p>解密过程则是：
-$$ P_i = (C_i - K_i + 26) \pmod{26} $$</p>
-<p>这里的 <code>mod 26</code> (模26) 运算确保了结果在 0 到 25 之间，并且处理了负数的情况。</p>
-<h2 id="一次性密码本为何不可破译">一次性密码本为何不可破译？
-</h2><p>一次性密码本之所以被认为是理论上绝对安全的，其核心在于满足了香农的**完美保密性（Perfect Secrecy）**定义。完美保密性意味着，给定密文，攻击者无法获得任何关于明文的信息，即密文不泄露任何明文信息。</p>
-<p>具体来说，一次性密码本的不可破译性基于以下几点：</p>
+<p><strong>加密过程：</strong></p>
+<p>对于明文中的每个字母 <code>P_i</code>：</p>
 <ol>
-<li>
-<p><strong>密钥的完全随机性：</strong> 密钥是真正随机生成的，这意味着密钥中的每一个位（或字符）都是独立且均匀分布的。攻击者无法通过任何统计方法或模式分析来预测密钥的下一个部分。</p>
-</li>
-<li>
-<p><strong>密钥与明文等长：</strong> 密钥的长度与明文完全相同。这保证了密钥的每一个部分都只用于加密明文的对应部分，没有重复使用。</p>
-</li>
-<li>
-<p><strong>密钥的一次性使用：</strong> 密钥只使用一次。这是最关键的条件。如果密钥被重复使用，即使是随机生成的，也会引入可分析的模式，从而导致密码被破解（例如，通过异或两个使用相同密钥加密的密文，可以得到两个明文的异或结果，从而进行频率分析）。</p>
-</li>
-<li>
-<p><strong>密文的均匀分布：</strong> 当密钥是完全随机且与明文等长时，生成的密文也是完全随机且均匀分布的。这意味着，对于任何给定的密文，所有可能的明文都以相同的概率对应这个密文。攻击者无法通过分析密文的统计特性来推断出原始明文的任何信息。</p>
-</li>
+<li>找到 <code>P_i</code> 在方阵 <code>M</code> 中的坐标 <code>(row_i, col_i)</code>。</li>
+<li>将 <code>row_i</code> 和 <code>col_i</code> 转换为字符串形式，并连接起来形成密文的一部分。</li>
 </ol>
-<p>举例来说，如果密文是 <code>X</code>，攻击者不知道明文是 <code>A</code> 还是 <code>B</code>。如果明文是 <code>A</code>，那么密钥必须是 <code>K_A</code> 才能生成 <code>X</code>；如果明文是 <code>B</code>，那么密钥必须是 <code>K_B</code> 才能生成 <code>X</code>。由于密钥是完全随机的，<code>K_A</code> 和 <code>K_B</code> 都是同样可能的密钥。因此，攻击者无法区分明文是 <code>A</code> 还是 <code>B</code>，因为两种情况都同样符合逻辑。</p>
-<p>正是由于这些严格的条件，一次性密码本在理论上提供了无条件的安全。然而，在实际应用中，生成、分发和管理真正随机且只使用一次的等长密钥是非常困难和昂贵的，这限制了其大规模应用。它主要用于高度机密的通信，例如外交和军事领域。</p>
+<p><strong>解密过程：</strong></p>
+<p>对于密文中的每对数字 <code>(d1, d2)</code>：</p>
+<ol>
+<li>将 <code>d1</code> 解释为行号 <code>row</code>，<code>d2</code> 解释为列号 <code>col</code>。</li>
+<li>找到方阵 <code>M</code> 中 <code>M[row][col]</code> 对应的字母 <code>P_i</code>。</li>
+</ol>
+<p><strong>示例方阵 (5x5，I/J合并):</strong></p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th></th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>A</td>
+<td>B</td>
+<td>C</td>
+<td>D</td>
+<td>E</td>
+</tr>
+<tr>
+<td>2</td>
+<td>F</td>
+<td>G</td>
+<td>H</td>
+<td>I/J</td>
+<td>K</td>
+</tr>
+<tr>
+<td>3</td>
+<td>L</td>
+<td>M</td>
+<td>N</td>
+<td>O</td>
+<td>P</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Q</td>
+<td>R</td>
+<td>S</td>
+<td>T</td>
+<td>U</td>
+</tr>
+<tr>
+<td>5</td>
+<td>V</td>
+<td>W</td>
+<td>X</td>
+<td>Y</td>
+<td>Z</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>加密函数 (伪代码):</strong></p>
+<pre tabindex="0"><code>function encrypt(plaintext):
+    ciphertext = &#34;&#34;
+    for each char P in plaintext:
+        if P is an alphabet letter:
+            if P == &#39;J&#39;: P = &#39;I&#39; // Handle I/J merge
+            (row, col) = char_to_coords(P)
+            ciphertext += to_string(row) + to_string(col)
+        else:
+            ciphertext += P // Non-alphabet characters remain unchanged
+    return ciphertext
+</code></pre><p><strong>解密函数 (伪代码):</strong></p>
+<pre tabindex="0"><code>function decrypt(ciphertext):
+    plaintext = &#34;&#34;
+    for i from 0 to length(ciphertext) - 1 step 2:
+        d1 = to_int(ciphertext[i])
+        d2 = to_int(ciphertext[i+1])
+        P = coords_to_char(d1, d2)
+        plaintext += P
+    return plaintext
+</code></pre><p>这种密码的数学表示更侧重于查找表和索引操作，而不是复杂的算术运算。</p>
+<h2 id="如何破解波利比奥斯方阵密码">如何破解波利比奥斯方阵密码？
+</h2><p>波利比奥斯方阵密码虽然将字母转换成了数字对，但它仍然是一种单表替换密码。这意味着每个明文字母总是被相同的数字对替换。因此，它和凯撒密码一样，容易受到频率分析的攻击。</p>
+<h3 id="1-频率分析-frequency-analysis">1. 频率分析 (Frequency Analysis)
+</h3><p>这是破解波利比奥斯方阵密码最主要的方法。攻击者可以统计密文中每个数字对的出现频率，并将其与已知语言（例如英语）中字母的频率分布进行比较。例如，在英语中，字母 <code>E</code> 的出现频率最高，那么密文中出现频率最高的数字对很可能就代表 <code>E</code>。一旦确定了几个这样的对应关系，就可以逐步推断出整个方阵的映射关系，从而解密密文。</p>
+<p><strong>破解步骤：</strong></p>
+<ol>
+<li><strong>统计密文频率：</strong> 将密文中的数字对（例如，<code>23</code>, <code>15</code> 等）进行统计，找出出现频率最高的数字对。</li>
+<li><strong>匹配语言频率：</strong> 将这些高频数字对与目标语言（如英语）中高频字母（如 <code>E</code>, <code>T</code>, <code>A</code>, <code>O</code>, <code>I</code>, <code>N</code> 等）进行匹配。</li>
+<li><strong>重建方阵：</strong> 根据推断出的映射关系，逐步重建波利比奥斯方阵。</li>
+<li><strong>解密：</strong> 使用重建的方阵来解密整个密文。</li>
+</ol>
+<h3 id="2-暴力破解-brute-force-attack">2. 暴力破解 (Brute-force Attack)
+</h3><p>虽然不如频率分析高效，但理论上也可以通过暴力破解来尝试所有可能的方阵排列。然而，由于方阵的排列组合数量巨大，这种方法在实践中是不可行的。</p>
+<h3 id="3-已知明文攻击-known-plaintext-attack">3. 已知明文攻击 (Known-plaintext Attack)
+</h3><p>如果攻击者拥有一些明文和对应的密文对，那么破解将变得非常容易。通过比较明文和密文，可以直接推导出方阵的映射关系。</p>
+<h3 id="4-字典攻击-dictionary-attack">4. 字典攻击 (Dictionary Attack)
+</h3><p>如果密文是短语或单词，攻击者可以尝试使用常见的单词或短语进行加密，然后与密文进行比较，以找到匹配项。</p>
+<p>总的来说，波利比奥斯方阵密码的安全性非常低，不适用于保护敏感信息。它主要作为密码学教学中的一个早期示例，展示了将字母转换为数字表示的初步尝试。</p>
 <h2 id="c-代码实现">C++ 代码实现
-</h2><p>下面是一个简单的 C++ 程序，它演示了一次性密码本的加密和解密功能。请注意，在实际应用中，密钥的生成和管理会更加复杂，以确保其真正的随机性和一次性。</p>
+</h2><p>下面是一个简单的 C++ 程序，它实现了波利比奥斯方阵密码的加密和解密功能。代码结构清晰，并包含了详细的注释。</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;string&gt;</span><span style="color:#75715e">
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;vector&gt;</span><span style="color:#75715e">
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cctype&gt;</span><span style="color:#75715e">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;random&gt;</span><span style="color:#75715e">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;chrono&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;map&gt;</span><span style="color:#75715e">
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">// Function to generate a random key of a given length
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>std<span style="color:#f92672">::</span>string generateRandomKey(<span style="color:#66d9ef">int</span> length) {
-</span></span><span style="display:flex;"><span>    std<span style="color:#f92672">::</span>string key <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>;
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Use a random device to seed the random number generator
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    std<span style="color:#f92672">::</span>random_device rd;
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Use the Mersenne Twister engine
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    std<span style="color:#f92672">::</span>mt19937 gen(rd());
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Define a distribution for characters (e.g., &#39;A&#39; to &#39;Z&#39;)
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    std<span style="color:#f92672">::</span>uniform_int_distribution<span style="color:#f92672">&lt;&gt;</span> distrib(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">25</span>); <span style="color:#75715e">// 0-25 for A-Z
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> length; <span style="color:#f92672">++</span>i) {
-</span></span><span style="display:flex;"><span>        key <span style="color:#f92672">+=</span> <span style="color:#66d9ef">static_cast</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">char</span><span style="color:#f92672">&gt;</span>(<span style="color:#e6db74">&#34;ABCDEFGHIJKLMNOPQRSTUVWXYZ&#34;</span>[distrib(gen)]);
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> key;
-</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Define the Polybius Square (5x5, I/J combined)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span> polybiusSquare[<span style="color:#ae81ff">5</span>][<span style="color:#ae81ff">5</span>] <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>    {<span style="color:#e6db74">&#39;A&#39;</span>, <span style="color:#e6db74">&#39;B&#39;</span>, <span style="color:#e6db74">&#39;C&#39;</span>, <span style="color:#e6db74">&#39;D&#39;</span>, <span style="color:#e6db74">&#39;E&#39;</span>},
+</span></span><span style="display:flex;"><span>    {<span style="color:#e6db74">&#39;F&#39;</span>, <span style="color:#e6db74">&#39;G&#39;</span>, <span style="color:#e6db74">&#39;H&#39;</span>, <span style="color:#e6db74">&#39;I&#39;</span>, <span style="color:#e6db74">&#39;K&#39;</span>}, <span style="color:#75715e">// I/J combined
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    {<span style="color:#e6db74">&#39;L&#39;</span>, <span style="color:#e6db74">&#39;M&#39;</span>, <span style="color:#e6db74">&#39;N&#39;</span>, <span style="color:#e6db74">&#39;O&#39;</span>, <span style="color:#e6db74">&#39;P&#39;</span>},
+</span></span><span style="display:flex;"><span>    {<span style="color:#e6db74">&#39;Q&#39;</span>, <span style="color:#e6db74">&#39;R&#39;</span>, <span style="color:#e6db74">&#39;S&#39;</span>, <span style="color:#e6db74">&#39;T&#39;</span>, <span style="color:#e6db74">&#39;U&#39;</span>},
+</span></span><span style="display:flex;"><span>    {<span style="color:#e6db74">&#39;V&#39;</span>, <span style="color:#e6db74">&#39;W&#39;</span>, <span style="color:#e6db74">&#39;X&#39;</span>, <span style="color:#e6db74">&#39;Y&#39;</span>, <span style="color:#e6db74">&#39;Z&#39;</span>}
+</span></span><span style="display:flex;"><span>};
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">// Function to convert a character to its 0-25 integer equivalent
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">charToInt</span>(<span style="color:#66d9ef">char</span> c) {
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (isupper(c)) {
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> c <span style="color:#f92672">-</span> <span style="color:#e6db74">&#39;A&#39;</span>;
-</span></span><span style="display:flex;"><span>    } <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (islower(c)) {
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> c <span style="color:#f92672">-</span> <span style="color:#e6db74">&#39;a&#39;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Map to store character to coordinates for encryption
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>std<span style="color:#f92672">::</span>map<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">char</span>, std<span style="color:#f92672">::</span>pair<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span>, <span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;&gt;</span> charToCoords;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Function to initialize the charToCoords map
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">initializeMap</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">5</span>; <span style="color:#f92672">++</span>i) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; j <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">5</span>; <span style="color:#f92672">++</span>j) {
+</span></span><span style="display:flex;"><span>            charToCoords[polybiusSquare[i][j]] <span style="color:#f92672">=</span> {i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, j <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>}; <span style="color:#75715e">// 1-indexed
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        }
 </span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>; <span style="color:#75715e">// Not an alphabet character
+</span></span><span style="display:flex;"><span>    charToCoords[<span style="color:#e6db74">&#34;J&#34;</span>] <span style="color:#f92672">=</span> charToCoords[<span style="color:#e6db74">&#34;I&#34;</span>]; <span style="color:#75715e">// Handle J as I
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">// Function to convert an integer (0-25) back to a character
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">char</span> <span style="color:#a6e22e">intToChar</span>(<span style="color:#66d9ef">int</span> i, <span style="color:#66d9ef">char</span> originalCase) {
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (isupper(originalCase)) {
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">static_cast</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">char</span><span style="color:#f92672">&gt;</span>(<span style="color:#e6db74">&#39;A&#39;</span> <span style="color:#f92672">+</span> i);
-</span></span><span style="display:flex;"><span>    } <span style="color:#66d9ef">else</span> {
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">static_cast</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">char</span><span style="color:#f92672">&gt;</span>(<span style="color:#e6db74">&#39;a&#39;</span> <span style="color:#f92672">+</span> i);
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>std<span style="color:#f92672">::</span>string oneTimePadEncrypt(<span style="color:#66d9ef">const</span> std<span style="color:#f92672">::</span>string<span style="color:#f92672">&amp;</span> plaintext, <span style="color:#66d9ef">const</span> std<span style="color:#f92672">::</span>string<span style="color:#f92672">&amp;</span> key);
-</span></span><span style="display:flex;"><span>std<span style="color:#f92672">::</span>string oneTimePadDecrypt(<span style="color:#66d9ef">const</span> std<span style="color:#f92672">::</span>string<span style="color:#f92672">&amp;</span> ciphertext, <span style="color:#66d9ef">const</span> std<span style="color:#f92672">::</span>string<span style="color:#f92672">&amp;</span> key);
+</span></span><span style="display:flex;"><span>std<span style="color:#f92672">::</span>string polybiusEncrypt(<span style="color:#66d9ef">const</span> std<span style="color:#f92672">::</span>string<span style="color:#f92672">&amp;</span> plaintext);
+</span></span><span style="display:flex;"><span>std<span style="color:#f92672">::</span>string polybiusDecrypt(<span style="color:#66d9ef">const</span> std<span style="color:#f92672">::</span>string<span style="color:#f92672">&amp;</span> ciphertext);
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>    initializeMap(); <span style="color:#75715e">// Initialize the map once
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
 </span></span><span style="display:flex;"><span>    std<span style="color:#f92672">::</span>string message;
-</span></span><span style="display:flex;"><span>    std<span style="color:#f92672">::</span>string key;
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;=====================================&#34;</span> <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl;
-</span></span><span style="display:flex;"><span>    std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;      一次性密码本加密/解密程序&#34;</span> <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl;
+</span></span><span style="display:flex;"><span>    std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;      波利比奥斯方阵密码加密/解密程序&#34;</span> <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl;
 </span></span><span style="display:flex;"><span>    std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;=====================================&#34;</span> <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl;
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">请输入要处理的消息 (只包含字母): &#34;</span>;
 </span></span><span style="display:flex;"><span>    std<span style="color:#f92672">::</span>getline(std<span style="color:#f92672">::</span>cin, message);
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Generate a random key of the same length as the message
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    key <span style="color:#f92672">=</span> generateRandomKey(message.length());
-</span></span><span style="display:flex;"><span>    std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;生成的密钥是: &#34;</span> <span style="color:#f92672">&lt;&lt;</span> key <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    std<span style="color:#f92672">::</span>string encryptedMessage <span style="color:#f92672">=</span> oneTimePadEncrypt(message, key);
+</span></span><span style="display:flex;"><span>    std<span style="color:#f92672">::</span>string encryptedMessage <span style="color:#f92672">=</span> polybiusEncrypt(message);
 </span></span><span style="display:flex;"><span>    std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">加密后的密文是: &#34;</span> <span style="color:#f92672">&lt;&lt;</span> encryptedMessage <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl;
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    std<span style="color:#f92672">::</span>string decryptedMessage <span style="color:#f92672">=</span> oneTimePadDecrypt(encryptedMessage, key);
+</span></span><span style="display:flex;"><span>    std<span style="color:#f92672">::</span>string decryptedMessage <span style="color:#f92672">=</span> polybiusDecrypt(encryptedMessage);
 </span></span><span style="display:flex;"><span>    std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;解密后的明文是: &#34;</span> <span style="color:#f92672">&lt;&lt;</span> decryptedMessage <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl;
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">/**
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * @brief 对给定的文本进行一次性密码本加密
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * @brief 对给定的文本进行波利比奥斯方阵加密
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * @param plaintext 要加密的明文
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * @param key 密钥 (与明文等长，完全随机)
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * @return 加密后的密文
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * @return 加密后的密文 (数字串)
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"> */</span>
-</span></span><span style="display:flex;"><span>std<span style="color:#f92672">::</span>string oneTimePadEncrypt(<span style="color:#66d9ef">const</span> std<span style="color:#f92672">::</span>string<span style="color:#f92672">&amp;</span> plaintext, <span style="color:#66d9ef">const</span> std<span style="color:#f92672">::</span>string<span style="color:#f92672">&amp;</span> key) {
+</span></span><span style="display:flex;"><span>std<span style="color:#f92672">::</span>string polybiusEncrypt(<span style="color:#66d9ef">const</span> std<span style="color:#f92672">::</span>string<span style="color:#f92672">&amp;</span> plaintext) {
 </span></span><span style="display:flex;"><span>    std<span style="color:#f92672">::</span>string ciphertext <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>;
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> (size_t i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> plaintext.length(); <span style="color:#f92672">++</span>i) {
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (isalpha(plaintext[i])) {
-</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">int</span> pVal <span style="color:#f92672">=</span> charToInt(plaintext[i]);
-</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">int</span> kVal <span style="color:#f92672">=</span> charToInt(key[i]);
-</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">int</span> cVal <span style="color:#f92672">=</span> (pVal <span style="color:#f92672">+</span> kVal) <span style="color:#f92672">%</span> <span style="color:#ae81ff">26</span>;
-</span></span><span style="display:flex;"><span>            ciphertext <span style="color:#f92672">+=</span> intToChar(cVal, plaintext[i]);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">char</span> pChar : plaintext) {
+</span></span><span style="display:flex;"><span>        pChar <span style="color:#f92672">=</span> toupper(pChar); <span style="color:#75715e">// Convert to uppercase for consistency
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">if</span> (isalpha(pChar)) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> (pChar <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;J&#39;</span>) pChar <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;I&#39;</span>; <span style="color:#75715e">// Handle J as I
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            <span style="color:#66d9ef">if</span> (charToCoords.count(pChar)) {
+</span></span><span style="display:flex;"><span>                ciphertext <span style="color:#f92672">+=</span> std<span style="color:#f92672">::</span>to_string(charToCoords[pChar].first);
+</span></span><span style="display:flex;"><span>                ciphertext <span style="color:#f92672">+=</span> std<span style="color:#f92672">::</span>to_string(charToCoords[pChar].second);
+</span></span><span style="display:flex;"><span>            }
 </span></span><span style="display:flex;"><span>        } <span style="color:#66d9ef">else</span> {
-</span></span><span style="display:flex;"><span>            ciphertext <span style="color:#f92672">+=</span> plaintext[i];
-</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>            ciphertext <span style="color:#f92672">+=</span> pChar; <span style="color:#75715e">// Non-alphabet characters remain unchanged
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        }
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> ciphertext;
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">/**
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * @brief 对给定的文本进行一次性密码本解密
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * @param ciphertext 要解密的密文
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * @param key 密钥 (与密文等长，完全随机)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * @brief 对给定的密文进行波利比奥斯方阵解密
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * @param ciphertext 要解密的密文 (数字串)
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * @return 解密后的明文
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"> */</span>
-</span></span><span style="display:flex;"><span>std<span style="color:#f92672">::</span>string oneTimePadDecrypt(<span style="color:#66d9ef">const</span> std<span style="color:#f92672">::</span>string<span style="color:#f92672">&amp;</span> ciphertext, <span style="color:#66d9ef">const</span> std<span style="color:#f92672">::</span>string<span style="color:#f92672">&amp;</span> key) {
+</span></span><span style="display:flex;"><span>std<span style="color:#f92672">::</span>string polybiusDecrypt(<span style="color:#66d9ef">const</span> std<span style="color:#f92672">::</span>string<span style="color:#f92672">&amp;</span> ciphertext) {
 </span></span><span style="display:flex;"><span>    std<span style="color:#f92672">::</span>string plaintext <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>;
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> (size_t i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> ciphertext.length(); <span style="color:#f92672">++</span>i) {
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (isalpha(ciphertext[i])) {
-</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">int</span> cVal <span style="color:#f92672">=</span> charToInt(ciphertext[i]);
-</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">int</span> kVal <span style="color:#f92672">=</span> charToInt(key[i]);
-</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">int</span> pVal <span style="color:#f92672">=</span> (cVal <span style="color:#f92672">-</span> kVal <span style="color:#f92672">+</span> <span style="color:#ae81ff">26</span>) <span style="color:#f92672">%</span> <span style="color:#ae81ff">26</span>; <span style="color:#75715e">// Add 26 to handle negative results of modulo
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            plaintext <span style="color:#f92672">+=</span> intToChar(pVal, ciphertext[i]);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> (size_t i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> ciphertext.length(); i <span style="color:#f92672">+=</span> <span style="color:#ae81ff">2</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (isdigit(ciphertext[i]) <span style="color:#f92672">&amp;&amp;</span> isdigit(ciphertext[i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>])) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">int</span> row <span style="color:#f92672">=</span> ciphertext[i] <span style="color:#f92672">-</span> <span style="color:#e6db74">&#39;0&#39;</span>;
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">int</span> col <span style="color:#f92672">=</span> ciphertext[i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">-</span> <span style="color:#e6db74">&#39;0&#39;</span>;
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> (row <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">&amp;&amp;</span> row <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">5</span> <span style="color:#f92672">&amp;&amp;</span> col <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">&amp;&amp;</span> col <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">5</span>) {
+</span></span><span style="display:flex;"><span>                plaintext <span style="color:#f92672">+=</span> polybiusSquare[row <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>][col <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>]; <span style="color:#75715e">// Convert back to 0-indexed
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            }
 </span></span><span style="display:flex;"><span>        } <span style="color:#66d9ef">else</span> {
-</span></span><span style="display:flex;"><span>            plaintext <span style="color:#f92672">+=</span> ciphertext[i];
-</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// Handle non-digit characters (e.g., spaces) that were not encrypted
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            plaintext <span style="color:#f92672">+=</span> ciphertext[i];
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> (i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">&lt;</span> ciphertext.length()) {
+</span></span><span style="display:flex;"><span>                plaintext <span style="color:#f92672">+=</span> ciphertext[i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>];
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>            i <span style="color:#f92672">-=</span> <span style="color:#ae81ff">1</span>; <span style="color:#75715e">// Adjust index for single non-digit char or pair
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        }
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> plaintext;
 </span></span><span style="display:flex;"><span>}
@@ -676,6 +765,19 @@ $$ P_i = (C_i - K_i + 26) \pmod{26} $$</p>
     <h2 class="section-title">相关文章</h2>
     <div class="related-content">
         <div class="flex article-list--tile">
+            
+                
+<article class="">
+    <a href="/post/programmingtechnology/classicalcryptography/one-timepad/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">一次性密码本</h2>
+        </div>
+    </a>
+</article>
+
             
                 
 <article class="">
@@ -724,19 +826,6 @@ $$ P_i = (C_i - K_i + 26) \pmod{26} $$</p>
 
         <div class="article-details">
             <h2 class="article-title">仿射密码</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="">
-    <a href="/post/programmingtechnology/classicalcryptography/caesarcipher/">
-        
-        
-
-        <div class="article-details">
-            <h2 class="article-title">凯撒密码</h2>
         </div>
     </a>
 </article>

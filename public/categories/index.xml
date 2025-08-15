@@ -2,25 +2,25 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>所有分类 on Styx Blog</title>
-        <link>http://localhost:1313/categories/</link>
+        <link>https://example.org/categories/</link>
         <description>Recent content in 所有分类 on Styx Blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <lastBuildDate>Thu, 14 Aug 2025 17:34:00 +0800</lastBuildDate><atom:link href="http://localhost:1313/categories/index.xml" rel="self" type="application/rss+xml" /><item>
-        <title>编程技术</title>
-        <link>http://localhost:1313/categories/%E7%BC%96%E7%A8%8B%E6%8A%80%E6%9C%AF/</link>
+        <lastBuildDate>Thu, 14 Aug 2025 17:34:00 +0800</lastBuildDate><atom:link href="https://example.org/categories/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>古典密码</title>
+        <link>https://example.org/categories/%E5%8F%A4%E5%85%B8%E5%AF%86%E7%A0%81/</link>
         <pubDate>Thu, 14 Aug 2025 17:34:00 +0800</pubDate>
         
-        <guid>http://localhost:1313/categories/%E7%BC%96%E7%A8%8B%E6%8A%80%E6%9C%AF/</guid>
-        <description>&lt;img src="http://localhost:1313/Image/Cover/Robot.jpeg" alt="Featured image of post 编程技术" /&gt;</description>
+        <guid>https://example.org/categories/%E5%8F%A4%E5%85%B8%E5%AF%86%E7%A0%81/</guid>
+        <description>&lt;img src="https://example.org/Image/Cover/Robot.jpeg" alt="Featured image of post 古典密码" /&gt;</description>
         </item>
         <item>
         <title>加密货币</title>
-        <link>http://localhost:1313/categories/%E5%8A%A0%E5%AF%86%E8%B4%A7%E5%B8%81/</link>
+        <link>https://example.org/categories/%E5%8A%A0%E5%AF%86%E8%B4%A7%E5%B8%81/</link>
         <pubDate>Thu, 14 Aug 2025 17:10:00 +0800</pubDate>
         
-        <guid>http://localhost:1313/categories/%E5%8A%A0%E5%AF%86%E8%B4%A7%E5%B8%81/</guid>
-        <description>&lt;img src="http://localhost:1313/Image/Cover/Cryptocurrency.jpg" alt="Featured image of post 加密货币" /&gt;</description>
+        <guid>https://example.org/categories/%E5%8A%A0%E5%AF%86%E8%B4%A7%E5%B8%81/</guid>
+        <description>&lt;img src="https://example.org/Image/Cover/Cryptocurrency.jpg" alt="Featured image of post 加密货币" /&gt;</description>
         </item>
         
     </channel>

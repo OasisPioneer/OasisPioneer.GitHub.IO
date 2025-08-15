@@ -7,7 +7,7 @@ defaultContentLanguage = "zh-cn"
 
 [Params]
 	favicon = "mask.svg"
-	description = "Styx Blog 热爱编程 热爱生活"
+	description = "Styx Blog 一个专注于分享 C++ 编程技术的个人博客"
 	enableSearch = true
 	math = true
 	mainSections = ["post"]

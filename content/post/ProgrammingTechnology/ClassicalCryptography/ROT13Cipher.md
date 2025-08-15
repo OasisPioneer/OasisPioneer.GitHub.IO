@@ -4,7 +4,7 @@ date = 2025-08-13T23:28:33+08:00
 description = '本篇文章主要分享古典密码学的ROT13密码'
 tags = ['古典密码学', 'C++']
 keywords = ['古典密码学', 'ROT13密码', '加密算法', 'C++']
-categories = ['编程技术']
+categories = ['古典密码']
 +++
 
 ## 什么是ROT13密码？

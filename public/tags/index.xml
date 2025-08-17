@@ -6,12 +6,36 @@
         <description>Recent content in Tags on Styx Blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <lastBuildDate>Thu, 14 Aug 2025 17:34:00 +0800</lastBuildDate><atom:link href="https://example.org/tags/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sun, 17 Aug 2025 16:30:00 +0800</lastBuildDate><atom:link href="https://example.org/tags/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>C&#43;&#43;</title>
         <link>https://example.org/tags/c&#43;&#43;/</link>
-        <pubDate>Thu, 14 Aug 2025 17:34:00 +0800</pubDate>
+        <pubDate>Sun, 17 Aug 2025 16:30:00 +0800</pubDate>
         
         <guid>https://example.org/tags/c&#43;&#43;/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>C&#43;&#43; Self-Study Guide</title>
+        <link>https://example.org/tags/c&#43;&#43;-self-study-guide/</link>
+        <pubDate>Sun, 17 Aug 2025 16:30:00 +0800</pubDate>
+        
+        <guid>https://example.org/tags/c&#43;&#43;-self-study-guide/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>编程教程</title>
+        <link>https://example.org/tags/%E7%BC%96%E7%A8%8B%E6%95%99%E7%A8%8B/</link>
+        <pubDate>Sun, 17 Aug 2025 16:30:00 +0800</pubDate>
+        
+        <guid>https://example.org/tags/%E7%BC%96%E7%A8%8B%E6%95%99%E7%A8%8B/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>开发环境</title>
+        <link>https://example.org/tags/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/</link>
+        <pubDate>Sun, 17 Aug 2025 16:30:00 +0800</pubDate>
+        
+        <guid>https://example.org/tags/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/</guid>
         <description></description>
         </item>
         <item>

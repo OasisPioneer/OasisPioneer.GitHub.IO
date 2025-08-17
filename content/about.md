@@ -29,3 +29,5 @@ slug: "about"
 |---|---|---|---|
 | ZoogVPN | 永久免费 不会限速|每月10免费额度 | https://zoogvpn.com/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=affStyx&a_aid=Styx |
 | SMS-Activate | 全球主流接码平台 提供试用好吗 | 暂无 | https://sms-activate.io/?ref=13277287 |
+
+<div id="webtraf_16847" style="width:468px;height:60px;"><script src="https://webtrafic.ru/ads.php?uid=16847" async></script></div>

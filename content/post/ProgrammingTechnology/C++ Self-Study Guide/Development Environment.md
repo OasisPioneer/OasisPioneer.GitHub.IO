@@ -1,6 +1,6 @@
 +++
 title = '开发环境搭建'
-description = '本篇文章主要讲解什么是开发环境以及如何配置开发环境和配置代码编辑工具'
+description = '本篇文章主要讲解什么是开发环境以及如何配置开发环境'
 tags = ['C++ Self-Study Guide', 'C++', '编程教程', '开发环境']
 keywords = ['C++ Self-Study Guide', 'C++', '编程教程', '后端开发', '零基础', '计算机编程', '开发环境配置', 'GCC', 'GDB', 'CMake', 'VS Code', 'CLion']
 date = 2025-08-17T16:30:00+08:00

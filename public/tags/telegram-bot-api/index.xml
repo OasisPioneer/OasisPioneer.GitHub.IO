@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Telegram Bot API on Styx Blog</title>
+        <link>https://example.org/tags/telegram-bot-api/</link>
+        <description>Recent content in Telegram Bot API on Styx Blog</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh-cn</language>
+        <lastBuildDate>Mon, 18 Aug 2025 18:26:08 +0800</lastBuildDate><atom:link href="https://example.org/tags/telegram-bot-api/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Telegram Bot API</title>
+        <link>https://example.org/post/programmingtechnology/developmentdocumentation/telegrambotapi/</link>
+        <pubDate>Mon, 18 Aug 2025 18:26:08 +0800</pubDate>
+        
+        <guid>https://example.org/post/programmingtechnology/developmentdocumentation/telegrambotapi/</guid>
+        <description>&lt;h2 id=&#34;创建-telegram-bot&#34;&gt;创建 Telegram Bot
+&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;在 Telegram 中搜索 &lt;a class=&#34;link&#34; href=&#34;https://t.me/BotFather&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;@BotFather&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;在对话框中发送 &lt;code&gt;/newbot&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;输入机器人名称 (用作称呼)&lt;/li&gt;
+&lt;li&gt;输入机器人用户名以 (bot/Bot) 结尾 (用作机器人账号)&lt;/li&gt;
+&lt;li&gt;接下来你就会获得一串 Token (请勿泄漏 拥有 Token 就代表掌握了 Bot 的绝对权限)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;测试-telegram-bot&#34;&gt;测试 Telegram Bot
+&lt;/h2&gt;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;https://api.telegram.org/bot&amp;lt;YourToken&amp;gt;/getMe
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;将 &amp;lt;YourToken&amp;gt; 替换为你 Bot 的完整 Token，复制到浏览器即可查看到 Bot 的相关信息。&lt;/p&gt;
+&lt;p&gt;对于 Telegram Bot API 的所有操作都必须通过 HTTPS 进行通信，并且需要使用以下形式呈现:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;https://api.telegram.org/bot&amp;lt;YourToken&amp;gt;/方法名称
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;使用本地-bot-api-server&#34;&gt;使用本地 Bot API Server
+&lt;/h2&gt;&lt;p&gt;Bot API 服务器源代码可在 &lt;a class=&#34;link&#34; href=&#34;https://github.com/tdlib/telegram-bot-api&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Telegram-Bot-API&lt;/a&gt; 处获得。您可以在本地运行它,并将请求发送到您自己的服务器,而不是 &lt;a class=&#34;link&#34; href=&#34;https://api.telegram.org&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://api.telegram.org&lt;/a&gt; 如果切换到本地 Bot API 服务器,您的机器人将能够:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;下载没有大小限制的文件。&lt;/li&gt;
+&lt;li&gt;上传文件高达2000 MB。&lt;/li&gt;
+&lt;li&gt;使用其本地路径和文件 URI 方案上传文件。&lt;/li&gt;
+&lt;li&gt;使用 HTTP URL 进行 webhook。&lt;/li&gt;
+&lt;li&gt;使用任何本地 IP 地址的 webhook。&lt;/li&gt;
+&lt;li&gt;使用任何端口的webhook。&lt;/li&gt;
+&lt;li&gt;设置 max_webhook_connections 高达 100000。&lt;/li&gt;
+&lt;li&gt;接收绝对本地路径作为 file_path 字段的值,无需在 getFile 请求后下载文件。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;获取更新&#34;&gt;获取更新
+&lt;/h2&gt;&lt;p&gt;有两种互斥的方式可以接收机器人的更新 —— 一种是getUpdates方法，另一种是网络钩子（webhooks）。传入的更新会存储在服务器上，直到机器人通过这两种方式中的任意一种接收它们，但这些更新的保存时间不会超过 24 小时。&lt;/p&gt;
+&lt;p&gt;无论你选择哪种方式，最终都会收到 JSON 序列化的 Update 对象。&lt;/p&gt;
+&lt;h3 id=&#34;update---更新&#34;&gt;Update - 更新
+&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;该对象表示一个传入的更新。在任何给定的更新中，最多只能有一个可选参数存在。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;字段&lt;/th&gt;
+&lt;th&gt;类型&lt;/th&gt;
+&lt;th&gt;描述&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;update_id&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;整数&lt;/td&gt;
+&lt;td&gt;更新的唯一标识符 从特定正数开始依次递增 使用网络钩子时可忽略重复更新或恢复顺序 若一周无更新则下个ID随机生成&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;message&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a class=&#34;link&#34; href=&#34;#message&#34; &gt;消息&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;可选&lt;/strong&gt; 新收到的文本、照片、贴纸等消息&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;edited_message&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a class=&#34;link&#34; href=&#34;#message&#34; &gt;消息&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;可选&lt;/strong&gt; 已知消息被编辑后的新版本&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;channel_post&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a class=&#34;link&#34; href=&#34;#message&#34; &gt;消息&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;可选&lt;/strong&gt; 新收到的频道帖子&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;edited_channel_post&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a class=&#34;link&#34; href=&#34;#message&#34; &gt;消息&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;可选&lt;/strong&gt; 已知频道帖子被编辑后的新版本&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;business_connection&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a class=&#34;link&#34; href=&#34;#businessconnection&#34; &gt;业务连接&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;可选&lt;/strong&gt; 机器人连接/断开业务账户或用户编辑连接时触发&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;business_message&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a class=&#34;link&#34; href=&#34;#message&#34; &gt;消息&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;可选&lt;/strong&gt; 来自业务账户的新消息&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;edited_business_message&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a class=&#34;link&#34; href=&#34;#message&#34; &gt;消息&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;可选&lt;/strong&gt; 业务账户消息被编辑后的版本&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;deleted_business_messages&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a class=&#34;link&#34; href=&#34;#businessmessagesdeleted&#34; &gt;业务消息已删除&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;可选&lt;/strong&gt; 业务账户消息被删除时触发&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;message_reaction&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a class=&#34;link&#34; href=&#34;#messagereactionupdated&#34; &gt;消息反应已更新&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;可选&lt;/strong&gt; 用户更改消息反应（需管理员权限并在&lt;code&gt;allowed_updates&lt;/code&gt;指定）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;message_reaction_count&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a class=&#34;link&#34; href=&#34;#messagereactioncountupdated&#34; &gt;消息反应计数已更新&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;可选&lt;/strong&gt; 匿名消息反应数变更（需管理员权限并在&lt;code&gt;allowed_updates&lt;/code&gt;指定 可能延迟）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;inline_query&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a class=&#34;link&#34; href=&#34;#inlinequery&#34; &gt;内联查询&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;可选&lt;/strong&gt; 新收到的内联查询&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;chosen_inline_result&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a class=&#34;link&#34; href=&#34;#choseninlineresult&#34; &gt;选择的内联结果&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;可选&lt;/strong&gt; 用户选择内联结果并发送&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;callback_query&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a class=&#34;link&#34; href=&#34;#callbackquery&#34; &gt;回调查询&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;可选&lt;/strong&gt; 新收到的回调查询&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;shipping_query&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a class=&#34;link&#34; href=&#34;#shippingquery&#34; &gt;物流查询&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;可选&lt;/strong&gt; 新物流查询（仅灵活价格发票）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;pre_checkout_query&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a class=&#34;link&#34; href=&#34;#precheckoutquery&#34; &gt;预结账查询&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;可选&lt;/strong&gt; 新预结账查询（含完整信息）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;purchased_paid_media&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a class=&#34;link&#34; href=&#34;#paidmediapurchased&#34; &gt;付费媒体已购买&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;可选&lt;/strong&gt; 用户在非频道聊天购买机器人发送的付费媒体&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;poll&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a class=&#34;link&#34; href=&#34;#poll&#34; &gt;投票&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;可选&lt;/strong&gt; 投票状态更新（仅手动停止或机器人发送的投票）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;poll_answer&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a class=&#34;link&#34; href=&#34;#pollanswer&#34; &gt;投票答案&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;可选&lt;/strong&gt; 用户更改非匿名投票答案（仅机器人发送的投票）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;my_chat_member&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a class=&#34;link&#34; href=&#34;#chatmemberupdated&#34; &gt;聊天成员已更新&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;可选&lt;/strong&gt; 机器人成员状态更新（私聊中仅触发于屏蔽/解封）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;chat_member&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a class=&#34;link&#34; href=&#34;#chatmemberupdated&#34; &gt;聊天成员已更新&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;可选&lt;/strong&gt; 成员状态更新（需管理员权限并在&lt;code&gt;allowed_updates&lt;/code&gt;指定）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;chat_join_request&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a class=&#34;link&#34; href=&#34;#chatjoinrequest&#34; &gt;加群请求&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;可选&lt;/strong&gt; 加群请求（需&lt;code&gt;can_invite_users&lt;/code&gt;权限）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;chat_boost&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a class=&#34;link&#34; href=&#34;#chatboostupdated&#34; &gt;聊天加速已更新&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;可选&lt;/strong&gt; 聊天加速状态新增/变更（需管理员权限）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;removed_chat_boost&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a class=&#34;link&#34; href=&#34;#chatboostremoved&#34; &gt;聊天加速已移除&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;可选&lt;/strong&gt; 聊天加速状态移除（需管理员权限）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&#34;getupdates---获取更新&#34;&gt;getUpdates - 获取更新
+&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;使用此方法通过长轮询接收传入的更新。返回一个由 Update 对象组成的数组。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;参数&lt;/th&gt;
+&lt;th&gt;类型&lt;/th&gt;
+&lt;th&gt;必填&lt;/th&gt;
+&lt;th&gt;描述&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;offset&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;整数&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;可选&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;要返回的第一个更新标识符&lt;!-- raw HTML omitted --&gt;• 必须比已接收的最高ID大1&lt;!-- raw HTML omitted --&gt;• 默认返回最早未确认更新&lt;!-- raw HTML omitted --&gt;• 负值获取队列末尾更新（如&lt;code&gt;-5&lt;/code&gt;获取最后5条）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;limit&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;整数&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;可选&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;获取更新数量限制&lt;!-- raw HTML omitted --&gt;• 范围：1-100&lt;!-- raw HTML omitted --&gt;• 默认值：100&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;timeout&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;整数&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;可选&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;长轮询超时时间（秒）&lt;!-- raw HTML omitted --&gt;• 0=短轮询（默认）&lt;!-- raw HTML omitted --&gt;• 正值=长轮询等待时间&lt;!-- raw HTML omitted --&gt;• 短轮询仅建议测试使用&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;allowed_updates&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;字符串数组&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;可选&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;允许接收的更新类型（JSON格式）&lt;!-- raw HTML omitted --&gt;• 示例：&lt;code&gt;[&amp;quot;message&amp;quot;,&amp;quot;callback_query&amp;quot;]&lt;/code&gt;&lt;!-- raw HTML omitted --&gt;• 空数组=接收除三类敏感更新外的所有类型&lt;!-- raw HTML omitted --&gt;• 不设置=沿用上次配置&lt;!-- raw HTML omitted --&gt;• 注意：不影响调用前已生成的更新&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>

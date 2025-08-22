@@ -3,7 +3,8 @@ languageCode = 'zh-cn'
 title = 'Styx Blog'
 theme = 'Stack'
 
-paginate = 5
+[pagination]
+	pagerSize = 5
 
 defaultContentLanguage = "zh-cn"
 

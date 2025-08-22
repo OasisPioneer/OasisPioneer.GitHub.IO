@@ -4,8 +4,6 @@ title = 'Styx Blog'
 theme = 'Stack'
 defaultContentLanguage = "zh-cn"
 
-paginate = 5
-
 [Params]
 	favicon = "mask.svg"
 	description = "Styx Blog 一个专注于分享 C++ 编程技术的个人博客"
@@ -32,6 +30,9 @@ paginate = 5
 	[Params.Footer]
 		since = 2025
 		customText = """ 本站文章均为原创 转载请标注文章来源 """
+
+[pagination]
+	pagerSize = 5
 
 [Menu]
 

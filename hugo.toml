@@ -129,6 +129,11 @@ defaultContentLanguage = "zh-cn"
 			icon = "search"
 			newTab = false
 
+[markup]
+	[markup.goldmark]
+		[markup.goldmark.renderer]
+			unsafe = true
+
 [[Params.Widgets.Homepage]]
 	type = "search"
 

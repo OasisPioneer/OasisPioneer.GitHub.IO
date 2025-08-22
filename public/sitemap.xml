@@ -2,28 +2,40 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://example.org/post/developmenttools/emacs/</loc>
+    <lastmod>2025-08-22T15:15:00+08:00</lastmod>
+  </url><url>
+    <loc>https://example.org/post/</loc>
+    <lastmod>2025-08-22T15:15:00+08:00</lastmod>
+  </url><url>
+    <loc>https://example.org/</loc>
+    <lastmod>2025-08-22T15:15:00+08:00</lastmod>
+  </url><url>
+    <loc>https://example.org/tags/</loc>
+    <lastmod>2025-08-22T15:15:00+08:00</lastmod>
+  </url><url>
+    <loc>https://example.org/tags/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/</loc>
+    <lastmod>2025-08-22T15:15:00+08:00</lastmod>
+  </url><url>
+    <loc>https://example.org/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/</loc>
+    <lastmod>2025-08-22T15:15:00+08:00</lastmod>
+  </url><url>
+    <loc>https://example.org/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/</loc>
+    <lastmod>2025-08-22T15:15:00+08:00</lastmod>
+  </url><url>
+    <loc>https://example.org/categories/</loc>
+    <lastmod>2025-08-22T15:15:00+08:00</lastmod>
+  </url><url>
     <loc>https://example.org/post/programmingtechnology/classicalcryptography/adfgvx/</loc>
     <lastmod>2025-08-21T17:37:00+08:00</lastmod>
   </url><url>
     <loc>https://example.org/tags/c&#43;&#43;/</loc>
     <lastmod>2025-08-21T17:37:00+08:00</lastmod>
   </url><url>
-    <loc>https://example.org/post/</loc>
-    <lastmod>2025-08-21T17:37:00+08:00</lastmod>
-  </url><url>
-    <loc>https://example.org/</loc>
-    <lastmod>2025-08-21T17:37:00+08:00</lastmod>
-  </url><url>
-    <loc>https://example.org/tags/</loc>
-    <lastmod>2025-08-21T17:37:00+08:00</lastmod>
-  </url><url>
     <loc>https://example.org/categories/%E5%8F%A4%E5%85%B8%E5%AF%86%E7%A0%81/</loc>
     <lastmod>2025-08-21T17:37:00+08:00</lastmod>
   </url><url>
     <loc>https://example.org/tags/%E5%8F%A4%E5%85%B8%E5%AF%86%E7%A0%81%E5%AD%A6/</loc>
-    <lastmod>2025-08-21T17:37:00+08:00</lastmod>
-  </url><url>
-    <loc>https://example.org/categories/</loc>
     <lastmod>2025-08-21T17:37:00+08:00</lastmod>
   </url><url>
     <loc>https://example.org/tags/api/</loc>

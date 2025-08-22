@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>安装配置 on Styx Blog</title>
+        <link>https://example.org/tags/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/</link>
+        <description>Recent content in 安装配置 on Styx Blog</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh-cn</language>
+        <lastBuildDate>Fri, 22 Aug 2025 15:15:00 +0800</lastBuildDate><atom:link href="https://example.org/tags/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Emacs</title>
+        <link>https://example.org/post/developmenttools/emacs/</link>
+        <pubDate>Fri, 22 Aug 2025 15:15:00 +0800</pubDate>
+        
+        <guid>https://example.org/post/developmenttools/emacs/</guid>
+        <description>&lt;h2 id=&#34;什么是-emacs&#34;&gt;什么是 Emacs
+&lt;/h2&gt;&lt;p&gt;Emacs 是一个功能极其强大的、可扩展的文本编辑器。&lt;/p&gt;
+&lt;p&gt;Emacs诞生于1970年代，由著名的计算机科学家理查德·斯托曼（Richard Stallman）创造。它是自由软件运动的标志性项目之一，对后来的很多软件开发理念产生了深远影响。&lt;/p&gt;
+&lt;p&gt;它内置了一种名为 Emacs Lisp 的编程语言（是Lisp语言的一种方言）。用户可以通过编写 Emacs Lisp 代码来修改编辑器的任何行为，从简单的颜色主题、快捷键，到增加全新的功能模块。这意味着你可以把 Emacs 打造成任何你想要的样子。&lt;/p&gt;
+&lt;p&gt;由于其强大的扩展性，Emacs 的功能早已超越了编辑文本的范畴。通过各种插件（Packages），你可以在 Emacs 内部完成几乎所有日常的电脑操作，例如：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;编程：支持几乎所有编程语言，提供语法高亮、代码补全、调试等功能。&lt;/li&gt;
+&lt;li&gt;收发邮件：使用 mu4e 或 notmuch 等插件。&lt;/li&gt;
+&lt;li&gt;文件管理：使用 dired 模式，可以像在文件管理器中一样操作文件和目录。&lt;/li&gt;
+&lt;li&gt;日程管理和笔记：使用强大的 org-mode，这是 Emacs 的“杀手级应用”，可以用来写文档、做笔记、管理待办事项、制定项目计划等。&lt;/li&gt;
+&lt;li&gt;版本控制：通过 Magit 插件，可以获得顶级的 Git 操作体验。&lt;/li&gt;
+&lt;li&gt;浏览网页、听音乐、聊天，甚至玩游戏。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Emacs 可以在几乎所有的操作系统上运行，包括 Linux、macOS 和 Windows。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Emacs 不仅仅是一个让你写代码或文章的工具，它更像一个为你量身定做的工作环境。你可以根据自己的需求，把它打造成一个极简的写作工具，或者一个无所不能的“瑞士军刀”。它的学习曲线比较陡峭，但一旦掌握，它将为你提供无与伦-比的自由度和工作效率。&lt;/p&gt;
+&lt;h2 id=&#34;emacs-安装教程&#34;&gt;Emacs 安装教程
+&lt;/h2&gt;&lt;p&gt;以 Ubuntu/Debian 为例，按下快捷键 &lt;kbd&gt;CTRL&lt;/kbd&gt; + &lt;kbd&gt;ALT&lt;/kbd&gt; + &lt;kbd&gt;T&lt;/kbd&gt; 打开终端(控制台)，输入如下命令:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo apt-get update					&lt;span style=&#34;color:#75715e&#34;&gt;# 更新本地软件列表&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo apt-get install emacs 			&lt;span style=&#34;color:#75715e&#34;&gt;# 安装 Emacs&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://example.org/Image/DevelopmentTools/InstallationProcess/Emacs/Email%20Configuration.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;邮件配置截图&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;上方截图主要意思是你是否需要配置邮件功能&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;No configuration&lt;/strong&gt; 不配置&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Internet site&lt;/strong&gt; 互联网站点(将本机变成邮件服务器[&lt;strong&gt;需要公网IP&lt;/strong&gt;])&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Internet with smarthost&lt;/strong&gt; 将邮件中转发送到网络邮件服务器&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Satellite system&lt;/strong&gt; 卫星系统(将邮件转发到中央邮件服务器)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;根据自己喜好或需求选择然后按下&lt;kbd&gt;Enter&lt;/kbd&gt;继续安装。&lt;/p&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>

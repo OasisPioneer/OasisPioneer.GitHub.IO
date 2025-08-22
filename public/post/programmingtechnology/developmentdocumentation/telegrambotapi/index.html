@@ -614,25 +614,25 @@
 <td><code>offset</code></td>
 <td>整数</td>
 <td><strong>可选</strong></td>
-<td>要返回的第一个更新标识符<!-- raw HTML omitted -->• 必须比已接收的最高ID大1<!-- raw HTML omitted -->• 默认返回最早未确认更新<!-- raw HTML omitted -->• 负值获取队列末尾更新（如<code>-5</code>获取最后5条）</td>
+<td>要返回的第一个更新标识符<br>• 必须比已接收的最高ID大1<br>• 默认返回最早未确认更新<br>• 负值获取队列末尾更新（如<code>-5</code>获取最后5条）</td>
 </tr>
 <tr>
 <td><code>limit</code></td>
 <td>整数</td>
 <td><strong>可选</strong></td>
-<td>获取更新数量限制<!-- raw HTML omitted -->• 范围：1-100<!-- raw HTML omitted -->• 默认值：100</td>
+<td>获取更新数量限制<br>• 范围：1-100<br>• 默认值：100</td>
 </tr>
 <tr>
 <td><code>timeout</code></td>
 <td>整数</td>
 <td><strong>可选</strong></td>
-<td>长轮询超时时间（秒）<!-- raw HTML omitted -->• 0=短轮询（默认）<!-- raw HTML omitted -->• 正值=长轮询等待时间<!-- raw HTML omitted -->• 短轮询仅建议测试使用</td>
+<td>长轮询超时时间（秒）<br>• 0=短轮询（默认）<br>• 正值=长轮询等待时间<br>• 短轮询仅建议测试使用</td>
 </tr>
 <tr>
 <td><code>allowed_updates</code></td>
 <td>字符串数组</td>
 <td><strong>可选</strong></td>
-<td>允许接收的更新类型（JSON格式）<!-- raw HTML omitted -->• 示例：<code>[&quot;message&quot;,&quot;callback_query&quot;]</code><!-- raw HTML omitted -->• 空数组=接收除三类敏感更新外的所有类型<!-- raw HTML omitted -->• 不设置=沿用上次配置<!-- raw HTML omitted -->• 注意：不影响调用前已生成的更新</td>
+<td>允许接收的更新类型（JSON格式）<br>• 示例：<code>[&quot;message&quot;,&quot;callback_query&quot;]</code><br>• 空数组=接收除三类敏感更新外的所有类型<br>• 不设置=沿用上次配置<br>• 注意：不影响调用前已生成的更新</td>
 </tr>
 </tbody>
 </table></div>

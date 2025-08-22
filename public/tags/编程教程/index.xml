@@ -36,9 +36,27 @@
 &lt;/h3&gt;&lt;p&gt;对于初次接触Linux的用户，Ubuntu提供了直观的桌面环境和简化的安装流程。您可以从官方渠道获取最新版本的Ubuntu：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;Ubuntu官方下载地址&lt;/strong&gt;：&lt;a class=&#34;link&#34; href=&#34;https://www.ubuntu.com/download/desktop&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;https://www.ubuntu.com/download/desktop&lt;/a&gt;&lt;/li&gt;
+    &gt;https://www.ubuntu.com/download/desktop
+    
+    &lt;span style=&#34;white-space: nowrap;&#34;&gt;&lt;svg width=&#34;.7em&#34;
+        height=&#34;.7em&#34; viewBox=&#34;0 0 21 21&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34;&gt;
+        &lt;path d=&#34;m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z&#34; fill=&#34;currentColor&#34; /&gt;
+        &lt;path d=&#34;M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z&#34;
+            fill=&#34;currentColor&#34;&gt;
+    &lt;/svg&gt;&lt;/span&gt;
+    
+&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Ubuntu官方安装教程&lt;/strong&gt;：&lt;a class=&#34;link&#34; href=&#34;https://www.ubuntu.com/tutorials/install-ubuntu-desktop&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;https://www.ubuntu.com/tutorials/install-ubuntu-desktop&lt;/a&gt;&lt;/li&gt;
+    &gt;https://www.ubuntu.com/tutorials/install-ubuntu-desktop
+    
+    &lt;span style=&#34;white-space: nowrap;&#34;&gt;&lt;svg width=&#34;.7em&#34;
+        height=&#34;.7em&#34; viewBox=&#34;0 0 21 21&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34;&gt;
+        &lt;path d=&#34;m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z&#34; fill=&#34;currentColor&#34; /&gt;
+        &lt;path d=&#34;M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z&#34;
+            fill=&#34;currentColor&#34;&gt;
+    &lt;/svg&gt;&lt;/span&gt;
+    
+&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id=&#34;其他操作系统考量&#34;&gt;其他操作系统考量
 &lt;/h3&gt;&lt;ul&gt;
@@ -100,9 +118,27 @@ CMake是一个跨平台的构建系统生成器。它不直接构建项目，而
 &lt;/h4&gt;&lt;p&gt;&lt;strong&gt;CLion&lt;/strong&gt;是JetBrains公司开发的一款专为C及C++设计的跨平台IDE。它以其智能的代码辅助、强大的代码分析、集成的调试器和对CMake的良好支持而闻名。CLion拥有庞大的插件市场，可以根据您的需求进行扩展。对于学生和开源贡献者，JetBrains通常提供免费的个人许可证。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;CLion官方下载地址&lt;/strong&gt;：&lt;a class=&#34;link&#34; href=&#34;https://www.jetbrains.com/clion/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;https://www.jetbrains.com/clion/&lt;/a&gt;&lt;/li&gt;
+    &gt;https://www.jetbrains.com/clion/
+    
+    &lt;span style=&#34;white-space: nowrap;&#34;&gt;&lt;svg width=&#34;.7em&#34;
+        height=&#34;.7em&#34; viewBox=&#34;0 0 21 21&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34;&gt;
+        &lt;path d=&#34;m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z&#34; fill=&#34;currentColor&#34; /&gt;
+        &lt;path d=&#34;M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z&#34;
+            fill=&#34;currentColor&#34;&gt;
+    &lt;/svg&gt;&lt;/span&gt;
+    
+&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;CLion官方安装教程&lt;/strong&gt;：&lt;a class=&#34;link&#34; href=&#34;https://www.jetbrains.com/help/clion/installation-guide.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;https://www.jetbrains.com/help/clion/installation-guide.html&lt;/a&gt;&lt;/li&gt;
+    &gt;https://www.jetbrains.com/help/clion/installation-guide.html
+    
+    &lt;span style=&#34;white-space: nowrap;&#34;&gt;&lt;svg width=&#34;.7em&#34;
+        height=&#34;.7em&#34; viewBox=&#34;0 0 21 21&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34;&gt;
+        &lt;path d=&#34;m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z&#34; fill=&#34;currentColor&#34; /&gt;
+        &lt;path d=&#34;M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z&#34;
+            fill=&#34;currentColor&#34;&gt;
+    &lt;/svg&gt;&lt;/span&gt;
+    
+&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h4 id=&#34;visual-studio-windows&#34;&gt;Visual Studio (Windows)
 &lt;/h4&gt;&lt;p&gt;&lt;strong&gt;Visual Studio&lt;/strong&gt;是微软为Windows平台开发的功能强大的IDE，支持C++、C#、.NET等多种语言。它提供了丰富的开发工具、调试功能和项目模板，是Windows环境下C++开发的标准选择。Visual Studio Community版本对个人开发者和开源项目免费。&lt;/p&gt;
@@ -114,7 +150,16 @@ CMake是一个跨平台的构建系统生成器。它不直接构建项目，而
 &lt;/h4&gt;&lt;p&gt;&lt;strong&gt;Visual Studio Code&lt;/strong&gt;是一款由微软开发的免费、开源的跨平台代码编辑器。它以其轻量级、高性能、丰富的扩展生态系统和对多种编程语言的良好支持而迅速普及。通过安装C/C++扩展包，VS Code可以提供智能感知、调试、代码格式化等功能，使其成为C++开发的优秀选择。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;VS Code官方下载地址&lt;/strong&gt;：&lt;a class=&#34;link&#34; href=&#34;https://code.visualstudio.com/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;https://code.visualstudio.com/&lt;/a&gt;&lt;/li&gt;
+    &gt;https://code.visualstudio.com/
+    
+    &lt;span style=&#34;white-space: nowrap;&#34;&gt;&lt;svg width=&#34;.7em&#34;
+        height=&#34;.7em&#34; viewBox=&#34;0 0 21 21&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34;&gt;
+        &lt;path d=&#34;m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z&#34; fill=&#34;currentColor&#34; /&gt;
+        &lt;path d=&#34;M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z&#34;
+            fill=&#34;currentColor&#34;&gt;
+    &lt;/svg&gt;&lt;/span&gt;
+    
+&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;推荐C/C++扩展&lt;/strong&gt;：Microsoft C/C++ Extension Pack&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h4 id=&#34;vim--emacs&#34;&gt;Vim / Emacs
@@ -140,15 +185,60 @@ CMake是一个跨平台的构建系统生成器。它不直接构建项目，而
 &lt;h2 id=&#34;参考资料&#34;&gt;参考资料
 &lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.ubuntu.com/download/desktop&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;Ubuntu官方下载地址&lt;/a&gt;&lt;/li&gt;
+    &gt;Ubuntu官方下载地址
+    
+    &lt;span style=&#34;white-space: nowrap;&#34;&gt;&lt;svg width=&#34;.7em&#34;
+        height=&#34;.7em&#34; viewBox=&#34;0 0 21 21&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34;&gt;
+        &lt;path d=&#34;m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z&#34; fill=&#34;currentColor&#34; /&gt;
+        &lt;path d=&#34;M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z&#34;
+            fill=&#34;currentColor&#34;&gt;
+    &lt;/svg&gt;&lt;/span&gt;
+    
+&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.ubuntu.com/tutorials/install-ubuntu-desktop&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;Ubuntu官方安装教程&lt;/a&gt;&lt;/li&gt;
+    &gt;Ubuntu官方安装教程
+    
+    &lt;span style=&#34;white-space: nowrap;&#34;&gt;&lt;svg width=&#34;.7em&#34;
+        height=&#34;.7em&#34; viewBox=&#34;0 0 21 21&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34;&gt;
+        &lt;path d=&#34;m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z&#34; fill=&#34;currentColor&#34; /&gt;
+        &lt;path d=&#34;M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z&#34;
+            fill=&#34;currentColor&#34;&gt;
+    &lt;/svg&gt;&lt;/span&gt;
+    
+&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.jetbrains.com/clion/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;JetBrains CLion官方网站&lt;/a&gt;&lt;/li&gt;
+    &gt;JetBrains CLion官方网站
+    
+    &lt;span style=&#34;white-space: nowrap;&#34;&gt;&lt;svg width=&#34;.7em&#34;
+        height=&#34;.7em&#34; viewBox=&#34;0 0 21 21&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34;&gt;
+        &lt;path d=&#34;m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z&#34; fill=&#34;currentColor&#34; /&gt;
+        &lt;path d=&#34;M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z&#34;
+            fill=&#34;currentColor&#34;&gt;
+    &lt;/svg&gt;&lt;/span&gt;
+    
+&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.jetbrains.com/help/clion/installation-guide.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;JetBrains CLion安装教程&lt;/a&gt;&lt;/li&gt;
+    &gt;JetBrains CLion安装教程
+    
+    &lt;span style=&#34;white-space: nowrap;&#34;&gt;&lt;svg width=&#34;.7em&#34;
+        height=&#34;.7em&#34; viewBox=&#34;0 0 21 21&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34;&gt;
+        &lt;path d=&#34;m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z&#34; fill=&#34;currentColor&#34; /&gt;
+        &lt;path d=&#34;M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z&#34;
+            fill=&#34;currentColor&#34;&gt;
+    &lt;/svg&gt;&lt;/span&gt;
+    
+&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://code.visualstudio.com/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;Visual Studio Code官方网站&lt;/a&gt;&lt;/li&gt;
+    &gt;Visual Studio Code官方网站
+    
+    &lt;span style=&#34;white-space: nowrap;&#34;&gt;&lt;svg width=&#34;.7em&#34;
+        height=&#34;.7em&#34; viewBox=&#34;0 0 21 21&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34;&gt;
+        &lt;path d=&#34;m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z&#34; fill=&#34;currentColor&#34; /&gt;
+        &lt;path d=&#34;M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z&#34;
+            fill=&#34;currentColor&#34;&gt;
+    &lt;/svg&gt;&lt;/span&gt;
+    
+&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id=&#34;验证安装&#34;&gt;验证安装
 &lt;/h3&gt;&lt;p&gt;安装完成后，您可以通过在终端输入以下命令来验证这些工具是否成功安装并查看其版本信息：&lt;/p&gt;

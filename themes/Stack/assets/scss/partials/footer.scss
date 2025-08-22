@@ -28,3 +28,21 @@ footer.site-footer {
         }
     }
 }
+
+// 网站运行时间统计
+.running-time {
+    color: var(--card-text-color-secondary);
+    font-weight: normal;
+
+    .running-days {
+        font-weight:bold;
+        color: var(--emphasize-text-color);
+    }   
+}
+
+// 网站文章数量统计
+.totalcount {
+    color: var(--card-text-color-secondary);
+    font-weight: normal;
+    margin-bottom: 5px;
+}

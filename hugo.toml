@@ -2,11 +2,9 @@ baseURL = 'https://example.org/'
 languageCode = 'zh-cn'
 title = 'Styx Blog'
 theme = 'Stack'
-
-[pagination]
-	pagerSize = 5
-
 defaultContentLanguage = "zh-cn"
+
+paginate = 5
 
 [Params]
 	favicon = "mask.svg"

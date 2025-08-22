@@ -6,7 +6,7 @@
 
 <link rel='canonical' href='https://example.org/tags/%E5%8F%A4%E5%85%B8%E5%AF%86%E7%A0%81%E5%AD%A6/'>
 
-<link rel="stylesheet" href="/scss/style.min.338053eda653cd6e6671308312787aee70bf27998a1cb63bd943908e55b48ced.css"><meta property='og:title' content="Tag: 古典密码学 - Styx Blog">
+<link rel="stylesheet" href="/scss/style.min.cf5bd8ad7228821a8cdf460008a6c97b2813dfe0f4ce99b79f5167a386427cad.css"><meta property='og:title' content="Tag: 古典密码学 - Styx Blog">
 <meta property='og:description' content="Styx Blog 一个专注于分享 C++ 编程技术的个人博客">
 <meta property='og:url' content='https://example.org/tags/%E5%8F%A4%E5%85%B8%E5%AF%86%E7%A0%81%E5%AD%A6/'>
 <meta property='og:site_name' content='Styx Blog'>
@@ -555,8 +555,54 @@
         使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
         主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.30.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
     </section>
-</footer>
 
+    
+    <section class="running-time">
+        本博客已稳定运行
+        <span id="runningdays" class="running-days"></span>
+    </section>
+
+    
+    <section class="totalcount">
+        
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+        发表了12篇文章 · 
+        总计5.44k字
+    </section>
+
+</footer>
 
             </main>
         </div>
@@ -577,5 +623,18 @@
     }());
 </script>
 
+<script>
+    let s1 = '2024-5-21';
+    s1 = new Date(s1.replace(/-/g, "/"));
+    let s2 = new Date();
+    let timeDifference = s2.getTime() - s1.getTime();
+
+    let days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+    let hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    let minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+
+    let result = days + "天" + hours + "小时" + minutes + "分钟";
+    document.getElementById('runningdays').innerHTML = result;
+</script>
     </body>
 </html>

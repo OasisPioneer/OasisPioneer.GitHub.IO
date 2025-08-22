@@ -6,7 +6,7 @@
 
 <link rel='canonical' href='https://example.org/post/programmingtechnology/developmentdocumentation/telegrambotapi/'>
 
-<link rel="stylesheet" href="/scss/style.min.338053eda653cd6e6671308312787aee70bf27998a1cb63bd943908e55b48ced.css"><meta property='og:title' content="Telegram Bot API">
+<link rel="stylesheet" href="/scss/style.min.cf5bd8ad7228821a8cdf460008a6c97b2813dfe0f4ce99b79f5167a386427cad.css"><meta property='og:title' content="Telegram Bot API">
 <meta property='og:description' content="本篇文章主要是将 Telegram Bot API 的官方文档进行了整理与汉化方便各位开发者能够更好的对接">
 <meta property='og:url' content='https://example.org/post/programmingtechnology/developmentdocumentation/telegrambotapi/'>
 <meta property='og:site_name' content='Styx Blog'>
@@ -433,7 +433,16 @@
     <h2 id="创建-telegram-bot">创建 Telegram Bot
 </h2><ol>
 <li>在 Telegram 中搜索 <a class="link" href="https://t.me/BotFather"  target="_blank" rel="noopener"
-    >@BotFather</a></li>
+    >@BotFather
+    
+    <span style="white-space: nowrap;"><svg width=".7em"
+        height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
+        <path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+        <path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+            fill="currentColor">
+    </svg></span>
+    
+</a></li>
 <li>在对话框中发送 <code>/newbot</code></li>
 <li>输入机器人名称 (用作称呼)</li>
 <li>输入机器人用户名以 (bot/Bot) 结尾 (用作机器人账号)</li>
@@ -446,8 +455,26 @@
 <pre tabindex="0"><code>https://api.telegram.org/bot&lt;YourToken&gt;/方法名称
 </code></pre><h2 id="使用本地-bot-api-server">使用本地 Bot API Server
 </h2><p>Bot API 服务器源代码可在 <a class="link" href="https://github.com/tdlib/telegram-bot-api"  target="_blank" rel="noopener"
-    >Telegram-Bot-API</a> 处获得。您可以在本地运行它,并将请求发送到您自己的服务器,而不是 <a class="link" href="https://api.telegram.org"  target="_blank" rel="noopener"
-    >https://api.telegram.org</a> 如果切换到本地 Bot API 服务器,您的机器人将能够:</p>
+    >Telegram-Bot-API
+    
+    <span style="white-space: nowrap;"><svg width=".7em"
+        height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
+        <path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+        <path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+            fill="currentColor">
+    </svg></span>
+    
+</a> 处获得。您可以在本地运行它,并将请求发送到您自己的服务器,而不是 <a class="link" href="https://api.telegram.org"  target="_blank" rel="noopener"
+    >https://api.telegram.org
+    
+    <span style="white-space: nowrap;"><svg width=".7em"
+        height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
+        <path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+        <path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+            fill="currentColor">
+    </svg></span>
+    
+</a> 如果切换到本地 Bot API 服务器,您的机器人将能够:</p>
 <ul>
 <li>下载没有大小限制的文件。</li>
 <li>上传文件高达2000 MB。</li>
@@ -481,117 +508,163 @@
 </tr>
 <tr>
 <td><code>message</code></td>
-<td><a class="link" href="#message" >消息</a></td>
+<td><a class="link" href="#message" >消息
+    
+</a></td>
 <td><strong>可选</strong> 新收到的文本、照片、贴纸等消息</td>
 </tr>
 <tr>
 <td><code>edited_message</code></td>
-<td><a class="link" href="#message" >消息</a></td>
+<td><a class="link" href="#message" >消息
+    
+</a></td>
 <td><strong>可选</strong> 已知消息被编辑后的新版本</td>
 </tr>
 <tr>
 <td><code>channel_post</code></td>
-<td><a class="link" href="#message" >消息</a></td>
+<td><a class="link" href="#message" >消息
+    
+</a></td>
 <td><strong>可选</strong> 新收到的频道帖子</td>
 </tr>
 <tr>
 <td><code>edited_channel_post</code></td>
-<td><a class="link" href="#message" >消息</a></td>
+<td><a class="link" href="#message" >消息
+    
+</a></td>
 <td><strong>可选</strong> 已知频道帖子被编辑后的新版本</td>
 </tr>
 <tr>
 <td><code>business_connection</code></td>
-<td><a class="link" href="#businessconnection" >业务连接</a></td>
+<td><a class="link" href="#businessconnection" >业务连接
+    
+</a></td>
 <td><strong>可选</strong> 机器人连接/断开业务账户或用户编辑连接时触发</td>
 </tr>
 <tr>
 <td><code>business_message</code></td>
-<td><a class="link" href="#message" >消息</a></td>
+<td><a class="link" href="#message" >消息
+    
+</a></td>
 <td><strong>可选</strong> 来自业务账户的新消息</td>
 </tr>
 <tr>
 <td><code>edited_business_message</code></td>
-<td><a class="link" href="#message" >消息</a></td>
+<td><a class="link" href="#message" >消息
+    
+</a></td>
 <td><strong>可选</strong> 业务账户消息被编辑后的版本</td>
 </tr>
 <tr>
 <td><code>deleted_business_messages</code></td>
-<td><a class="link" href="#businessmessagesdeleted" >业务消息已删除</a></td>
+<td><a class="link" href="#businessmessagesdeleted" >业务消息已删除
+    
+</a></td>
 <td><strong>可选</strong> 业务账户消息被删除时触发</td>
 </tr>
 <tr>
 <td><code>message_reaction</code></td>
-<td><a class="link" href="#messagereactionupdated" >消息反应已更新</a></td>
+<td><a class="link" href="#messagereactionupdated" >消息反应已更新
+    
+</a></td>
 <td><strong>可选</strong> 用户更改消息反应（需管理员权限并在<code>allowed_updates</code>指定）</td>
 </tr>
 <tr>
 <td><code>message_reaction_count</code></td>
-<td><a class="link" href="#messagereactioncountupdated" >消息反应计数已更新</a></td>
+<td><a class="link" href="#messagereactioncountupdated" >消息反应计数已更新
+    
+</a></td>
 <td><strong>可选</strong> 匿名消息反应数变更（需管理员权限并在<code>allowed_updates</code>指定 可能延迟）</td>
 </tr>
 <tr>
 <td><code>inline_query</code></td>
-<td><a class="link" href="#inlinequery" >内联查询</a></td>
+<td><a class="link" href="#inlinequery" >内联查询
+    
+</a></td>
 <td><strong>可选</strong> 新收到的内联查询</td>
 </tr>
 <tr>
 <td><code>chosen_inline_result</code></td>
-<td><a class="link" href="#choseninlineresult" >选择的内联结果</a></td>
+<td><a class="link" href="#choseninlineresult" >选择的内联结果
+    
+</a></td>
 <td><strong>可选</strong> 用户选择内联结果并发送</td>
 </tr>
 <tr>
 <td><code>callback_query</code></td>
-<td><a class="link" href="#callbackquery" >回调查询</a></td>
+<td><a class="link" href="#callbackquery" >回调查询
+    
+</a></td>
 <td><strong>可选</strong> 新收到的回调查询</td>
 </tr>
 <tr>
 <td><code>shipping_query</code></td>
-<td><a class="link" href="#shippingquery" >物流查询</a></td>
+<td><a class="link" href="#shippingquery" >物流查询
+    
+</a></td>
 <td><strong>可选</strong> 新物流查询（仅灵活价格发票）</td>
 </tr>
 <tr>
 <td><code>pre_checkout_query</code></td>
-<td><a class="link" href="#precheckoutquery" >预结账查询</a></td>
+<td><a class="link" href="#precheckoutquery" >预结账查询
+    
+</a></td>
 <td><strong>可选</strong> 新预结账查询（含完整信息）</td>
 </tr>
 <tr>
 <td><code>purchased_paid_media</code></td>
-<td><a class="link" href="#paidmediapurchased" >付费媒体已购买</a></td>
+<td><a class="link" href="#paidmediapurchased" >付费媒体已购买
+    
+</a></td>
 <td><strong>可选</strong> 用户在非频道聊天购买机器人发送的付费媒体</td>
 </tr>
 <tr>
 <td><code>poll</code></td>
-<td><a class="link" href="#poll" >投票</a></td>
+<td><a class="link" href="#poll" >投票
+    
+</a></td>
 <td><strong>可选</strong> 投票状态更新（仅手动停止或机器人发送的投票）</td>
 </tr>
 <tr>
 <td><code>poll_answer</code></td>
-<td><a class="link" href="#pollanswer" >投票答案</a></td>
+<td><a class="link" href="#pollanswer" >投票答案
+    
+</a></td>
 <td><strong>可选</strong> 用户更改非匿名投票答案（仅机器人发送的投票）</td>
 </tr>
 <tr>
 <td><code>my_chat_member</code></td>
-<td><a class="link" href="#chatmemberupdated" >聊天成员已更新</a></td>
+<td><a class="link" href="#chatmemberupdated" >聊天成员已更新
+    
+</a></td>
 <td><strong>可选</strong> 机器人成员状态更新（私聊中仅触发于屏蔽/解封）</td>
 </tr>
 <tr>
 <td><code>chat_member</code></td>
-<td><a class="link" href="#chatmemberupdated" >聊天成员已更新</a></td>
+<td><a class="link" href="#chatmemberupdated" >聊天成员已更新
+    
+</a></td>
 <td><strong>可选</strong> 成员状态更新（需管理员权限并在<code>allowed_updates</code>指定）</td>
 </tr>
 <tr>
 <td><code>chat_join_request</code></td>
-<td><a class="link" href="#chatjoinrequest" >加群请求</a></td>
+<td><a class="link" href="#chatjoinrequest" >加群请求
+    
+</a></td>
 <td><strong>可选</strong> 加群请求（需<code>can_invite_users</code>权限）</td>
 </tr>
 <tr>
 <td><code>chat_boost</code></td>
-<td><a class="link" href="#chatboostupdated" >聊天加速已更新</a></td>
+<td><a class="link" href="#chatboostupdated" >聊天加速已更新
+    
+</a></td>
 <td><strong>可选</strong> 聊天加速状态新增/变更（需管理员权限）</td>
 </tr>
 <tr>
 <td><code>removed_chat_boost</code></td>
-<td><a class="link" href="#chatboostremoved" >聊天加速已移除</a></td>
+<td><a class="link" href="#chatboostremoved" >聊天加速已移除
+    
+</a></td>
 <td><strong>可选</strong> 聊天加速状态移除（需管理员权限）</td>
 </tr>
 </tbody>
@@ -822,8 +895,54 @@
         使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
         主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.30.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
     </section>
-</footer>
 
+    
+    <section class="running-time">
+        本博客已稳定运行
+        <span id="runningdays" class="running-days"></span>
+    </section>
+
+    
+    <section class="totalcount">
+        
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+        发表了12篇文章 · 
+        总计5.44k字
+    </section>
+
+</footer>
 
     
 <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
@@ -922,5 +1041,18 @@
     }());
 </script>
 
+<script>
+    let s1 = '2024-5-21';
+    s1 = new Date(s1.replace(/-/g, "/"));
+    let s2 = new Date();
+    let timeDifference = s2.getTime() - s1.getTime();
+
+    let days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+    let hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    let minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+
+    let result = days + "天" + hours + "小时" + minutes + "分钟";
+    document.getElementById('runningdays').innerHTML = result;
+</script>
     </body>
 </html>

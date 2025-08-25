@@ -6,7 +6,15 @@
         <description>Recent content in 所有分类 on Styx Blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <lastBuildDate>Fri, 22 Aug 2025 15:15:00 +0800</lastBuildDate><atom:link href="https://example.org/categories/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Mon, 25 Aug 2025 18:19:08 +0800</lastBuildDate><atom:link href="https://example.org/categories/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>开源脚本</title>
+        <link>https://example.org/categories/%E5%BC%80%E6%BA%90%E8%84%9A%E6%9C%AC/</link>
+        <pubDate>Mon, 25 Aug 2025 18:19:08 +0800</pubDate>
+        
+        <guid>https://example.org/categories/%E5%BC%80%E6%BA%90%E8%84%9A%E6%9C%AC/</guid>
+        <description>&lt;img src="https://example.org/Image/Cover/Hacker.png" alt="Featured image of post 开源脚本" /&gt;</description>
+        </item>
+        <item>
         <title>开发工具</title>
         <link>https://example.org/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/</link>
         <pubDate>Fri, 22 Aug 2025 15:15:00 +0800</pubDate>

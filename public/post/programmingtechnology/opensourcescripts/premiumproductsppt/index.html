@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="本文详细记录了一次完整的Web爬虫项目实践，旨在使用Python对“优品PPT”网站进行数据抓取，实现PPT模板的自动化、批量化下载。文章内容覆盖了需求分析、技术栈选型、核心代码实现、反爬策略应对等关键环节。">
+<meta name="keywords" content="Python, 爬虫脚本, PPT模板下载, 自动化脚本, Requests库, BeautifulSoup教程, 网页解析, HTTP, HTTPS, 网站爬取, PremiumProductsPPT, 优品PPT, 爬虫, 资源, PPT, 模板, PPT模板"><title>[爬虫脚本] 基于Python的网站爬虫实战：全自动下载优品PPT模板</title>
+
+<link rel='canonical' href='https://example.org/post/programmingtechnology/opensourcescripts/premiumproductsppt/'>
+
+<link rel="stylesheet" href="/scss/style.min.cf5bd8ad7228821a8cdf460008a6c97b2813dfe0f4ce99b79f5167a386427cad.css"><meta property='og:title' content="[爬虫脚本] 基于Python的网站爬虫实战：全自动下载优品PPT模板">
+<meta property='og:description' content="本文详细记录了一次完整的Web爬虫项目实践，旨在使用Python对“优品PPT”网站进行数据抓取，实现PPT模板的自动化、批量化下载。文章内容覆盖了需求分析、技术栈选型、核心代码实现、反爬策略应对等关键环节。">
+<meta property='og:url' content='https://example.org/post/programmingtechnology/opensourcescripts/premiumproductsppt/'>
+<meta property='og:site_name' content='Styx Blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Python' /><meta property='article:tag' content='爬虫' /><meta property='article:tag' content='HTTP/HTTPS' /><meta property='article:published_time' content='2025-08-25T18:19:08&#43;08:00'/><meta property='article:modified_time' content='2025-08-25T18:19:08&#43;08:00'/>
+<meta name="twitter:title" content="[爬虫脚本] 基于Python的网站爬虫实战：全自动下载优品PPT模板">
+<meta name="twitter:description" content="本文详细记录了一次完整的Web爬虫项目实践，旨在使用Python对“优品PPT”网站进行数据抓取，实现PPT模板的自动化、批量化下载。文章内容覆盖了需求分析、技术栈选型、核心代码实现、反爬策略应对等关键环节。">
+    <link rel="shortcut icon" href="/mask.svg" />
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5303132509036035" crossorigin="anonymous"></script>
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu32e4e10cca460e05a8d8f72cf8ee6664_18323_300x0_resize_box_3.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🧑‍💻</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Styx Blog</a></h1>
+            <h2 class="site-description">欢迎来到我的博客</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://github.com/OasisPioneer'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='/index.xml'
+                        target="_blank"
+                        title="Rss"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-rss" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="5" cy="19" r="1" />
+  <path d="M4 4a16 16 0 0 1 16 16" />
+  <path d="M4 11a9 9 0 0 1 9 9" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='/sitemap.xml'
+                        target="_blank"
+                        title="Sitemap"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-sitemap"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 15m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M15 15m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M9 3m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M6 15v-1a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v1" /><path d="M12 9l0 3" /></svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://t.me/StyxTechStudio'
+                        target="_blank"
+                        title="Telegram"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-telegram"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15 10l-4 4l6 6l4 -16l-18 7l4 2l2 6l3 -4" /></svg>
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>首页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/categories/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+                
+                <span>分类</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/tags/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-tag" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11 3L20 12a1.5 1.5 0 0 1 0 2L14 20a1.5 1.5 0 0 1 -2 0L3 11v-4a4 4 0 0 1 4 -4h4" />
+  <circle cx="9" cy="9" r="2" />
+</svg>
+
+
+
+                
+                <span>标签</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>友链</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>暗色模式</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ul>
+    <li><a href="#项目背景">项目背景</a></li>
+    <li><a href="#需求分析与目标设定">需求分析与目标设定</a></li>
+    <li><a href="#技术栈选型">技术栈选型</a></li>
+    <li><a href="#核心实现逻辑解析">核心实现逻辑解析</a>
+      <ul>
+        <li><a href="#1-发现并提取全部分类-get_ppt_categories">1. 发现并提取全部分类 (<code>get_ppt_categories</code>)</a></li>
+        <li><a href="#2-动态探测分类的总页数-get_total_pages">2. 动态探测分类的总页数 (<code>get_total_pages</code>)</a></li>
+        <li><a href="#3-抓取列表页中的详情页url-get_ppt_list_from_category">3. 抓取列表页中的详情页URL (<code>get_ppt_list_from_category</code>)</a></li>
+        <li><a href="#4-解析并下载最终文件-download_ppt_file">4. 解析并下载最终文件 (<code>download_ppt_file</code>)</a></li>
+      </ul>
+    </li>
+    <li><a href="#使用说明">使用说明</a></li>
+    <li><a href="#完整源码">完整源码</a></li>
+  </ul>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/%E5%BC%80%E6%BA%90%E8%84%9A%E6%9C%AC/" >
+                开源脚本
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/post/programmingtechnology/opensourcescripts/premiumproductsppt/">[爬虫脚本] 基于Python的网站爬虫实战：全自动下载优品PPT模板</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            本文详细记录了一次完整的Web爬虫项目实践，旨在使用Python对“优品PPT”网站进行数据抓取，实现PPT模板的自动化、批量化下载。文章内容覆盖了需求分析、技术栈选型、核心代码实现、反爬策略应对等关键环节。
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Aug 25, 2025</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    阅读时长: 5 分钟
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="项目背景">项目背景
+</h2><p>在许多工作与学习场景中，高质量的PPT模板是提升演示文稿专业度的关键资源。“优品PPT”（ypppt.com）是一个提供大量免费、优质PPT模板的公开网站。然而，当需要批量获取或按分类归档这些资源时，手动下载的方式效率低下且过程繁琐。</p>
+<p>为了解决这一痛点，本文将通过一个完整的实战项目，演示如何利用Python构建一个自动化爬虫，实现对该网站PPT模板的批量下载和分类归档。</p>
+<h2 id="需求分析与目标设定">需求分析与目标设定
+</h2><p>在编码之前，首先需要明确项目的核心需求和预期目标。一个健壮的爬虫脚本应具备以下功能：</p>
+<ol>
+<li><strong>分类自动发现</strong>：动态抓取网站的所有模板分类，避免因网站结构更新导致脚本失效。</li>
+<li><strong>分页智能遍历</strong>：准确探测每个分类下的总页数，确保数据抓取的完整性。</li>
+<li><strong>深度链接解析</strong>：模拟用户操作，从列表页 -&gt; 详情页 -&gt; 下载页，最终定位到文件的真实下载地址。</li>
+<li><strong>自动化下载与归档</strong>：将文件下载至本地，并依据其分类和原始标题进行结构化存储。</li>
+<li><strong>良好的交互性</strong>：提供命令行接口（CLI），允许用户选择目标分类和下载范围。</li>
+<li><strong>基础反爬应对</strong>：通过设置<code>User-Agent</code>和随机延时，降低被目标网站屏蔽的风险，并能妥善处理百度网盘等特殊链接。</li>
+</ol>
+<h2 id="技术栈选型">技术栈选型
+</h2><p>针对上述需求，我们选择一套成熟且高效的Python库组合：</p>
+<ul>
+<li><strong><code>requests</code></strong>: 业界标准的HTTP库，用于与服务器进行网络通信，获取网页HTML。</li>
+<li><strong><code>BeautifulSoup4</code></strong>: 强大的HTML/XML解析库，能够轻松地从复杂的文档树中提取所需数据。</li>
+<li><strong><code>os</code></strong>: Python内置库，用于处理文件系统操作，如创建目录。</li>
+<li><strong><code>re</code></strong>: Python内置的正则表达式库，用于从非结构化文本中匹配和提取特定模式的数据（如网盘提取码）。</li>
+</ul>
+<h2 id="核心实现逻辑解析">核心实现逻辑解析
+</h2><p>爬虫的执行流程遵循一个清晰的逻辑链条。下面对各关键步骤的函数实现进行分析。</p>
+<h3 id="1-发现并提取全部分类-get_ppt_categories">1. 发现并提取全部分类 (<code>get_ppt_categories</code>)
+</h3><p>爬虫的入口点是获取所有可爬取的目标范围。通过分析模板主页 (<code>/moban/</code>) 的DOM结构，可以定位到包含分类信息的导航菜单，并从中提取所有分类的名称和URL。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 实现思路：</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 1. 向目标URL发送GET请求。</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 2. 使用BeautifulSoup解析响应的HTML。</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 3. 通过CSS选择器 `div.menu a` 精准定位到所有分类的&lt;a&gt;标签。</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 4. 遍历标签列表，提取文本内容（分类名）和`href`属性（URL），并进行有效性过滤，最终存入字典。</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get_ppt_categories</span>():
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># ... 源码略 ...</span>
+</span></span></code></pre></div><h3 id="2-动态探测分类的总页数-get_total_pages">2. 动态探测分类的总页数 (<code>get_total_pages</code>)
+</h3><p>为了实现完整抓取，必须预先知道每个分类下列表页的总数。一种稳健的策略是模拟用户翻页行为：持续请求下一页，直到出现“下一页”按钮消失或服务器返回404状态码为止。</p>
+<p><strong>关键细节</strong>：通过开发者工具分析发现，该站点的分页URL模式为 <code>list-{page}.html</code>。在代码中正确构造此URL是探测成功的关键。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 实现思路：</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 1. 初始化页码为1，进入一个无限循环。</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 2. 根据当前页码构造URL并发起请求。</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 3. 检查HTTP状态码，若为404则表明已超出最大页数，终止循环。</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 4. 解析页面，查找文本为“下一页”的&lt;a&gt;标签。若不存在，同样终止循环。</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 5. 若存在，则页码加一，并加入一个短暂的随机延时，继续下一次探测。</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get_total_pages</span>(category_url):
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># ... 源码略 ...</span>
+</span></span></code></pre></div><h3 id="3-抓取列表页中的详情页url-get_ppt_list_from_category">3. 抓取列表页中的详情页URL (<code>get_ppt_list_from_category</code>)
+</h3><p>在确定了页数范围后，即可遍历所有列表页，提取其中每个PPT条目指向详情页的URL。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 实现思路：</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 1. 循环遍历指定的页数。</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 2. 访问每个列表页的URL。</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 3. 使用CSS选择器 `ul.posts.clear &gt; li &gt; a.p-title` 提取所有详情页的链接。</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 4. 将提取到的URL添加到一个全局列表中。</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get_ppt_list_from_category</span>(category_url, max_pages):
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># ... 源码略 ...</span>
+</span></span></code></pre></div><h3 id="4-解析并下载最终文件-download_ppt_file">4. 解析并下载最终文件 (<code>download_ppt_file</code>)
+</h3><p>这是整个流程的终点。此函数负责完成从详情页到最终文件下载的完整链路。</p>
+<p>该过程涉及两次页面跳转：首先从详情页找到下载页的链接，再从下载页解析出文件的直接下载地址（Direct Link）。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 实现思路：</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 1. 访问下载页URL，解析HTML。</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 2. 提取页面H1标签作为文件名，并找到最终文件所在的&lt;a&gt;标签。</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 3. **特殊情况处理**：检查链接中是否包含 &#34;pan.baidu.com&#34;。如果是，则使用正则表达式搜索页面文本中的“提取码”，并输出提示信息，不执行下载。</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 4. **常规下载**：对于直链，使用 `requests.get(stream=True)` 发起流式下载请求。</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 5. 清理文件名中的非法字符，并以二进制块（chunk）的形式将文件内容写入本地磁盘。</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">download_ppt_file</span>(download_page_url, save_folder):
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># ... 源码略 ...</span>
+</span></span></code></pre></div><h2 id="使用说明">使用说明
+</h2><ol>
+<li><strong>环境配置</strong>：确保已安装Python 3，并通过pip安装必要的依赖库：
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>pip install requests beautifulsoup4
+</span></span></code></pre></div></li>
+<li><strong>代码保存</strong>：将附录中的完整源码保存为 <code>.py</code> 文件，例如 <code>ypppt_spider.py</code>。</li>
+<li><strong>脚本执行</strong>：在终端中运行该脚本：
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>python ypppt_spider.py
+</span></span></code></pre></div></li>
+<li><strong>交互式操作</strong>：根据终端输出的提示，依次输入目标分类的编号和希望下载的页数（或输入<code>all</code>下载全部）。脚本将自动执行后续任务。</li>
+</ol>
+<hr>
+<h2 id="完整源码">完整源码
+</h2><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> os
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> time
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> requests
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> bs4 <span style="color:#f92672">import</span> BeautifulSoup
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> random
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> re
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># --- 全局配置 ---</span>
+</span></span><span style="display:flex;"><span>BASE_URL <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;https://www.ypppt.com&#34;</span>
+</span></span><span style="display:flex;"><span>SAVE_DIR <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;PPT_Downloads_Perfect&#34;</span>
+</span></span><span style="display:flex;"><span>HEADERS <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;User-Agent&#39;</span>: <span style="color:#e6db74">&#39;Mozilla/5.0 (Windows NT 10.0; Win64; x64 ) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36&#39;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># ==============================================================================</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 函数区: 修复分页URL格式问题</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># ==============================================================================</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get_ppt_categories</span>():
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;&#34;&#34;从模板主页 /moban/ 获取所有分类&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#34;正在从模板主页探测全部分类目录...&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">try</span>:
+</span></span><span style="display:flex;"><span>        response <span style="color:#f92672">=</span> requests<span style="color:#f92672">.</span>get(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">{</span>BASE_URL<span style="color:#e6db74">}</span><span style="color:#e6db74">/moban/&#34;</span>, headers<span style="color:#f92672">=</span>HEADERS)
+</span></span><span style="display:flex;"><span>        response<span style="color:#f92672">.</span>raise_for_status()
+</span></span><span style="display:flex;"><span>        response<span style="color:#f92672">.</span>encoding <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;utf-8&#39;</span>
+</span></span><span style="display:flex;"><span>        soup <span style="color:#f92672">=</span> BeautifulSoup(response<span style="color:#f92672">.</span>text, <span style="color:#e6db74">&#39;html.parser&#39;</span>)
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        category_links <span style="color:#f92672">=</span> soup<span style="color:#f92672">.</span>select(<span style="color:#e6db74">&#39;div.menu a&#39;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> category_links:
+</span></span><span style="display:flex;"><span>            print(<span style="color:#e6db74">&#34;错误：在模板主页未能探测到任何分类链接。&#34;</span>)
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">None</span>
+</span></span><span style="display:flex;"><span>            
+</span></span><span style="display:flex;"><span>        categories <span style="color:#f92672">=</span> {}
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> link <span style="color:#f92672">in</span> category_links:
+</span></span><span style="display:flex;"><span>            name <span style="color:#f92672">=</span> link<span style="color:#f92672">.</span>text<span style="color:#f92672">.</span>strip()
+</span></span><span style="display:flex;"><span>            href <span style="color:#f92672">=</span> link<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;href&#39;</span>, <span style="color:#e6db74">&#39;&#39;</span>)
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># 过滤有效分类链接</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> name <span style="color:#f92672">and</span> href <span style="color:#f92672">and</span> <span style="color:#e6db74">&#39;/moban/&#39;</span> <span style="color:#f92672">in</span> href <span style="color:#f92672">and</span> <span style="color:#f92672">not</span> link<span style="color:#f92672">.</span>has_attr(<span style="color:#e6db74">&#39;style&#39;</span>):
+</span></span><span style="display:flex;"><span>                categories[name] <span style="color:#f92672">=</span> href
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;✓ 全部分类目录探测成功！共找到 </span><span style="color:#e6db74">{</span>len(categories)<span style="color:#e6db74">}</span><span style="color:#e6db74"> 个分类。&#34;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> categories
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">except</span> <span style="color:#a6e22e">Exception</span> <span style="color:#66d9ef">as</span> e:
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;错误：访问模板主页失败 - </span><span style="color:#e6db74">{</span>e<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">None</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get_total_pages</span>(category_url):
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;&#34;&#34;修复分页URL格式，使用连字符而非下划线&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;  - 正在探测分类 “</span><span style="color:#e6db74">{</span>category_url<span style="color:#e6db74">}</span><span style="color:#e6db74">” 的总页数...&#34;</span>)
+</span></span><span style="display:flex;"><span>    total_pages <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>    base_url <span style="color:#f92672">=</span> <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">{</span>BASE_URL<span style="color:#e6db74">}{</span>category_url<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span><span style="color:#f92672">.</span>rstrip(<span style="color:#e6db74">&#39;/&#39;</span>)
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> <span style="color:#66d9ef">True</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># 关键修复：分页URL使用连字符 &#34;list-{page}.html&#34; 而非下划线</span>
+</span></span><span style="display:flex;"><span>        current_url <span style="color:#f92672">=</span> base_url <span style="color:#66d9ef">if</span> total_pages <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">else</span> <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">{</span>base_url<span style="color:#e6db74">}</span><span style="color:#e6db74">/list-</span><span style="color:#e6db74">{</span>total_pages<span style="color:#e6db74">}</span><span style="color:#e6db74">.html&#34;</span>
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;    探测第</span><span style="color:#e6db74">{</span>total_pages<span style="color:#e6db74">}</span><span style="color:#e6db74">页: </span><span style="color:#e6db74">{</span>current_url<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)  <span style="color:#75715e"># 调试输出当前URL</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">try</span>:
+</span></span><span style="display:flex;"><span>            response <span style="color:#f92672">=</span> requests<span style="color:#f92672">.</span>get(current_url, headers<span style="color:#f92672">=</span>HEADERS, timeout<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>)
+</span></span><span style="display:flex;"><span>            print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;    响应状态: </span><span style="color:#e6db74">{</span>response<span style="color:#f92672">.</span>status_code<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)  <span style="color:#75715e"># 显示响应状态码</span>
+</span></span><span style="display:flex;"><span>            
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> response<span style="color:#f92672">.</span>status_code <span style="color:#f92672">==</span> <span style="color:#ae81ff">404</span>:
+</span></span><span style="display:flex;"><span>                print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;    第</span><span style="color:#e6db74">{</span>total_pages<span style="color:#e6db74">}</span><span style="color:#e6db74">页不存在，停止探测&#34;</span>)
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">break</span>
+</span></span><span style="display:flex;"><span>            
+</span></span><span style="display:flex;"><span>            response<span style="color:#f92672">.</span>raise_for_status()
+</span></span><span style="display:flex;"><span>            response<span style="color:#f92672">.</span>encoding <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;utf-8&#39;</span>
+</span></span><span style="display:flex;"><span>            soup <span style="color:#f92672">=</span> BeautifulSoup(response<span style="color:#f92672">.</span>text, <span style="color:#e6db74">&#39;html.parser&#39;</span>)
+</span></span><span style="display:flex;"><span>            
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># 根据页面源码优化下一页按钮识别</span>
+</span></span><span style="display:flex;"><span>            next_page <span style="color:#f92672">=</span> soup<span style="color:#f92672">.</span>find(<span style="color:#e6db74">&#39;a&#39;</span>, string<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;下一页&#39;</span>)
+</span></span><span style="display:flex;"><span>            
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> next_page:
+</span></span><span style="display:flex;"><span>                print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;    未找到下一页按钮，当前页</span><span style="color:#e6db74">{</span>total_pages<span style="color:#e6db74">}</span><span style="color:#e6db74">为最后一页&#34;</span>)
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">break</span>
+</span></span><span style="display:flex;"><span>            
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># 验证下一页URL是否有效（防止虚假按钮）</span>
+</span></span><span style="display:flex;"><span>            next_page_url <span style="color:#f92672">=</span> next_page<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;href&#39;</span>, <span style="color:#e6db74">&#39;&#39;</span>)
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> next_page_url <span style="color:#f92672">or</span> <span style="color:#e6db74">&#39;list-&#39;</span> <span style="color:#f92672">not</span> <span style="color:#f92672">in</span> next_page_url:
+</span></span><span style="display:flex;"><span>                print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;    下一页链接无效，停止探测&#34;</span>)
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">break</span>
+</span></span><span style="display:flex;"><span>            
+</span></span><span style="display:flex;"><span>            total_pages <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>            time<span style="color:#f92672">.</span>sleep(random<span style="color:#f92672">.</span>uniform(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1.5</span>))  <span style="color:#75715e"># 延迟避免反爬</span>
+</span></span><span style="display:flex;"><span>            
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">except</span> <span style="color:#a6e22e">Exception</span> <span style="color:#66d9ef">as</span> e:
+</span></span><span style="display:flex;"><span>            print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;    探测第</span><span style="color:#e6db74">{</span>total_pages<span style="color:#e6db74">}</span><span style="color:#e6db74">页出错: </span><span style="color:#e6db74">{</span>e<span style="color:#e6db74">}</span><span style="color:#e6db74">，停止探测&#34;</span>)
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">break</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;  - ✓ 探测到总页数为: </span><span style="color:#e6db74">{</span>total_pages<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> total_pages
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get_ppt_list_from_category</span>(category_url, max_pages):
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;&#34;&#34;修复列表页URL格式，匹配网站实际分页&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    all_detail_urls <span style="color:#f92672">=</span> []
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> page_num <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">1</span>, max_pages <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>):
+</span></span><span style="display:flex;"><span>        base_cat_url <span style="color:#f92672">=</span> category_url<span style="color:#f92672">.</span>rstrip(<span style="color:#e6db74">&#39;/&#39;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># 修复列表页URL格式：使用连字符</span>
+</span></span><span style="display:flex;"><span>        list_url <span style="color:#f92672">=</span> <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">{</span>BASE_URL<span style="color:#e6db74">}{</span>base_cat_url<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#66d9ef">if</span> page_num <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">else</span> <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">{</span>BASE_URL<span style="color:#e6db74">}{</span>base_cat_url<span style="color:#e6db74">}</span><span style="color:#e6db74">/list-</span><span style="color:#e6db74">{</span>page_num<span style="color:#e6db74">}</span><span style="color:#e6db74">.html&#34;</span>
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;  - 正在分析第 </span><span style="color:#e6db74">{</span>page_num<span style="color:#e6db74">}</span><span style="color:#e6db74">/</span><span style="color:#e6db74">{</span>max_pages<span style="color:#e6db74">}</span><span style="color:#e6db74"> 页: </span><span style="color:#e6db74">{</span>list_url<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">try</span>:
+</span></span><span style="display:flex;"><span>            response <span style="color:#f92672">=</span> requests<span style="color:#f92672">.</span>get(list_url, headers<span style="color:#f92672">=</span>HEADERS)
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> response<span style="color:#f92672">.</span>status_code <span style="color:#f92672">==</span> <span style="color:#ae81ff">404</span>:
+</span></span><span style="display:flex;"><span>                print(<span style="color:#e6db74">&#34;  - 提示: 页面不存在，已到达最后一页。&#34;</span>)
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">break</span>
+</span></span><span style="display:flex;"><span>            response<span style="color:#f92672">.</span>raise_for_status()
+</span></span><span style="display:flex;"><span>            response<span style="color:#f92672">.</span>encoding <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;utf-8&#39;</span>
+</span></span><span style="display:flex;"><span>            soup <span style="color:#f92672">=</span> BeautifulSoup(response<span style="color:#f92672">.</span>text, <span style="color:#e6db74">&#39;html.parser&#39;</span>)
+</span></span><span style="display:flex;"><span>            ppt_links <span style="color:#f92672">=</span> soup<span style="color:#f92672">.</span>select(<span style="color:#e6db74">&#39;ul.posts.clear &gt; li &gt; a.p-title&#39;</span>)
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> ppt_links:
+</span></span><span style="display:flex;"><span>                print(<span style="color:#e6db74">&#34;  - 提示: 此页未找到PPT链接，已到达最后一页。&#34;</span>)
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">break</span>
+</span></span><span style="display:flex;"><span>            all_detail_urls<span style="color:#f92672">.</span>extend([link[<span style="color:#e6db74">&#39;href&#39;</span>] <span style="color:#66d9ef">for</span> link <span style="color:#f92672">in</span> ppt_links])
+</span></span><span style="display:flex;"><span>            time<span style="color:#f92672">.</span>sleep(random<span style="color:#f92672">.</span>uniform(<span style="color:#ae81ff">0.5</span>, <span style="color:#ae81ff">1.5</span>))
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">except</span> <span style="color:#a6e22e">Exception</span> <span style="color:#66d9ef">as</span> e:
+</span></span><span style="display:flex;"><span>            print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;  - 错误: 分析列表页 </span><span style="color:#e6db74">{</span>list_url<span style="color:#e6db74">}</span><span style="color:#e6db74"> 时出错 - </span><span style="color:#e6db74">{</span>e<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">break</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> all_detail_urls
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get_download_page_url</span>(detail_page_url):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">try</span>:
+</span></span><span style="display:flex;"><span>        full_url <span style="color:#f92672">=</span> <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">{</span>BASE_URL<span style="color:#e6db74">}{</span>detail_page_url<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>        response <span style="color:#f92672">=</span> requests<span style="color:#f92672">.</span>get(full_url, headers<span style="color:#f92672">=</span>HEADERS)
+</span></span><span style="display:flex;"><span>        response<span style="color:#f92672">.</span>raise_for_status()
+</span></span><span style="display:flex;"><span>        response<span style="color:#f92672">.</span>encoding <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;utf-8&#39;</span>
+</span></span><span style="display:flex;"><span>        soup <span style="color:#f92672">=</span> BeautifulSoup(response<span style="color:#f92672">.</span>text, <span style="color:#e6db74">&#39;html.parser&#39;</span>)
+</span></span><span style="display:flex;"><span>        down_button <span style="color:#f92672">=</span> soup<span style="color:#f92672">.</span>select_one(<span style="color:#e6db74">&#39;a.down-button&#39;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> down_button[<span style="color:#e6db74">&#39;href&#39;</span>] <span style="color:#66d9ef">if</span> down_button <span style="color:#f92672">and</span> down_button<span style="color:#f92672">.</span>has_attr(<span style="color:#e6db74">&#39;href&#39;</span>) <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">None</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">except</span> <span style="color:#a6e22e">Exception</span> <span style="color:#66d9ef">as</span> e:
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;  - 错误: 访问详情页 </span><span style="color:#e6db74">{</span>full_url<span style="color:#e6db74">}</span><span style="color:#e6db74"> 时出错 - </span><span style="color:#e6db74">{</span>e<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">None</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">download_ppt_file</span>(download_page_url, save_folder):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">try</span>:
+</span></span><span style="display:flex;"><span>        full_url <span style="color:#f92672">=</span> <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">{</span>BASE_URL<span style="color:#e6db74">}{</span>download_page_url<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>        response <span style="color:#f92672">=</span> requests<span style="color:#f92672">.</span>get(full_url, headers<span style="color:#f92672">=</span>HEADERS)
+</span></span><span style="display:flex;"><span>        response<span style="color:#f92672">.</span>raise_for_status()
+</span></span><span style="display:flex;"><span>        response<span style="color:#f92672">.</span>encoding <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;utf-8&#39;</span>
+</span></span><span style="display:flex;"><span>        soup <span style="color:#f92672">=</span> BeautifulSoup(response<span style="color:#f92672">.</span>text, <span style="color:#e6db74">&#39;html.parser&#39;</span>)
+</span></span><span style="display:flex;"><span>        title <span style="color:#f92672">=</span> (soup<span style="color:#f92672">.</span>select_one(<span style="color:#e6db74">&#39;div.de &gt; h1&#39;</span>) <span style="color:#f92672">or</span> soup<span style="color:#f92672">.</span>new_tag(<span style="color:#e6db74">&#39;h1&#39;</span>))<span style="color:#f92672">.</span>text<span style="color:#f92672">.</span>strip()<span style="color:#f92672">.</span>replace(<span style="color:#e6db74">&#39; - 下载页&#39;</span>, <span style="color:#e6db74">&#39;&#39;</span>) <span style="color:#f92672">or</span> <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;ppt_</span><span style="color:#e6db74">{</span>random<span style="color:#f92672">.</span>randint(<span style="color:#ae81ff">1000</span>, <span style="color:#ae81ff">9999</span>)<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>        final_link_tag <span style="color:#f92672">=</span> soup<span style="color:#f92672">.</span>select_one(<span style="color:#e6db74">&#39;ul.down.clear &gt; li &gt; a&#39;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> final_link_tag <span style="color:#f92672">or</span> <span style="color:#f92672">not</span> final_link_tag<span style="color:#f92672">.</span>has_attr(<span style="color:#e6db74">&#39;href&#39;</span>):
+</span></span><span style="display:flex;"><span>            print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;  - 警告：在下载页 </span><span style="color:#e6db74">{</span>full_url<span style="color:#e6db74">}</span><span style="color:#e6db74"> 未找到最终下载链接。&#34;</span>)
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span>
+</span></span><span style="display:flex;"><span>        file_url <span style="color:#f92672">=</span> final_link_tag[<span style="color:#e6db74">&#39;href&#39;</span>]
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> <span style="color:#e6db74">&#34;pan.baidu.com&#34;</span> <span style="color:#f92672">in</span> file_url:
+</span></span><span style="display:flex;"><span>            page_text <span style="color:#f92672">=</span> soup<span style="color:#f92672">.</span>get_text()
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">match</span> <span style="color:#f92672">=</span> re<span style="color:#f92672">.</span>search(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;提取码\s*[:：]\s*([a-zA-Z0-9]</span><span style="color:#e6db74">{4}</span><span style="color:#e6db74">)&#39;</span>, page_text)
+</span></span><span style="display:flex;"><span>            pass_code <span style="color:#f92672">=</span> <span style="color:#66d9ef">match</span><span style="color:#f92672">.</span>group(<span style="color:#ae81ff">1</span>) <span style="color:#66d9ef">if</span> <span style="color:#66d9ef">match</span> <span style="color:#66d9ef">else</span> <span style="color:#e6db74">&#34;未找到&#34;</span>
+</span></span><span style="display:flex;"><span>            print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;  - 提示：检测到百度网盘资源，请手动下载。&#34;</span>)
+</span></span><span style="display:flex;"><span>            print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;    - 标题: </span><span style="color:#e6db74">{</span>title<span style="color:#e6db74">}</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">    - 地址: </span><span style="color:#e6db74">{</span>file_url<span style="color:#e6db74">}</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">    - 提取码: </span><span style="color:#e6db74">{</span>pass_code<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span>
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;  ● 正在下载：</span><span style="color:#e6db74">{</span>title<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>        file_response <span style="color:#f92672">=</span> requests<span style="color:#f92672">.</span>get(file_url, headers<span style="color:#f92672">=</span>HEADERS, stream<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+</span></span><span style="display:flex;"><span>        file_response<span style="color:#f92672">.</span>raise_for_status()
+</span></span><span style="display:flex;"><span>        file_name <span style="color:#f92672">=</span> <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">{</span>title<span style="color:#e6db74">}</span><span style="color:#e6db74">.zip&#34;</span>
+</span></span><span style="display:flex;"><span>        file_name <span style="color:#f92672">=</span> re<span style="color:#f92672">.</span>sub(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;[</span><span style="color:#ae81ff">\\</span><span style="color:#e6db74">/*?:&#34;&lt;&gt;|]&#39;</span>, <span style="color:#e6db74">&#34;&#34;</span>, file_name)
+</span></span><span style="display:flex;"><span>        save_path <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>join(save_folder, file_name)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">with</span> open(save_path, <span style="color:#e6db74">&#39;wb&#39;</span>) <span style="color:#66d9ef">as</span> f:
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">for</span> chunk <span style="color:#f92672">in</span> file_response<span style="color:#f92672">.</span>iter_content(chunk_size<span style="color:#f92672">=</span><span style="color:#ae81ff">8192</span>):
+</span></span><span style="display:flex;"><span>                f<span style="color:#f92672">.</span>write(chunk)
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;    ✓ 下载完成，已保存至: </span><span style="color:#e6db74">{</span>save_path<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">except</span> <span style="color:#a6e22e">Exception</span> <span style="color:#66d9ef">as</span> e:
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;  - 错误：下载文件时失败 - </span><span style="color:#e6db74">{</span>e<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># ==============================================================================</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 主程序区</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># ==============================================================================</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;__main__&#34;</span>:
+</span></span><span style="display:flex;"><span>    categories <span style="color:#f92672">=</span> get_ppt_categories()
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> categories: exit()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">--- 请选择您要下载的PPT分类 ---&#34;</span>)
+</span></span><span style="display:flex;"><span>    cat_list <span style="color:#f92672">=</span> list(categories<span style="color:#f92672">.</span>items())
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> i, (name, url) <span style="color:#f92672">in</span> enumerate(cat_list):
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;  [</span><span style="color:#e6db74">{</span>i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span><span style="color:#e6db74">}</span><span style="color:#e6db74">] </span><span style="color:#e6db74">{</span>name<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> <span style="color:#66d9ef">True</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">try</span>:
+</span></span><span style="display:flex;"><span>            choice <span style="color:#f92672">=</span> int(input(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">请输入分类编号: &#34;</span>)<span style="color:#f92672">.</span>strip())
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">&lt;=</span> choice <span style="color:#f92672">&lt;=</span> len(cat_list):
+</span></span><span style="display:flex;"><span>                selected_index <span style="color:#f92672">=</span> choice <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">break</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">else</span>: print(<span style="color:#e6db74">&#34;输入编号超出范围，请重新输入。&#34;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">except</span> <span style="color:#a6e22e">ValueError</span>: print(<span style="color:#e6db74">&#34;输入无效，请输入一个数字编号。&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    cat_name, cat_url <span style="color:#f92672">=</span> cat_list[selected_index]
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 自动探测总页数（已修复URL格式问题）</span>
+</span></span><span style="display:flex;"><span>    total_pages <span style="color:#f92672">=</span> get_total_pages(cat_url)
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> <span style="color:#66d9ef">True</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">try</span>:
+</span></span><span style="display:flex;"><span>            page_choice_str <span style="color:#f92672">=</span> input(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;请输入您想下载的页数 (输入 &#39;all&#39; 下载全部 </span><span style="color:#e6db74">{</span>total_pages<span style="color:#e6db74">}</span><span style="color:#e6db74"> 页，或输入具体数字): &#34;</span>)<span style="color:#f92672">.</span>strip()<span style="color:#f92672">.</span>lower()
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> page_choice_str <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;all&#39;</span>:
+</span></span><span style="display:flex;"><span>                pages_to_scrape <span style="color:#f92672">=</span> total_pages
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">break</span>
+</span></span><span style="display:flex;"><span>            pages_to_scrape <span style="color:#f92672">=</span> int(page_choice_str)
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">&lt;</span> pages_to_scrape <span style="color:#f92672">&lt;=</span> total_pages:
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">break</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>                print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;页数必须在 1 到 </span><span style="color:#e6db74">{</span>total_pages<span style="color:#e6db74">}</span><span style="color:#e6db74"> 之间。&#34;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">except</span> <span style="color:#a6e22e">ValueError</span>: print(<span style="color:#e6db74">&#34;输入无效，请输入 &#39;all&#39; 或一个数字。&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>exists(SAVE_DIR): os<span style="color:#f92672">.</span>makedirs(SAVE_DIR)
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    category_folder <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>join(SAVE_DIR, cat_name)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>exists(category_folder): os<span style="color:#f92672">.</span>makedirs(category_folder)
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">{</span><span style="color:#e6db74">&#39;=&#39;</span><span style="color:#f92672">*</span><span style="color:#ae81ff">20</span><span style="color:#e6db74">}</span><span style="color:#e6db74"> 开始下载分类: “</span><span style="color:#e6db74">{</span>cat_name<span style="color:#e6db74">}</span><span style="color:#e6db74">” (共 </span><span style="color:#e6db74">{</span>pages_to_scrape<span style="color:#e6db74">}</span><span style="color:#e6db74"> 页) </span><span style="color:#e6db74">{</span><span style="color:#e6db74">&#39;=&#39;</span><span style="color:#f92672">*</span><span style="color:#ae81ff">20</span><span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    detail_page_urls <span style="color:#f92672">=</span> get_ppt_list_from_category(cat_url, pages_to_scrape)
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> detail_page_urls:
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">&#34;未能从此分类获取到任何PPT列表。&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>        total_count <span style="color:#f92672">=</span> len(detail_page_urls)
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">成功获取到 </span><span style="color:#e6db74">{</span>total_count<span style="color:#e6db74">}</span><span style="color:#e6db74"> 个PPT，开始逐一处理...&#34;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> i, detail_url <span style="color:#f92672">in</span> enumerate(detail_page_urls):
+</span></span><span style="display:flex;"><span>            print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">--- 处理第 </span><span style="color:#e6db74">{</span>i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span><span style="color:#e6db74">}</span><span style="color:#e6db74">/</span><span style="color:#e6db74">{</span>total_count<span style="color:#e6db74">}</span><span style="color:#e6db74"> 个PPT: </span><span style="color:#e6db74">{</span>detail_url<span style="color:#e6db74">}</span><span style="color:#e6db74"> ---&#34;</span>)
+</span></span><span style="display:flex;"><span>            download_page_url <span style="color:#f92672">=</span> get_download_page_url(detail_url)
+</span></span><span style="display:flex;"><span>            
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> download_page_url:
+</span></span><span style="display:flex;"><span>                download_ppt_file(download_page_url, category_folder)
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>                print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;  - 警告: 未能从 </span><span style="color:#e6db74">{</span>detail_url<span style="color:#e6db74">}</span><span style="color:#e6db74"> 获取到下载页面链接。&#34;</span>)
+</span></span><span style="display:flex;"><span>            
+</span></span><span style="display:flex;"><span>            sleep_time <span style="color:#f92672">=</span> random<span style="color:#f92672">.</span>uniform(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>            print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;      ...等待 </span><span style="color:#e6db74">{</span>sleep_time<span style="color:#e6db74">:</span><span style="color:#e6db74">.2f</span><span style="color:#e6db74">}</span><span style="color:#e6db74"> 秒...&#34;</span>)
+</span></span><span style="display:flex;"><span>            time<span style="color:#f92672">.</span>sleep(sleep_time)
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">{</span><span style="color:#e6db74">&#39;=&#39;</span><span style="color:#f92672">*</span><span style="color:#ae81ff">20</span><span style="color:#e6db74">}</span><span style="color:#e6db74"> “</span><span style="color:#e6db74">{</span>cat_name<span style="color:#e6db74">}</span><span style="color:#e6db74">” 分类下载任务已完成！ </span><span style="color:#e6db74">{</span><span style="color:#e6db74">&#39;=&#39;</span><span style="color:#f92672">*</span><span style="color:#ae81ff">20</span><span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;所有文件已保存在 “</span><span style="color:#e6db74">{</span>os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>abspath(SAVE_DIR)<span style="color:#e6db74">}</span><span style="color:#e6db74">” 文件夹中。&#34;</span>)
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">--- 解压提示 ---</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">如果解压后的文件名出现乱码，请尝试使用命令: unzip -O GBK &#39;文件名.zip&#39;&#34;</span>)
+</span></span></code></pre></div>
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/python/">Python</a>
+        
+            <a href="/tags/%E7%88%AC%E8%99%AB/">爬虫</a>
+        
+            <a href="/tags/http/https/">HTTP/HTTPS</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">相关文章</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="">
+    <a href="/post/programmingtechnology/developmentdocumentation/telegrambotapi/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Telegram Bot API</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <script
+    src="https://giscus.app/client.js"
+    data-repo="OasisPioneer/OasisPioneer.GitHub.IO"
+    data-repo-id="R_kgDOPcBVMQ"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOPcBVMc4CuCsc"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="light"
+    data-lang="zh-CN"
+    data-loading=""
+    crossorigin="anonymous"
+    async
+></script>
+<script>
+    function setGiscusTheme(theme) {
+        let giscus = document.querySelector("iframe.giscus-frame");
+        if (giscus) {
+            giscus.contentWindow.postMessage(
+                {
+                    giscus: {
+                        setConfig: {
+                            theme: theme,
+                        },
+                    },
+                },
+                "https://giscus.app"
+            );
+        }
+    }
+
+    (function () {
+        addEventListener("message", (e) => {
+            if (event.origin !== "https://giscus.app") return;
+            handler();
+        });
+        window.addEventListener("onColorSchemeChange", handler);
+
+        function handler() {
+            if (document.documentElement.dataset.scheme === "light") {
+                setGiscusTheme('light');
+            } else {
+                setGiscusTheme('dark');
+            }
+        }
+    })();
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+        2025 Styx Blog
+    </section>
+    
+    <section class="powerby">
+        
+             本站文章均为原创 转载请标注文章来源  <br/>
+        使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.30.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+
+    
+    <section class="running-time">
+        本博客已稳定运行
+        <span id="runningdays" class="running-days"></span>
+    </section>
+
+    
+    <section class="totalcount">
+        
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+        发表了13篇文章 · 
+        总计6.30k字
+    </section>
+
+</footer>
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+<script>
+    let s1 = '2024-5-21';
+    s1 = new Date(s1.replace(/-/g, "/"));
+    let s2 = new Date();
+    let timeDifference = s2.getTime() - s1.getTime();
+
+    let days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+    let hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    let minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+
+    let result = days + "天" + hours + "小时" + minutes + "分钟";
+    document.getElementById('runningdays').innerHTML = result;
+</script>
+    </body>
+</html>

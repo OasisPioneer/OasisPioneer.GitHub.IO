@@ -6,7 +6,31 @@
         <description>Recent content in Tags on Styx Blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <lastBuildDate>Fri, 22 Aug 2025 15:15:00 +0800</lastBuildDate><atom:link href="https://example.org/tags/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Mon, 25 Aug 2025 18:19:08 +0800</lastBuildDate><atom:link href="https://example.org/tags/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>HTTP/HTTPS</title>
+        <link>https://example.org/tags/http/https/</link>
+        <pubDate>Mon, 25 Aug 2025 18:19:08 +0800</pubDate>
+        
+        <guid>https://example.org/tags/http/https/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>Python</title>
+        <link>https://example.org/tags/python/</link>
+        <pubDate>Mon, 25 Aug 2025 18:19:08 +0800</pubDate>
+        
+        <guid>https://example.org/tags/python/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>爬虫</title>
+        <link>https://example.org/tags/%E7%88%AC%E8%99%AB/</link>
+        <pubDate>Mon, 25 Aug 2025 18:19:08 +0800</pubDate>
+        
+        <guid>https://example.org/tags/%E7%88%AC%E8%99%AB/</guid>
+        <description></description>
+        </item>
+        <item>
         <title>安装配置</title>
         <link>https://example.org/tags/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/</link>
         <pubDate>Fri, 22 Aug 2025 15:15:00 +0800</pubDate>
@@ -52,14 +76,6 @@
         <pubDate>Mon, 18 Aug 2025 18:26:08 +0800</pubDate>
         
         <guid>https://example.org/tags/docs/</guid>
-        <description></description>
-        </item>
-        <item>
-        <title>HTTP/HTTPS</title>
-        <link>https://example.org/tags/http/https/</link>
-        <pubDate>Mon, 18 Aug 2025 18:26:08 +0800</pubDate>
-        
-        <guid>https://example.org/tags/http/https/</guid>
         <description></description>
         </item>
         <item>

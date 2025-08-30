@@ -1,0 +1,1391 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="本篇文章主要讲解一下 FTXUI Dom 模块">
+<meta name="keywords" content="FTXUI Self-Study Guide, C&#43;&#43;, 编程教程, 后端开发, 零基础, 计算机编程, 开发环境配置, GCC, GDB, CMake, VS Code, CLion, TUI"><title>FTXUI Dom 模块</title>
+
+<link rel='canonical' href='https://example.org/post/programmingtechnology/ftxui-self-study-guide/ftxui-dom/'>
+
+<link rel="stylesheet" href="/scss/style.min.cf5bd8ad7228821a8cdf460008a6c97b2813dfe0f4ce99b79f5167a386427cad.css"><meta property='og:title' content="FTXUI Dom 模块">
+<meta property='og:description' content="本篇文章主要讲解一下 FTXUI Dom 模块">
+<meta property='og:url' content='https://example.org/post/programmingtechnology/ftxui-self-study-guide/ftxui-dom/'>
+<meta property='og:site_name' content='Styx Blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='FTXUI Self-Study Guide' /><meta property='article:tag' content='C&#43;&#43;' /><meta property='article:tag' content='编程教程' /><meta property='article:tag' content='TUI' /><meta property='article:published_time' content='2025-08-30T17:46:00&#43;08:00'/><meta property='article:modified_time' content='2025-08-30T17:46:00&#43;08:00'/>
+<meta name="twitter:title" content="FTXUI Dom 模块">
+<meta name="twitter:description" content="本篇文章主要讲解一下 FTXUI Dom 模块">
+    <link rel="shortcut icon" href="/mask.svg" />
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5303132509036035" crossorigin="anonymous"></script>
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu32e4e10cca460e05a8d8f72cf8ee6664_18323_300x0_resize_box_3.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🧑‍💻</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Styx Blog</a></h1>
+            <h2 class="site-description">欢迎来到我的博客</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://github.com/OasisPioneer'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='/index.xml'
+                        target="_blank"
+                        title="Rss"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-rss" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="5" cy="19" r="1" />
+  <path d="M4 4a16 16 0 0 1 16 16" />
+  <path d="M4 11a9 9 0 0 1 9 9" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='/sitemap.xml'
+                        target="_blank"
+                        title="Sitemap"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-sitemap"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 15m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M15 15m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M9 3m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M6 15v-1a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v1" /><path d="M12 9l0 3" /></svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://t.me/StyxTechStudio'
+                        target="_blank"
+                        title="Telegram"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-telegram"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15 10l-4 4l6 6l4 -16l-18 7l4 2l2 6l3 -4" /></svg>
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>首页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/categories/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+                
+                <span>分类</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/tags/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-tag" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11 3L20 12a1.5 1.5 0 0 1 0 2L14 20a1.5 1.5 0 0 1 -2 0L3 11v-4a4 4 0 0 1 4 -4h4" />
+  <circle cx="9" cy="9" r="2" />
+</svg>
+
+
+
+                
+                <span>标签</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>友链</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>暗色模式</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ul>
+    <li><a href="#text">Text</a></li>
+    <li><a href="#vtext">VText</a></li>
+    <li><a href="#paragraph">Paragraph</a></li>
+    <li><a href="#border">Border</a></li>
+    <li><a href="#window">Window</a></li>
+    <li><a href="#separator">Separator</a></li>
+    <li><a href="#gauge">Gauge</a></li>
+    <li><a href="#colors">Colors</a>
+      <ul>
+        <li><a href="#调色板-16">调色板 16</a></li>
+        <li><a href="#调色板-256">调色板 256</a></li>
+        <li><a href="#truecolor">TrueColor</a></li>
+      </ul>
+    </li>
+    <li><a href="#lineargradient">LinearGradient</a></li>
+    <li><a href="#style">Style</a></li>
+    <li><a href="#layout">Layout</a></li>
+    <li><a href="#table">Table</a></li>
+    <li><a href="#canvas">Canvas</a></li>
+  </ul>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/ftxui-%E8%87%AA%E5%AD%A6%E6%8C%87%E5%8D%97/" >
+                FTXUI 自学指南
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/post/programmingtechnology/ftxui-self-study-guide/ftxui-dom/">FTXUI Dom 模块</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            本篇文章主要讲解一下 FTXUI Dom 模块
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Aug 30, 2025</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    阅读时长: 8 分钟
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <p>该模块定义了一组层级化的 <code>ftxui::Element</code> 。一个元素（Element）可以管理布局，并且能够响应终端尺寸的变化。请注意以下示例，其中该模块被用来通过若干操作符创建一个简单的布局:</p>
+<p><strong>示例</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">namespace</span> ftxui {
+</span></span><span style="display:flex;"><span>    ...
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 定义文档
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>Element document <span style="color:#f92672">=</span> vbox({
+</span></span><span style="display:flex;"><span>  text(<span style="color:#e6db74">&#34;The window&#34;</span>) <span style="color:#f92672">|</span> bold <span style="color:#f92672">|</span> color(Color<span style="color:#f92672">::</span>Blue),
+</span></span><span style="display:flex;"><span>  gauge(<span style="color:#ae81ff">0.5</span>)
+</span></span><span style="display:flex;"><span>  text(<span style="color:#e6db74">&#34;The footer&#34;</span>)
+</span></span><span style="display:flex;"><span>});
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 添加边框，通过调用 `ftxui::border` 装饰器函数
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>document <span style="color:#f92672">=</span> border(document);
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 添加另一个边框，使用管道操作符
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>document <span style="color:#f92672">=</span> document <span style="color:#f92672">|</span> border.
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 添加另一个边框，使用 |= 管道操作符
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>document <span style="color:#f92672">|=</span> border
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>...
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p><strong>元素操作列表</strong></p>
+<p>所有元素都已包含在内，可以通过包含对应的头文件来访问:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;ftxui/dom/elements.hpp&gt;</span><span style="color:#75715e">
+</span></span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">// Copyright 2020 Arthur Sonzogni. All rights reserved.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// Use of this source code is governed by the MIT license that can be found in
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// the LICENSE file.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#75715e">#ifndef FTXUI_DOM_ELEMENTS_HPP
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define FTXUI_DOM_ELEMENTS_HPP
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span> 
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;functional&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;memory&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span> 
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;ftxui/dom/canvas.hpp&#34;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;ftxui/dom/direction.hpp&#34;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;ftxui/dom/flexbox_config.hpp&#34;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;ftxui/dom/linear_gradient.hpp&#34;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;ftxui/dom/node.hpp&#34;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;ftxui/screen/box.hpp&#34;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;ftxui/screen/color.hpp&#34;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;ftxui/screen/terminal.hpp&#34;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;ftxui/util/ref.hpp&#34;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span> 
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">namespace</span> ftxui {
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Node</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">using</span> Element <span style="color:#f92672">=</span> std<span style="color:#f92672">::</span>shared_ptr<span style="color:#f92672">&lt;</span>Node<span style="color:#f92672">&gt;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">using</span> Elements <span style="color:#f92672">=</span> std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span>Element<span style="color:#f92672">&gt;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">using</span> Decorator <span style="color:#f92672">=</span> std<span style="color:#f92672">::</span>function<span style="color:#f92672">&lt;</span>Element(Element)<span style="color:#f92672">&gt;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">using</span> GraphFunction <span style="color:#f92672">=</span> std<span style="color:#f92672">::</span>function<span style="color:#f92672">&lt;</span>std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span>(<span style="color:#66d9ef">int</span>, <span style="color:#66d9ef">int</span>)<span style="color:#f92672">&gt;</span>;
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span><span style="color:#75715e">/// @brief BorderStyle is an enumeration that represents the different styles
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">/// of borders that can be applied to elements in the terminal UI.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">///
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">/// BorderStyle is an enumeration that represents the different styles of
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">/// borders that can be applied to elements in the terminal UI.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">/// It is used to define the visual appearance of borders around elements,
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">/// such as windows, frames, or separators.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">/// @ingroup dom
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">enum</span> <span style="color:#a6e22e">BorderStyle</span> {
+</span></span><span style="display:flex;"><span>  LIGHT,
+</span></span><span style="display:flex;"><span>  DASHED,
+</span></span><span style="display:flex;"><span>  HEAVY,
+</span></span><span style="display:flex;"><span>  DOUBLE,
+</span></span><span style="display:flex;"><span>  ROUNDED,
+</span></span><span style="display:flex;"><span>  EMPTY,
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Pipe elements into decorator togethers.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// For instance the next lines are equivalents:
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// -&gt; text(&#34;ftxui&#34;) | bold | underlined
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// -&gt; underlined(bold(text(&#34;FTXUI&#34;)))
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>Element <span style="color:#66d9ef">operator</span><span style="color:#f92672">|</span>(Element, Decorator);
+</span></span><span style="display:flex;"><span>Element<span style="color:#f92672">&amp;</span> <span style="color:#66d9ef">operator</span><span style="color:#f92672">|=</span>(Element<span style="color:#f92672">&amp;</span>, Decorator);
+</span></span><span style="display:flex;"><span>Elements <span style="color:#66d9ef">operator</span><span style="color:#f92672">|</span>(Elements, Decorator);
+</span></span><span style="display:flex;"><span>Decorator <span style="color:#66d9ef">operator</span><span style="color:#f92672">|</span>(Decorator, Decorator);
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// --- Widget ---
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>Element <span style="color:#a6e22e">text</span>(std<span style="color:#f92672">::</span>string text);
+</span></span><span style="display:flex;"><span>Element <span style="color:#a6e22e">vtext</span>(std<span style="color:#f92672">::</span>string text);
+</span></span><span style="display:flex;"><span>Element <span style="color:#a6e22e">separator</span>();
+</span></span><span style="display:flex;"><span>Element <span style="color:#a6e22e">separatorLight</span>();
+</span></span><span style="display:flex;"><span>Element <span style="color:#a6e22e">separatorDashed</span>();
+</span></span><span style="display:flex;"><span>Element <span style="color:#a6e22e">separatorHeavy</span>();
+</span></span><span style="display:flex;"><span>Element <span style="color:#a6e22e">separatorDouble</span>();
+</span></span><span style="display:flex;"><span>Element <span style="color:#a6e22e">separatorEmpty</span>();
+</span></span><span style="display:flex;"><span>Element <span style="color:#a6e22e">separatorStyled</span>(BorderStyle);
+</span></span><span style="display:flex;"><span>Element <span style="color:#a6e22e">separator</span>(Pixel);
+</span></span><span style="display:flex;"><span>Element <span style="color:#a6e22e">separatorCharacter</span>(std<span style="color:#f92672">::</span>string);
+</span></span><span style="display:flex;"><span>Element <span style="color:#a6e22e">separatorHSelector</span>(<span style="color:#66d9ef">float</span> left,
+</span></span><span style="display:flex;"><span>                           <span style="color:#66d9ef">float</span> right,
+</span></span><span style="display:flex;"><span>                           Color unselected_color,
+</span></span><span style="display:flex;"><span>                           Color selected_color);
+</span></span><span style="display:flex;"><span>Element <span style="color:#a6e22e">separatorVSelector</span>(<span style="color:#66d9ef">float</span> up,
+</span></span><span style="display:flex;"><span>                           <span style="color:#66d9ef">float</span> down,
+</span></span><span style="display:flex;"><span>                           Color unselected_color,
+</span></span><span style="display:flex;"><span>                           Color selected_color);
+</span></span><span style="display:flex;"><span>Element <span style="color:#a6e22e">gauge</span>(<span style="color:#66d9ef">float</span> progress);
+</span></span><span style="display:flex;"><span>Element <span style="color:#a6e22e">gaugeLeft</span>(<span style="color:#66d9ef">float</span> progress);
+</span></span><span style="display:flex;"><span>Element <span style="color:#a6e22e">gaugeRight</span>(<span style="color:#66d9ef">float</span> progress);
+</span></span><span style="display:flex;"><span>Element <span style="color:#a6e22e">gaugeUp</span>(<span style="color:#66d9ef">float</span> progress);
+</span></span><span style="display:flex;"><span>Element <span style="color:#a6e22e">gaugeDown</span>(<span style="color:#66d9ef">float</span> progress);
+</span></span><span style="display:flex;"><span>Element <span style="color:#a6e22e">gaugeDirection</span>(<span style="color:#66d9ef">float</span> progress, Direction direction);
+</span></span><span style="display:flex;"><span>Element <span style="color:#a6e22e">border</span>(Element);
+</span></span><span style="display:flex;"><span>Element <span style="color:#a6e22e">borderLight</span>(Element);
+</span></span><span style="display:flex;"><span>Element <span style="color:#a6e22e">borderDashed</span>(Element);
+</span></span><span style="display:flex;"><span>Element <span style="color:#a6e22e">borderHeavy</span>(Element);
+</span></span><span style="display:flex;"><span>Element <span style="color:#a6e22e">borderDouble</span>(Element);
+</span></span><span style="display:flex;"><span>Element <span style="color:#a6e22e">borderRounded</span>(Element);
+</span></span><span style="display:flex;"><span>Element <span style="color:#a6e22e">borderEmpty</span>(Element);
+</span></span><span style="display:flex;"><span>Decorator <span style="color:#a6e22e">borderStyled</span>(BorderStyle);
+</span></span><span style="display:flex;"><span>Decorator <span style="color:#a6e22e">borderStyled</span>(BorderStyle, Color);
+</span></span><span style="display:flex;"><span>Decorator <span style="color:#a6e22e">borderStyled</span>(Color);
+</span></span><span style="display:flex;"><span>Decorator <span style="color:#a6e22e">borderWith</span>(<span style="color:#66d9ef">const</span> Pixel<span style="color:#f92672">&amp;</span>);
+</span></span><span style="display:flex;"><span>Element <span style="color:#a6e22e">window</span>(Element title, Element content, BorderStyle border <span style="color:#f92672">=</span> ROUNDED);
+</span></span><span style="display:flex;"><span>Element <span style="color:#a6e22e">spinner</span>(<span style="color:#66d9ef">int</span> charset_index, size_t image_index);
+</span></span><span style="display:flex;"><span>Element <span style="color:#a6e22e">paragraph</span>(<span style="color:#66d9ef">const</span> std<span style="color:#f92672">::</span>string<span style="color:#f92672">&amp;</span> text);
+</span></span><span style="display:flex;"><span>Element <span style="color:#a6e22e">paragraphAlignLeft</span>(<span style="color:#66d9ef">const</span> std<span style="color:#f92672">::</span>string<span style="color:#f92672">&amp;</span> text);
+</span></span><span style="display:flex;"><span>Element <span style="color:#a6e22e">paragraphAlignRight</span>(<span style="color:#66d9ef">const</span> std<span style="color:#f92672">::</span>string<span style="color:#f92672">&amp;</span> text);
+</span></span><span style="display:flex;"><span>Element <span style="color:#a6e22e">paragraphAlignCenter</span>(<span style="color:#66d9ef">const</span> std<span style="color:#f92672">::</span>string<span style="color:#f92672">&amp;</span> text);
+</span></span><span style="display:flex;"><span>Element <span style="color:#a6e22e">paragraphAlignJustify</span>(<span style="color:#66d9ef">const</span> std<span style="color:#f92672">::</span>string<span style="color:#f92672">&amp;</span> text);
+</span></span><span style="display:flex;"><span>Element <span style="color:#a6e22e">graph</span>(GraphFunction);
+</span></span><span style="display:flex;"><span>Element <span style="color:#a6e22e">emptyElement</span>();
+</span></span><span style="display:flex;"><span>Element <span style="color:#a6e22e">canvas</span>(ConstRef<span style="color:#f92672">&lt;</span>Canvas<span style="color:#f92672">&gt;</span>);
+</span></span><span style="display:flex;"><span>Element <span style="color:#a6e22e">canvas</span>(<span style="color:#66d9ef">int</span> width, <span style="color:#66d9ef">int</span> height, std<span style="color:#f92672">::</span>function<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">void</span>(Canvas<span style="color:#f92672">&amp;</span>)<span style="color:#f92672">&gt;</span>);
+</span></span><span style="display:flex;"><span>Element <span style="color:#a6e22e">canvas</span>(std<span style="color:#f92672">::</span>function<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">void</span>(Canvas<span style="color:#f92672">&amp;</span>)<span style="color:#f92672">&gt;</span>);
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// -- Decorator ---
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>Element <span style="color:#a6e22e">bold</span>(Element);
+</span></span><span style="display:flex;"><span>Element <span style="color:#a6e22e">dim</span>(Element);
+</span></span><span style="display:flex;"><span>Element <span style="color:#a6e22e">italic</span>(Element);
+</span></span><span style="display:flex;"><span>Element <span style="color:#a6e22e">inverted</span>(Element);
+</span></span><span style="display:flex;"><span>Element <span style="color:#a6e22e">underlined</span>(Element);
+</span></span><span style="display:flex;"><span>Element <span style="color:#a6e22e">underlinedDouble</span>(Element);
+</span></span><span style="display:flex;"><span>Element <span style="color:#a6e22e">blink</span>(Element);
+</span></span><span style="display:flex;"><span>Element <span style="color:#a6e22e">strikethrough</span>(Element);
+</span></span><span style="display:flex;"><span>Decorator <span style="color:#a6e22e">color</span>(Color);
+</span></span><span style="display:flex;"><span>Decorator <span style="color:#a6e22e">bgcolor</span>(Color);
+</span></span><span style="display:flex;"><span>Decorator <span style="color:#a6e22e">color</span>(<span style="color:#66d9ef">const</span> LinearGradient<span style="color:#f92672">&amp;</span>);
+</span></span><span style="display:flex;"><span>Decorator <span style="color:#a6e22e">bgcolor</span>(<span style="color:#66d9ef">const</span> LinearGradient<span style="color:#f92672">&amp;</span>);
+</span></span><span style="display:flex;"><span>Element <span style="color:#a6e22e">color</span>(Color, Element);
+</span></span><span style="display:flex;"><span>Element <span style="color:#a6e22e">bgcolor</span>(Color, Element);
+</span></span><span style="display:flex;"><span>Element <span style="color:#a6e22e">color</span>(<span style="color:#66d9ef">const</span> LinearGradient<span style="color:#f92672">&amp;</span>, Element);
+</span></span><span style="display:flex;"><span>Element <span style="color:#a6e22e">bgcolor</span>(<span style="color:#66d9ef">const</span> LinearGradient<span style="color:#f92672">&amp;</span>, Element);
+</span></span><span style="display:flex;"><span>Decorator <span style="color:#a6e22e">focusPosition</span>(<span style="color:#66d9ef">int</span> x, <span style="color:#66d9ef">int</span> y);
+</span></span><span style="display:flex;"><span>Decorator <span style="color:#a6e22e">focusPositionRelative</span>(<span style="color:#66d9ef">float</span> x, <span style="color:#66d9ef">float</span> y);
+</span></span><span style="display:flex;"><span>Element <span style="color:#a6e22e">automerge</span>(Element child);
+</span></span><span style="display:flex;"><span>Decorator <span style="color:#a6e22e">hyperlink</span>(std<span style="color:#f92672">::</span>string link);
+</span></span><span style="display:flex;"><span>Element <span style="color:#a6e22e">hyperlink</span>(std<span style="color:#f92672">::</span>string link, Element child);
+</span></span><span style="display:flex;"><span>Element <span style="color:#a6e22e">selectionStyleReset</span>(Element);
+</span></span><span style="display:flex;"><span>Decorator <span style="color:#a6e22e">selectionColor</span>(Color foreground);
+</span></span><span style="display:flex;"><span>Decorator <span style="color:#a6e22e">selectionBackgroundColor</span>(Color foreground);
+</span></span><span style="display:flex;"><span>Decorator <span style="color:#a6e22e">selectionForegroundColor</span>(Color foreground);
+</span></span><span style="display:flex;"><span>Decorator <span style="color:#a6e22e">selectionStyle</span>(std<span style="color:#f92672">::</span>function<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">void</span>(Pixel<span style="color:#f92672">&amp;</span>)<span style="color:#f92672">&gt;</span> style);
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// --- Layout is
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// Horizontal, Vertical or stacked set of elements.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>Element <span style="color:#a6e22e">hbox</span>(Elements);
+</span></span><span style="display:flex;"><span>Element <span style="color:#a6e22e">vbox</span>(Elements);
+</span></span><span style="display:flex;"><span>Element <span style="color:#a6e22e">dbox</span>(Elements);
+</span></span><span style="display:flex;"><span>Element <span style="color:#a6e22e">flexbox</span>(Elements, FlexboxConfig config <span style="color:#f92672">=</span> FlexboxConfig());
+</span></span><span style="display:flex;"><span>Element <span style="color:#a6e22e">gridbox</span>(std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span>Elements<span style="color:#f92672">&gt;</span> lines);
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>Element <span style="color:#a6e22e">hflow</span>(Elements);  <span style="color:#75715e">// Helper: default flexbox with row direction.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>Element <span style="color:#a6e22e">vflow</span>(Elements);  <span style="color:#75715e">// Helper: default flexbox with column direction.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span> 
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// -- Flexibility ---
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// Define how to share the remaining space when not all of it is used inside a
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// container.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>Element <span style="color:#a6e22e">flex</span>(Element);         <span style="color:#75715e">// Expand/Minimize if possible/needed.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>Element <span style="color:#a6e22e">flex_grow</span>(Element);    <span style="color:#75715e">// Expand element if possible.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>Element <span style="color:#a6e22e">flex_shrink</span>(Element);  <span style="color:#75715e">// Minimize element if needed.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span> 
+</span></span><span style="display:flex;"><span>Element <span style="color:#a6e22e">xflex</span>(Element);         <span style="color:#75715e">// Expand/Minimize if possible/needed on X axis.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>Element <span style="color:#a6e22e">xflex_grow</span>(Element);    <span style="color:#75715e">// Expand element if possible on X axis.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>Element <span style="color:#a6e22e">xflex_shrink</span>(Element);  <span style="color:#75715e">// Minimize element if needed on X axis.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span> 
+</span></span><span style="display:flex;"><span>Element <span style="color:#a6e22e">yflex</span>(Element);         <span style="color:#75715e">// Expand/Minimize if possible/needed on Y axis.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>Element <span style="color:#a6e22e">yflex_grow</span>(Element);    <span style="color:#75715e">// Expand element if possible on Y axis.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>Element <span style="color:#a6e22e">yflex_shrink</span>(Element);  <span style="color:#75715e">// Minimize element if needed on Y axis.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span> 
+</span></span><span style="display:flex;"><span>Element <span style="color:#a6e22e">notflex</span>(Element);  <span style="color:#75715e">// Reset the flex attribute.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>Element <span style="color:#a6e22e">filler</span>();          <span style="color:#75715e">// A blank expandable element.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span> 
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// -- Size override;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">enum</span> <span style="color:#a6e22e">WidthOrHeight</span> { WIDTH, HEIGHT };
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">enum</span> <span style="color:#a6e22e">Constraint</span> { LESS_THAN, EQUAL, GREATER_THAN };
+</span></span><span style="display:flex;"><span>Decorator <span style="color:#a6e22e">size</span>(WidthOrHeight, Constraint, <span style="color:#66d9ef">int</span> value);
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// --- Frame ---
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// A frame is a scrollable area. The internal area is potentially larger than
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// the external one. The internal area is scrolled in order to make visible the
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// focused element.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>Element <span style="color:#a6e22e">frame</span>(Element);
+</span></span><span style="display:flex;"><span>Element <span style="color:#a6e22e">xframe</span>(Element);
+</span></span><span style="display:flex;"><span>Element <span style="color:#a6e22e">yframe</span>(Element);
+</span></span><span style="display:flex;"><span>Element <span style="color:#a6e22e">focus</span>(Element);
+</span></span><span style="display:flex;"><span>Element <span style="color:#a6e22e">select</span>(Element e);  <span style="color:#75715e">// Deprecated - Alias for focus.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span> 
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// --- Cursor ---
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// Those are similar to `focus`, but also change the shape of the cursor.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>Element <span style="color:#a6e22e">focusCursorBlock</span>(Element);
+</span></span><span style="display:flex;"><span>Element <span style="color:#a6e22e">focusCursorBlockBlinking</span>(Element);
+</span></span><span style="display:flex;"><span>Element <span style="color:#a6e22e">focusCursorBar</span>(Element);
+</span></span><span style="display:flex;"><span>Element <span style="color:#a6e22e">focusCursorBarBlinking</span>(Element);
+</span></span><span style="display:flex;"><span>Element <span style="color:#a6e22e">focusCursorUnderline</span>(Element);
+</span></span><span style="display:flex;"><span>Element <span style="color:#a6e22e">focusCursorUnderlineBlinking</span>(Element);
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// --- Misc ---
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>Element <span style="color:#a6e22e">vscroll_indicator</span>(Element);
+</span></span><span style="display:flex;"><span>Element <span style="color:#a6e22e">hscroll_indicator</span>(Element);
+</span></span><span style="display:flex;"><span>Decorator <span style="color:#a6e22e">reflect</span>(Box<span style="color:#f92672">&amp;</span> box);
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Before drawing the |element| clear the pixel below. This is useful in
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// combinaison with dbox.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>Element <span style="color:#a6e22e">clear_under</span>(Element element);
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// --- Util --------------------------------------------------------------------
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>Element <span style="color:#a6e22e">hcenter</span>(Element);
+</span></span><span style="display:flex;"><span>Element <span style="color:#a6e22e">vcenter</span>(Element);
+</span></span><span style="display:flex;"><span>Element <span style="color:#a6e22e">center</span>(Element);
+</span></span><span style="display:flex;"><span>Element <span style="color:#a6e22e">align_right</span>(Element);
+</span></span><span style="display:flex;"><span>Element <span style="color:#a6e22e">nothing</span>(Element element);
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">namespace</span> Dimension {
+</span></span><span style="display:flex;"><span>Dimensions <span style="color:#a6e22e">Fit</span>(Element<span style="color:#f92672">&amp;</span>, <span style="color:#66d9ef">bool</span> extend_beyond_screen <span style="color:#f92672">=</span> false);
+</span></span><span style="display:flex;"><span>}  <span style="color:#75715e">// namespace Dimension
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span> 
+</span></span><span style="display:flex;"><span>}  <span style="color:#75715e">// namespace ftxui
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span> 
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Make container able to take any number of children as input.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;ftxui/dom/take_any_args.hpp&#34;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span> 
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Include old definitions using wstring.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;ftxui/dom/deprecated.hpp&#34;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#endif  </span><span style="color:#75715e">// FTXUI_DOM_ELEMENTS_HPP
+</span></span></span></code></pre></div><h2 id="text">Text
+</h2><p>最简单且常用的控件，它用来显示文本。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span>text(<span style="color:#e6db74">&#34;我是一段文本&#34;</span>);
+</span></span></code></pre></div><pre tabindex="0"><code>我是一段文本
+</code></pre><h2 id="vtext">VText
+</h2><p>与 <code>ftxui::text</code> 相同，但它是垂直显示的。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span>vtext(<span style="color:#e6db74">&#34;HELLO&#34;</span>);
+</span></span></code></pre></div><pre tabindex="0"><code>H
+E
+L
+L
+O
+</code></pre><h2 id="paragraph">Paragraph
+</h2><p>类似于 <code>ftxui::text</code> 但单词会根据容器的宽度自动换行到多行。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span>paragraph(<span style="color:#e6db74">&#34;A very long text&#34;</span>);
+</span></span></code></pre></div><p><img src="/Image/FTXUI%20Self-Study%20Guide/Paragraph%20Demo.gif"
+	
+	
+	
+	loading="lazy"
+	
+		alt="Paragraph"
+	
+	
+></p>
+<p>详细示例请查阅 <a class="link" href="https://arthursonzogni.github.io/FTXUI/examples_2dom_2paragraph_8cpp-example.html"  target="_blank" rel="noopener"
+    >官方演示
+    
+    <span style="white-space: nowrap;"><svg width=".7em"
+        height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
+        <path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+        <path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+            fill="currentColor">
+    </svg></span>
+    
+</a></p>
+<p>Paragraph 相关变体演示:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">namespace</span> ftxui {
+</span></span><span style="display:flex;"><span>    Element <span style="color:#a6e22e">paragraph</span>(std<span style="color:#f92672">::</span>string text);
+</span></span><span style="display:flex;"><span>    Element <span style="color:#a6e22e">paragraphAlignLeft</span>(std<span style="color:#f92672">::</span>string text);
+</span></span><span style="display:flex;"><span>    Element <span style="color:#a6e22e">paragraphAlignRight</span>(std<span style="color:#f92672">::</span>string text);
+</span></span><span style="display:flex;"><span>    Element <span style="color:#a6e22e">paragraphAlignCenter</span>(std<span style="color:#f92672">::</span>string text);
+</span></span><span style="display:flex;"><span>    Element <span style="color:#a6e22e">paragraphAlignJustify</span>(std<span style="color:#f92672">::</span>string text);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="border">Border
+</h2><p>在元素周围添加边框</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span>border(text(<span style="color:#e6db74">&#34;The element&#34;</span>))
+</span></span></code></pre></div><p>终端输出:</p>
+<pre tabindex="0"><code>┌───────────┐
+│The element│
+└───────────┘
+</code></pre><p>可以使用管道操作符实现相同的功能:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span>text(<span style="color:#e6db74">&#34;The element&#34;</span>) <span style="color:#f92672">|</span> border
+</span></span></code></pre></div><p>Border 也有不同的样式变体，如下所示:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">namespace</span> ftxui {
+</span></span><span style="display:flex;"><span>    Element <span style="color:#a6e22e">border</span>(Element);
+</span></span><span style="display:flex;"><span>    Element <span style="color:#a6e22e">borderLight</span>(Element);
+</span></span><span style="display:flex;"><span>    Element <span style="color:#a6e22e">borderHeavy</span>(Element);
+</span></span><span style="display:flex;"><span>    Element <span style="color:#a6e22e">borderDouble</span>(Element);
+</span></span><span style="display:flex;"><span>    Element <span style="color:#a6e22e">borderRounded</span>(Element);
+</span></span><span style="display:flex;"><span>    Element <span style="color:#a6e22e">borderEmpty</span>(Element);
+</span></span><span style="display:flex;"><span>    Decorator <span style="color:#a6e22e">borderStyled</span>(BorderStyle);
+</span></span><span style="display:flex;"><span>    Decorator <span style="color:#a6e22e">borderWith</span>(Pixel);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="window">Window
+</h2><p><code>ftxui::window</code> 是一个 <code>ftxui::border</code> 但带有一个额外的标题，要在元素周围添加窗口请将其包装并指定一个字符串作为标题。代码：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span>window(<span style="color:#e6db74">&#34;The window&#34;</span>, text(<span style="color:#e6db74">&#34;The element&#34;</span>))
+</span></span></code></pre></div><pre tabindex="0"><code>┌The window─┐
+│The element│
+└───────────┘
+</code></pre><h2 id="separator">Separator
+</h2><p>显示一条分割线(垂直/水平)，将容器内容一分为二。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span>border(
+</span></span><span style="display:flex;"><span>  hbox({
+</span></span><span style="display:flex;"><span>    text(<span style="color:#e6db74">&#34;Left&#34;</span>), 
+</span></span><span style="display:flex;"><span>    separator(),
+</span></span><span style="display:flex;"><span>    text(<span style="color:#e6db74">&#34;Right&#34;</span>)
+</span></span><span style="display:flex;"><span>  })
+</span></span><span style="display:flex;"><span>)
+</span></span></code></pre></div><p>终端输出:</p>
+<pre tabindex="0"><code>┌────┬─────┐
+│left│right│
+└────┴─────┘
+</code></pre><p>其它变体:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">namespace</span> ftxui {
+</span></span><span style="display:flex;"><span>    Element <span style="color:#a6e22e">separator</span>(<span style="color:#66d9ef">void</span>);
+</span></span><span style="display:flex;"><span>    Element <span style="color:#a6e22e">separatorLight</span>();
+</span></span><span style="display:flex;"><span>    Element <span style="color:#a6e22e">separatorHeavy</span>();
+</span></span><span style="display:flex;"><span>    Element <span style="color:#a6e22e">separatorDouble</span>();
+</span></span><span style="display:flex;"><span>    Element <span style="color:#a6e22e">separatorEmpty</span>();
+</span></span><span style="display:flex;"><span>    Element <span style="color:#a6e22e">separatorStyled</span>(BorderStyle);
+</span></span><span style="display:flex;"><span>    Element <span style="color:#a6e22e">separator</span>(Pixel);
+</span></span><span style="display:flex;"><span>    Element <span style="color:#a6e22e">separatorCharacter</span>(std<span style="color:#f92672">::</span>string);
+</span></span><span style="display:flex;"><span>    Element <span style="color:#a6e22e">separatorHSelector</span>(<span style="color:#66d9ef">float</span> left,
+</span></span><span style="display:flex;"><span>                               <span style="color:#66d9ef">float</span> right,
+</span></span><span style="display:flex;"><span>                               Color background,
+</span></span><span style="display:flex;"><span>                               Color foreground);
+</span></span><span style="display:flex;"><span>    Element <span style="color:#a6e22e">separatorVSelector</span>(<span style="color:#66d9ef">float</span> up,
+</span></span><span style="display:flex;"><span>                               <span style="color:#66d9ef">float</span> down,
+</span></span><span style="display:flex;"><span>                               Color background,
+</span></span><span style="display:flex;"><span>                               Color foreground);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="gauge">Gauge
+</h2><p>一个进度条元素</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span>border(gauge(<span style="color:#ae81ff">0.5</span>))
+</span></span></code></pre></div><p>终端输出:</p>
+<pre tabindex="0"><code>┌────────────────────────────────────────────────────────────────────────────┐
+│██████████████████████████████████████                                      │
+└────────────────────────────────────────────────────────────────────────────┘
+</code></pre><p>Gauges 可以以多种形式显示:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">namespace</span> {
+</span></span><span style="display:flex;"><span>    Element <span style="color:#a6e22e">gauge</span>(<span style="color:#66d9ef">float</span> ratio);
+</span></span><span style="display:flex;"><span>    Element <span style="color:#a6e22e">gaugeLeft</span>(<span style="color:#66d9ef">float</span> ratio);
+</span></span><span style="display:flex;"><span>    Element <span style="color:#a6e22e">gaugeRight</span>(<span style="color:#66d9ef">float</span> ratio);
+</span></span><span style="display:flex;"><span>    Element <span style="color:#a6e22e">gaugeUp</span>(<span style="color:#66d9ef">float</span> ratio);
+</span></span><span style="display:flex;"><span>    Element <span style="color:#a6e22e">gaugeDown</span>(<span style="color:#66d9ef">float</span> ratio);
+</span></span><span style="display:flex;"><span>    Element <span style="color:#a6e22e">gaugeDirection</span>(<span style="color:#66d9ef">float</span> ratio, GaugeDirection);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="colors">Colors
+</h2><p>在终端显示彩色文本和彩色背景，FTXUI 支持所有调色板:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span>Decorator <span style="color:#a6e22e">color</span>(Color);
+</span></span><span style="display:flex;"><span>Decorator <span style="color:#a6e22e">bgcolor</span>(Color);
+</span></span></code></pre></div><p><img src="/Image/FTXUI%20Self-Study%20Guide/Colors%20Demo.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="Colors Demo"
+	
+	
+></p>
+<h3 id="调色板-16">调色板 16
+</h3><ul>
+<li><strong>Default</strong></li>
+<li><strong>Black</strong></li>
+<li><strong>GrayDark</strong></li>
+<li><strong>GrayLight</strong></li>
+<li><strong>White</strong></li>
+<li><strong>Blue</strong></li>
+<li><strong>BlueLight</strong></li>
+<li><strong>Cyan</strong></li>
+<li><strong>CyanLight</strong></li>
+<li><strong>Green</strong></li>
+<li><strong>GreenLight</strong></li>
+<li><strong>Magenta</strong></li>
+<li><strong>MagentaLight</strong></li>
+<li><strong>Red</strong></li>
+<li><strong>RedLight</strong></li>
+<li><strong>Yellow</strong></li>
+<li><strong>YellowLight</strong></li>
+</ul>
+<p>使用管道操作符使用上述颜色的示例:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span>text(<span style="color:#e6db74">&#34;Blue foreground&#34;</span>) <span style="color:#f92672">|</span> color(Color<span style="color:#f92672">::</span>Blue);
+</span></span><span style="display:flex;"><span>text(<span style="color:#e6db74">&#34;Blue background&#34;</span>) <span style="color:#f92672">|</span> bgcolor(Color<span style="color:#f92672">::</span>Blue);
+</span></span><span style="display:flex;"><span>text(<span style="color:#e6db74">&#34;Black on white&#34;</span>) <span style="color:#f92672">|</span> color(Color<span style="color:#f92672">::</span>Black) <span style="color:#f92672">|</span> bgcolor(Color<span style="color:#f92672">::</span>White);
+</span></span></code></pre></div><h3 id="调色板-256">调色板 256
+</h3><p>在支持256色的终端上使用</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span>text(<span style="color:#e6db74">&#34;HotPink&#34;</span>) <span style="color:#f92672">|</span> color(Color<span style="color:#f92672">::</span>HotPink);
+</span></span></code></pre></div><h3 id="truecolor">TrueColor
+</h3><p>在支持 TrueColor 的终端上，您可以直接使用 24 位 RGB 颜色空间</p>
+<p>使用以下构造函数指定颜色的 RGB 或 HSV 值</p>
+<p>有两个构造函数</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span>ftxui<span style="color:#f92672">::</span>Color<span style="color:#f92672">::</span>RGB(<span style="color:#66d9ef">uint8_t</span> red, <span style="color:#66d9ef">uint8_t</span> green, <span style="color:#66d9ef">uint8_t</span> blue);
+</span></span><span style="display:flex;"><span>ftxui<span style="color:#f92672">::</span>Color<span style="color:#f92672">::</span>HSV(<span style="color:#66d9ef">uint8_t</span> hue, <span style="color:#66d9ef">uint8_t</span> saturation, <span style="color:#66d9ef">uint8_t</span> value);
+</span></span></code></pre></div><h2 id="lineargradient">LinearGradient
+</h2><p>FTXUI 支持线性渐变。可以在前景色或背景色上使用。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span>Decorator <span style="color:#a6e22e">color</span>(<span style="color:#66d9ef">const</span> LinearGradient<span style="color:#f92672">&amp;</span>);
+</span></span><span style="display:flex;"><span>Decorator <span style="color:#a6e22e">bgcolor</span>(<span style="color:#66d9ef">const</span> LinearGradient<span style="color:#f92672">&amp;</span>);
+</span></span></code></pre></div><p><code>ftxui::LinearGradient</code> 由一个度和颜色停止点列表定义</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">auto</span> gradient <span style="color:#f92672">=</span> LinearGradient()
+</span></span><span style="display:flex;"><span>  .Angle(<span style="color:#ae81ff">45</span>)
+</span></span><span style="display:flex;"><span>  .AddStop(<span style="color:#ae81ff">0.0</span>, Color<span style="color:#f92672">::</span>Red)
+</span></span><span style="display:flex;"><span>  .AddStop(<span style="color:#ae81ff">0.5</span>, Color<span style="color:#f92672">::</span>Green)
+</span></span><span style="display:flex;"><span>  .AddStop(<span style="color:#ae81ff">1.0</span>, Color<span style="color:#f92672">::</span>Blue);
+</span></span></code></pre></div><p>也可以使用简化的构造函数:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span>LinearGradient(Color<span style="color:#f92672">::</span>Red, Color<span style="color:#f92672">::</span>Blue);
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span>LinearGradient(<span style="color:#ae81ff">45</span>, Color<span style="color:#f92672">::</span>Red, Color<span style="color:#f92672">::</span>Blue);
+</span></span></code></pre></div><p>详细<a class="link" href="https://arthursonzogni.github.io/FTXUI/examples/?file=component/linear_gradient_gallery"  target="_blank" rel="noopener"
+    >演示
+    
+    <span style="white-space: nowrap;"><svg width=".7em"
+        height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
+        <path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+        <path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+            fill="currentColor">
+    </svg></span>
+    
+</a></p>
+<h2 id="style">Style
+</h2><p>除了彩色文本和彩色背景，还支持许多其它的文本样式，例如: 加粗、倾斜、下划线……</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span>Element <span style="color:#a6e22e">bold</span>(Element);
+</span></span><span style="display:flex;"><span>Element <span style="color:#a6e22e">italic</span>(Element);
+</span></span><span style="display:flex;"><span>Element <span style="color:#a6e22e">dim</span>(Element);
+</span></span><span style="display:flex;"><span>Element <span style="color:#a6e22e">inverted</span>(Element);
+</span></span><span style="display:flex;"><span>Element <span style="color:#a6e22e">underlined</span>(Element);
+</span></span><span style="display:flex;"><span>Element <span style="color:#a6e22e">underlinedDouble</span>(Element);
+</span></span><span style="display:flex;"><span>Element <span style="color:#a6e22e">strikethrough</span>(Element);
+</span></span><span style="display:flex;"><span>Element <span style="color:#a6e22e">blink</span>(Element);
+</span></span><span style="display:flex;"><span>Decorator <span style="color:#a6e22e">color</span>(Color);
+</span></span><span style="display:flex;"><span>Decorator <span style="color:#a6e22e">bgcolor</span>(Color);
+</span></span><span style="display:flex;"><span>Decorator <span style="color:#a6e22e">colorgrad</span>(LinearGradient);
+</span></span><span style="display:flex;"><span>Decorator <span style="color:#a6e22e">bgcolorgrad</span>(LinearGradient);
+</span></span></code></pre></div><p><a class="link" href="https://arthursonzogni.github.io/FTXUI/examples/?file=dom/style_gallery"  target="_blank" rel="noopener"
+    >演示
+    
+    <span style="white-space: nowrap;"><svg width=".7em"
+        height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
+        <path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+        <path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+            fill="currentColor">
+    </svg></span>
+    
+</a></p>
+<p>要使用这些效果，只需用想要的样式包装在元素外边:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span>underlined(bold(text(<span style="color:#e6db74">&#34;This text is bold and underlined&#34;</span>)))
+</span></span></code></pre></div><p>或者直接使用管道操作符将其链接到元素上:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span>text(<span style="color:#e6db74">&#34;This text is bold&#34;</span>) <span style="color:#f92672">|</span> bold <span style="color:#f92672">|</span> underlined
+</span></span></code></pre></div><h2 id="layout">Layout
+</h2><p>使元素能够以以下方式进行排列布局:</p>
+<ul>
+<li><strong>水平布局</strong> <code>ftxui::hbox</code></li>
+<li><strong>垂直布局</strong> <code>ftxui::vbox</code></li>
+<li><strong>网格布局</strong> <code>ftxui::gridbox</code></li>
+<li><strong>沿着特定方向换行</strong> <code>ftxui::flexbox</code></li>
+</ul>
+<p>使用 <code>ftxui::hbox</code> <code>ftxui::vbox</code> <code>ftxui::filler</code> 示例:</p>
+<p><img src="/Image/FTXUI%20Self-Study%20Guide/Layout%20Demo.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="Layout Demo"
+	
+	
+></p>
+<p>其它<a class="link" href="file:///home/oasis-pioneer/%E4%B8%8B%E8%BD%BD/FTXUI-Chinese-Documentation-main/module-dom.html#dom-layout" >演示
+    
+</a></p>
+<p>元素也可以使用 <code>ftxui::flex</code> 装饰器变得更灵活</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span>hbox({
+</span></span><span style="display:flex;"><span>  text(<span style="color:#e6db74">&#34;left&#34;</span>) <span style="color:#f92672">|</span> border ,
+</span></span><span style="display:flex;"><span>  text(<span style="color:#e6db74">&#34;middle&#34;</span>) <span style="color:#f92672">|</span> border <span style="color:#f92672">|</span> flex,
+</span></span><span style="display:flex;"><span>  text(<span style="color:#e6db74">&#34;right&#34;</span>) <span style="color:#f92672">|</span> border,
+</span></span><span style="display:flex;"><span>});
+</span></span></code></pre></div><p>终端输出:</p>
+<pre tabindex="0"><code>┌────┐┌─────────────────────────────────────────────────────┐┌─────┐
+│left││middle                                               ││right│
+└────┘└─────────────────────────────────────────────────────┘└─────┘
+</code></pre><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span>hbox({
+</span></span><span style="display:flex;"><span>  text(<span style="color:#e6db74">&#34;left&#34;</span>) <span style="color:#f92672">|</span> border ,
+</span></span><span style="display:flex;"><span>  text(<span style="color:#e6db74">&#34;middle&#34;</span>) <span style="color:#f92672">|</span> border <span style="color:#f92672">|</span> flex,
+</span></span><span style="display:flex;"><span>  text(<span style="color:#e6db74">&#34;right&#34;</span>) <span style="color:#f92672">|</span> border <span style="color:#f92672">|</span> flex,
+</span></span><span style="display:flex;"><span>});
+</span></span></code></pre></div><pre tabindex="0"><code>┌────┐┌───────────────────────────────┐┌───────────────────────────────┐
+│left││middle                         ││right                          │
+└────┘└───────────────────────────────┘└───────────────────────────────┘
+</code></pre><h2 id="table">Table
+</h2><p>能够轻松地将数据格式化为整洁的表格形式</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">// Copyright 2020 Arthur Sonzogni. All rights reserved.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// Use of this source code is governed by the MIT license that can be found in
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// the LICENSE file.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;ftxui/dom/elements.hpp&gt;</span><span style="color:#75715e">  </span><span style="color:#75715e">// for color, Fit, LIGHT, align_right, bold, DOUBLE
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;ftxui/dom/table.hpp&gt;</span><span style="color:#75715e">      </span><span style="color:#75715e">// for Table, TableSelection
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;ftxui/screen/screen.hpp&gt;</span><span style="color:#75715e">  </span><span style="color:#75715e">// for Screen
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">                 </span><span style="color:#75715e">// for endl, cout, ostream
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;string&gt;</span><span style="color:#75715e">                   </span><span style="color:#75715e">// for basic_string, allocator, string
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;vector&gt;</span><span style="color:#75715e">                   </span><span style="color:#75715e">// for vector
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span> 
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;ftxui/dom/node.hpp&#34;</span><span style="color:#75715e">  </span><span style="color:#75715e">// for Render
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;ftxui/screen/color.hpp&#34;</span><span style="color:#75715e">  </span><span style="color:#75715e">// for Color, Color::Blue, Color::Cyan, Color::White, ftxui
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span> 
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> ftxui;
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">auto</span> table <span style="color:#f92672">=</span> Table({
+</span></span><span style="display:flex;"><span>      {<span style="color:#e6db74">&#34;Version&#34;</span>, <span style="color:#e6db74">&#34;Marketing name&#34;</span>, <span style="color:#e6db74">&#34;Release date&#34;</span>, <span style="color:#e6db74">&#34;API level&#34;</span>, <span style="color:#e6db74">&#34;Runtime&#34;</span>},
+</span></span><span style="display:flex;"><span>      {<span style="color:#e6db74">&#34;2.3&#34;</span>, <span style="color:#e6db74">&#34;Gingerbread&#34;</span>, <span style="color:#e6db74">&#34;February 9 2011&#34;</span>, <span style="color:#e6db74">&#34;10&#34;</span>, <span style="color:#e6db74">&#34;Dalvik 1.4.0&#34;</span>},
+</span></span><span style="display:flex;"><span>      {<span style="color:#e6db74">&#34;4.0&#34;</span>, <span style="color:#e6db74">&#34;Ice Cream Sandwich&#34;</span>, <span style="color:#e6db74">&#34;October 19 2011&#34;</span>, <span style="color:#e6db74">&#34;15&#34;</span>, <span style="color:#e6db74">&#34;Dalvik&#34;</span>},
+</span></span><span style="display:flex;"><span>      {<span style="color:#e6db74">&#34;4.1&#34;</span>, <span style="color:#e6db74">&#34;Jelly Bean&#34;</span>, <span style="color:#e6db74">&#34;July 9 2012&#34;</span>, <span style="color:#e6db74">&#34;16&#34;</span>, <span style="color:#e6db74">&#34;Dalvik&#34;</span>},
+</span></span><span style="display:flex;"><span>      {<span style="color:#e6db74">&#34;4.2&#34;</span>, <span style="color:#e6db74">&#34;Jelly Bean&#34;</span>, <span style="color:#e6db74">&#34;November 13 2012&#34;</span>, <span style="color:#e6db74">&#34;17&#34;</span>, <span style="color:#e6db74">&#34;Dalvik&#34;</span>},
+</span></span><span style="display:flex;"><span>      {<span style="color:#e6db74">&#34;4.3&#34;</span>, <span style="color:#e6db74">&#34;Jelly Bean&#34;</span>, <span style="color:#e6db74">&#34;July 24 2013&#34;</span>, <span style="color:#e6db74">&#34;18&#34;</span>, <span style="color:#e6db74">&#34;Dalvik&#34;</span>},
+</span></span><span style="display:flex;"><span>      {<span style="color:#e6db74">&#34;4.4&#34;</span>, <span style="color:#e6db74">&#34;KitKat&#34;</span>, <span style="color:#e6db74">&#34;October 31 2013&#34;</span>, <span style="color:#e6db74">&#34;19&#34;</span>, <span style="color:#e6db74">&#34;Dalvik and ART&#34;</span>},
+</span></span><span style="display:flex;"><span>      {<span style="color:#e6db74">&#34;5.0&#34;</span>, <span style="color:#e6db74">&#34;Lollipop&#34;</span>, <span style="color:#e6db74">&#34;November 3 2014&#34;</span>, <span style="color:#e6db74">&#34;21&#34;</span>, <span style="color:#e6db74">&#34;ART&#34;</span>},
+</span></span><span style="display:flex;"><span>      {<span style="color:#e6db74">&#34;5.1&#34;</span>, <span style="color:#e6db74">&#34;Lollipop&#34;</span>, <span style="color:#e6db74">&#34;March 9 2015&#34;</span>, <span style="color:#e6db74">&#34;22&#34;</span>, <span style="color:#e6db74">&#34;ART&#34;</span>},
+</span></span><span style="display:flex;"><span>      {<span style="color:#e6db74">&#34;6.0&#34;</span>, <span style="color:#e6db74">&#34;Marshmallow&#34;</span>, <span style="color:#e6db74">&#34;October 5 2015&#34;</span>, <span style="color:#e6db74">&#34;23&#34;</span>, <span style="color:#e6db74">&#34;ART&#34;</span>},
+</span></span><span style="display:flex;"><span>      {<span style="color:#e6db74">&#34;7.0&#34;</span>, <span style="color:#e6db74">&#34;Nougat&#34;</span>, <span style="color:#e6db74">&#34;August 22 2016&#34;</span>, <span style="color:#e6db74">&#34;24&#34;</span>, <span style="color:#e6db74">&#34;ART&#34;</span>},
+</span></span><span style="display:flex;"><span>      {<span style="color:#e6db74">&#34;7.1&#34;</span>, <span style="color:#e6db74">&#34;Nougat&#34;</span>, <span style="color:#e6db74">&#34;October 4 2016&#34;</span>, <span style="color:#e6db74">&#34;25&#34;</span>, <span style="color:#e6db74">&#34;ART&#34;</span>},
+</span></span><span style="display:flex;"><span>      {<span style="color:#e6db74">&#34;8.0&#34;</span>, <span style="color:#e6db74">&#34;Oreo&#34;</span>, <span style="color:#e6db74">&#34;August 21 2017&#34;</span>, <span style="color:#e6db74">&#34;26&#34;</span>, <span style="color:#e6db74">&#34;ART&#34;</span>},
+</span></span><span style="display:flex;"><span>      {<span style="color:#e6db74">&#34;8.1&#34;</span>, <span style="color:#e6db74">&#34;Oreo&#34;</span>, <span style="color:#e6db74">&#34;December 5 2017&#34;</span>, <span style="color:#e6db74">&#34;27&#34;</span>, <span style="color:#e6db74">&#34;ART&#34;</span>},
+</span></span><span style="display:flex;"><span>      {<span style="color:#e6db74">&#34;9&#34;</span>, <span style="color:#e6db74">&#34;Pie&#34;</span>, <span style="color:#e6db74">&#34;August 6 2018&#34;</span>, <span style="color:#e6db74">&#34;28&#34;</span>, <span style="color:#e6db74">&#34;ART&#34;</span>},
+</span></span><span style="display:flex;"><span>      {<span style="color:#e6db74">&#34;10&#34;</span>, <span style="color:#e6db74">&#34;10&#34;</span>, <span style="color:#e6db74">&#34;September 3 2019&#34;</span>, <span style="color:#e6db74">&#34;29&#34;</span>, <span style="color:#e6db74">&#34;ART&#34;</span>},
+</span></span><span style="display:flex;"><span>      {<span style="color:#e6db74">&#34;11&#34;</span>, <span style="color:#e6db74">&#34;11&#34;</span>, <span style="color:#e6db74">&#34;September 8 2020&#34;</span>, <span style="color:#e6db74">&#34;30&#34;</span>, <span style="color:#e6db74">&#34;ART&#34;</span>},
+</span></span><span style="display:flex;"><span>  });
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>  table.SelectAll().Border(LIGHT);
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Add border around the first column.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  table.SelectColumn(<span style="color:#ae81ff">0</span>).Border(LIGHT);
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Make first row bold with a double border.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  table.SelectRow(<span style="color:#ae81ff">0</span>).Decorate(bold);
+</span></span><span style="display:flex;"><span>  table.SelectRow(<span style="color:#ae81ff">0</span>).SeparatorVertical(LIGHT);
+</span></span><span style="display:flex;"><span>  table.SelectRow(<span style="color:#ae81ff">0</span>).Border(DOUBLE);
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Align right the &#34;Release date&#34; column.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  table.SelectColumn(<span style="color:#ae81ff">2</span>).DecorateCells(align_right);
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Select row from the second to the last.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">auto</span> content <span style="color:#f92672">=</span> table.SelectRows(<span style="color:#ae81ff">1</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Alternate in between 3 colors.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  content.DecorateCellsAlternateRow(color(Color<span style="color:#f92672">::</span>Blue), <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">0</span>);
+</span></span><span style="display:flex;"><span>  content.DecorateCellsAlternateRow(color(Color<span style="color:#f92672">::</span>Cyan), <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span>  content.DecorateCellsAlternateRow(color(Color<span style="color:#f92672">::</span>White), <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">2</span>);
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">auto</span> document <span style="color:#f92672">=</span> table.Render();
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">auto</span> screen <span style="color:#f92672">=</span>
+</span></span><span style="display:flex;"><span>      Screen<span style="color:#f92672">::</span>Create(Dimension<span style="color:#f92672">::</span>Fit(document, <span style="color:#75715e">/*extend_beyond_screen=*/</span>true));
+</span></span><span style="display:flex;"><span>  Render(screen, document);
+</span></span><span style="display:flex;"><span>  screen.Print();
+</span></span><span style="display:flex;"><span>  std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl;
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p><img src="/Image/FTXUI%20Self-Study%20Guide/Table%20Demo.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="Table Demo"
+	
+	
+></p>
+<h2 id="canvas">Canvas
+</h2><p>可以在 <code>ftxui::Canvas</code> 上进行绘图</p>
+<p>详细 API <a class="link" href="https://arthursonzogni.github.io/FTXUI/canvas_8hpp_source.html"  target="_blank" rel="noopener"
+    >ftxui/dom/canvas
+    
+    <span style="white-space: nowrap;"><svg width=".7em"
+        height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
+        <path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+        <path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+            fill="currentColor">
+    </svg></span>
+    
+</a></p>
+<p><img src="/Image/FTXUI%20Self-Study%20Guide/Canvas%20Demo.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="Table Demo"
+	
+	
+></p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/ftxui-self-study-guide/">FTXUI Self-Study Guide</a>
+        
+            <a href="/tags/c&#43;&#43;/">C&#43;&#43;</a>
+        
+            <a href="/tags/%E7%BC%96%E7%A8%8B%E6%95%99%E7%A8%8B/">编程教程</a>
+        
+            <a href="/tags/tui/">TUI</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">相关文章</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="">
+    <a href="/post/programmingtechnology/ftxui-self-study-guide/ftxui-screen/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">FTXUI Screen 模块</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/post/programmingtechnology/ftxui-self-study-guide/ftxui-installation/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">FTXUI 安装</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/post/programmingtechnology/ftxui-self-study-guide/ftxui-introduction/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">FTXUI 介绍</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/post/programmingtechnology/c&#43;&#43;-self-study-guide/development-environment/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">开发环境搭建</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/post/programmingtechnology/developmentdocumentation/telegrambotapi/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Telegram Bot API</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <script
+    src="https://giscus.app/client.js"
+    data-repo="OasisPioneer/OasisPioneer.GitHub.IO"
+    data-repo-id="R_kgDOPcBVMQ"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOPcBVMc4CuCsc"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="light"
+    data-lang="zh-CN"
+    data-loading=""
+    crossorigin="anonymous"
+    async
+></script>
+<script>
+    function setGiscusTheme(theme) {
+        let giscus = document.querySelector("iframe.giscus-frame");
+        if (giscus) {
+            giscus.contentWindow.postMessage(
+                {
+                    giscus: {
+                        setConfig: {
+                            theme: theme,
+                        },
+                    },
+                },
+                "https://giscus.app"
+            );
+        }
+    }
+
+    (function () {
+        addEventListener("message", (e) => {
+            if (event.origin !== "https://giscus.app") return;
+            handler();
+        });
+        window.addEventListener("onColorSchemeChange", handler);
+
+        function handler() {
+            if (document.documentElement.dataset.scheme === "light") {
+                setGiscusTheme('light');
+            } else {
+                setGiscusTheme('dark');
+            }
+        }
+    })();
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+        2025 Styx Blog
+    </section>
+    
+    <section class="powerby">
+        
+             本站文章均为原创 转载请标注文章来源  <br/>
+        使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.30.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+
+    
+    <section class="running-time">
+        本博客已稳定运行
+        <span id="runningdays" class="running-days"></span>
+    </section>
+
+    
+    <section class="totalcount">
+        
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+        发表了17篇文章 · 
+        总计8.48k字
+    </section>
+
+</footer>
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+<script>
+    let s1 = '2024-5-21';
+    s1 = new Date(s1.replace(/-/g, "/"));
+    let s2 = new Date();
+    let timeDifference = s2.getTime() - s1.getTime();
+
+    let days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+    let hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    let minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+
+    let result = days + "天" + hours + "小时" + minutes + "分钟";
+    document.getElementById('runningdays').innerHTML = result;
+</script>
+    </body>
+</html>

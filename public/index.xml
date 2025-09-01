@@ -6,7 +6,248 @@
         <description>Recent content on Styx Blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <lastBuildDate>Sat, 30 Aug 2025 17:46:00 +0800</lastBuildDate><atom:link href="https://example.org/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Mon, 01 Sep 2025 13:50:00 +0800</lastBuildDate><atom:link href="https://example.org/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>FTXUI Component 模块</title>
+        <link>https://example.org/post/programmingtechnology/ftxui-self-study-guide/ftxui-component/</link>
+        <pubDate>Mon, 01 Sep 2025 13:50:00 +0800</pubDate>
+        
+        <guid>https://example.org/post/programmingtechnology/ftxui-self-study-guide/ftxui-component/</guid>
+        <description>&lt;p&gt;&lt;code&gt;ftxui::Component&lt;/code&gt; 模块定义了生成交互式组件的逻辑，这些组件可以响应用户发起的事件(鼠标、键盘)。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;ftxui::ScreenInteractive&lt;/code&gt; 定义了一个渲染组件的主循环。
+&lt;code&gt;ftxui::Component&lt;/code&gt; 是 &lt;code&gt;ftxui::ComponentBase&lt;/code&gt; 的共享指针。后者定义了:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;ftxui::ComponentBase::Render()&lt;/code&gt;&lt;/strong&gt; 如何渲染界面&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;ftxui::ComponentBase::OnEvent()&lt;/code&gt;&lt;/strong&gt; 如何响应事件&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;ftxui::ComponentBase::Add()&lt;/code&gt;&lt;/strong&gt; 两个组件之间构建父子关系，组件树用于定义如何使用键盘导航。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;ftxui::Element&lt;/code&gt; 用于渲染单个帧
+&lt;code&gt;ftxui::Component&lt;/code&gt; 用于渲染动态用户界面 生成多个帧 并在事件发生时更新其状态。&lt;/p&gt;
+&lt;h2 id=&#34;input&#34;&gt;Input
+&lt;/h2&gt;&lt;p&gt;用于实现用户输入框&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://arthursonzogni.github.io/FTXUI/examples_2component_2input_8cpp-example.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;代码
+    
+    &lt;span style=&#34;white-space: nowrap;&#34;&gt;&lt;svg width=&#34;.7em&#34;
+        height=&#34;.7em&#34; viewBox=&#34;0 0 21 21&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34;&gt;
+        &lt;path d=&#34;m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z&#34; fill=&#34;currentColor&#34; /&gt;
+        &lt;path d=&#34;M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z&#34;
+            fill=&#34;currentColor&#34;&gt;
+    &lt;/svg&gt;&lt;/span&gt;
+    
+&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://example.org/Image/FTXUI%20Self-Study%20Guide/Input%20Demo.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Input Demo&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;过滤输入&#34;&gt;过滤输入
+&lt;/h3&gt;&lt;p&gt;可以使用 &lt;code&gt;ftxui::CatchEvent&lt;/code&gt; 过滤输入组件接收到的字符&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-cpp&#34; data-lang=&#34;cpp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;std&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;string phone_number;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Component input &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; Input(&lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;phone_number, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;phone number&amp;#34;&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;// 过滤掉非数字字符
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;input &lt;span style=&#34;color:#f92672&#34;&gt;|=&lt;/span&gt; CatchEvent([&lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;](Event event) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; event.is_character() &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;!&lt;/span&gt;std&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;isdigit(event.character()[&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;]);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;});
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;// 过滤掉第10个字符之后的字符
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;input &lt;span style=&#34;color:#f92672&#34;&gt;|=&lt;/span&gt; CatchEvent([&lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;](Event event) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; event.is_character() &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; phone_number.size() &lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;10&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;});
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;menu&#34;&gt;Menu
+&lt;/h2&gt;&lt;p&gt;定义一个菜单对象，它包含一个条目列表。&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://arthursonzogni.github.io/FTXUI/examples_2component_2menu_8cpp-example.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;代码
+    
+    &lt;span style=&#34;white-space: nowrap;&#34;&gt;&lt;svg width=&#34;.7em&#34;
+        height=&#34;.7em&#34; viewBox=&#34;0 0 21 21&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34;&gt;
+        &lt;path d=&#34;m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z&#34; fill=&#34;currentColor&#34; /&gt;
+        &lt;path d=&#34;M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z&#34;
+            fill=&#34;currentColor&#34;&gt;
+    &lt;/svg&gt;&lt;/span&gt;
+    
+&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;toggle&#34;&gt;Toggle
+&lt;/h2&gt;&lt;p&gt;一种特殊菜单 条目水平显示&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://arthursonzogni.github.io/FTXUI/examples_2component_2toggle_8cpp-example.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;代码
+    
+    &lt;span style=&#34;white-space: nowrap;&#34;&gt;&lt;svg width=&#34;.7em&#34;
+        height=&#34;.7em&#34; viewBox=&#34;0 0 21 21&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34;&gt;
+        &lt;path d=&#34;m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z&#34; fill=&#34;currentColor&#34; /&gt;
+        &lt;path d=&#34;M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z&#34;
+            fill=&#34;currentColor&#34;&gt;
+    &lt;/svg&gt;&lt;/span&gt;
+    
+&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;checkbox&#34;&gt;CheckBox
+&lt;/h2&gt;&lt;p&gt;定义一个复选框(多选框)&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://arthursonzogni.github.io/FTXUI/examples_2component_2checkbox_8cpp-example.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;代码
+    
+    &lt;span style=&#34;white-space: nowrap;&#34;&gt;&lt;svg width=&#34;.7em&#34;
+        height=&#34;.7em&#34; viewBox=&#34;0 0 21 21&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34;&gt;
+        &lt;path d=&#34;m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z&#34; fill=&#34;currentColor&#34; /&gt;
+        &lt;path d=&#34;M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z&#34;
+            fill=&#34;currentColor&#34;&gt;
+    &lt;/svg&gt;&lt;/span&gt;
+    
+&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;radiobox&#34;&gt;RadioBox
+&lt;/h2&gt;&lt;p&gt;定义一个单选框&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://arthursonzogni.github.io/FTXUI/examples_2component_2radiobox_8cpp-example.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;代码
+    
+    &lt;span style=&#34;white-space: nowrap;&#34;&gt;&lt;svg width=&#34;.7em&#34;
+        height=&#34;.7em&#34; viewBox=&#34;0 0 21 21&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34;&gt;
+        &lt;path d=&#34;m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z&#34; fill=&#34;currentColor&#34; /&gt;
+        &lt;path d=&#34;M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z&#34;
+            fill=&#34;currentColor&#34;&gt;
+    &lt;/svg&gt;&lt;/span&gt;
+    
+&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;dropdown&#34;&gt;Dropdown
+&lt;/h2&gt;&lt;p&gt;下拉菜单组件&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://arthursonzogni.github.io/FTXUI/examples_2component_2dropdown_8cpp-example.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;代码
+    
+    &lt;span style=&#34;white-space: nowrap;&#34;&gt;&lt;svg width=&#34;.7em&#34;
+        height=&#34;.7em&#34; viewBox=&#34;0 0 21 21&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34;&gt;
+        &lt;path d=&#34;m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z&#34; fill=&#34;currentColor&#34; /&gt;
+        &lt;path d=&#34;M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z&#34;
+            fill=&#34;currentColor&#34;&gt;
+    &lt;/svg&gt;&lt;/span&gt;
+    
+&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;slider&#34;&gt;Slider
+&lt;/h2&gt;&lt;p&gt;滑块组件&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://arthursonzogni.github.io/FTXUI/examples_2component_2slider_8cpp-example.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;代码
+    
+    &lt;span style=&#34;white-space: nowrap;&#34;&gt;&lt;svg width=&#34;.7em&#34;
+        height=&#34;.7em&#34; viewBox=&#34;0 0 21 21&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34;&gt;
+        &lt;path d=&#34;m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z&#34; fill=&#34;currentColor&#34; /&gt;
+        &lt;path d=&#34;M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z&#34;
+            fill=&#34;currentColor&#34;&gt;
+    &lt;/svg&gt;&lt;/span&gt;
+    
+&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;renderer&#34;&gt;Renderer
+&lt;/h2&gt;&lt;p&gt;通过使用不同的函数来渲染界面装饰另一个组件&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-cpp&#34; data-lang=&#34;cpp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;auto&lt;/span&gt; inner &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; [...]
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;auto&lt;/span&gt; renderer &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; Renderer(inner, [&lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;] {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; inner&lt;span style=&#34;color:#f92672&#34;&gt;-&amp;gt;&lt;/span&gt;Render() &lt;span style=&#34;color:#f92672&#34;&gt;|&lt;/span&gt; border
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;});
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;装饰器模式&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-cpp&#34; data-lang=&#34;cpp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;auto&lt;/span&gt; component &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; [...]
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;component &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; component
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;|&lt;/span&gt; Renderer([](Element e) { &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; e &lt;span style=&#34;color:#f92672&#34;&gt;|&lt;/span&gt; border))
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;|&lt;/span&gt; Renderer(bold)
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;组件与装饰器组合&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-cpp&#34; data-lang=&#34;cpp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;auto&lt;/span&gt; component &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; [...]
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;component &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; component &lt;span style=&#34;color:#f92672&#34;&gt;|&lt;/span&gt; border &lt;span style=&#34;color:#f92672&#34;&gt;|&lt;/span&gt; bold;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;catchevent&#34;&gt;CatchEvent
+&lt;/h2&gt;&lt;p&gt;在底层组件之前捕获事件&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-cpp&#34; data-lang=&#34;cpp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;auto&lt;/span&gt; screen &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; ScreenInteractive&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;TerminalOutput();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;auto&lt;/span&gt; renderer &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; Renderer([] {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;text&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;My interface&amp;#34;&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;});
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;auto&lt;/span&gt; component &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; CatchEvent(renderer, [&lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;](Event event) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (event &lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt; Event&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;Character(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;q&amp;#39;&lt;/span&gt;)) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    screen.ExitLoopClosure()();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; true;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; false;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;});
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;screen.Loop(component);
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;用作装饰器&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-cpp&#34; data-lang=&#34;cpp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;component &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; component
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;|&lt;/span&gt; CatchEvent(handler_1)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;|&lt;/span&gt; CatchEvent(handler_2)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;|&lt;/span&gt; CatchEvent(handler_3)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  ;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;collapsible&#34;&gt;Collapsible
+&lt;/h2&gt;&lt;p&gt;对于用户可以切换可见性的视觉元素很有用，本质上这是 &lt;code&gt;ftxui::Checkbox()&lt;/code&gt; 和 &lt;code&gt;ftxui::Maybe()&lt;/code&gt; 组件的组合&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-cpp&#34; data-lang=&#34;cpp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;auto&lt;/span&gt; collapsible &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; Collapsible(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Show more&amp;#34;&lt;/span&gt;, inner_element);
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;maybe&#34;&gt;Maybe
+&lt;/h2&gt;&lt;p&gt;此组件可以通过布尔值或谓词来显示/隐藏任何其它组件&lt;/p&gt;
+&lt;p&gt;布尔值示例:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-cpp&#34; data-lang=&#34;cpp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;bool&lt;/span&gt; show &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; true;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;auto&lt;/span&gt; component &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; Renderer([]{ &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Hello World!&amp;#34;&lt;/span&gt;; });
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;auto&lt;/span&gt; maybe_component &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; Maybe(component, &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;show)
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;谓词示例:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-cpp&#34; data-lang=&#34;cpp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;auto&lt;/span&gt; component &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; Renderer([]{ &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Hello World!&amp;#34;&lt;/span&gt;; });
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;auto&lt;/span&gt; maybe_component &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; Maybe(component, [&lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;] { &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; time &lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;10&lt;/span&gt;; })
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;装饰器示例:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-cpp&#34; data-lang=&#34;cpp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;component &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; component
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;|&lt;/span&gt; Maybe(&lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;a_boolean)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;|&lt;/span&gt; Maybe([&lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;] { &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; time &lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;10&lt;/span&gt;; })
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  ;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;container&#34;&gt;Container
+&lt;/h2&gt;&lt;h3 id=&#34;horizontal&#34;&gt;Horizontal
+&lt;/h3&gt;&lt;p&gt;它水平显示组件列表&lt;/p&gt;
+&lt;h3 id=&#34;vertical&#34;&gt;Vertical
+&lt;/h3&gt;&lt;p&gt;它垂直显示组件列表&lt;/p&gt;
+&lt;h3 id=&#34;tab&#34;&gt;Tab
+&lt;/h3&gt;&lt;p&gt;它接受一个组件列表并只显示其中一个&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://arthursonzogni.github.io/FTXUI/examples_2component_2tab_vertical_8cpp-example.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;垂直列表代码
+    
+    &lt;span style=&#34;white-space: nowrap;&#34;&gt;&lt;svg width=&#34;.7em&#34;
+        height=&#34;.7em&#34; viewBox=&#34;0 0 21 21&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34;&gt;
+        &lt;path d=&#34;m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z&#34; fill=&#34;currentColor&#34; /&gt;
+        &lt;path d=&#34;M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z&#34;
+            fill=&#34;currentColor&#34;&gt;
+    &lt;/svg&gt;&lt;/span&gt;
+    
+&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://arthursonzogni.github.io/FTXUI/examples_2component_2tab_horizontal_8cpp-example.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;水平列表代码
+    
+    &lt;span style=&#34;white-space: nowrap;&#34;&gt;&lt;svg width=&#34;.7em&#34;
+        height=&#34;.7em&#34; viewBox=&#34;0 0 21 21&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34;&gt;
+        &lt;path d=&#34;m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z&#34; fill=&#34;currentColor&#34; /&gt;
+        &lt;path d=&#34;M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z&#34;
+            fill=&#34;currentColor&#34;&gt;
+    &lt;/svg&gt;&lt;/span&gt;
+    
+&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;resizablesplit&#34;&gt;ResizableSplit
+&lt;/h2&gt;&lt;p&gt;它定义了两个子组件之间的水平或垂直分隔，其分隔位置是可变的，并可以使用鼠标控制。&lt;/p&gt;
+&lt;p&gt;四种分隔方式:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;ftxui::ResizableSplitLeft()&lt;/code&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;ftxui::ResizableSplitRight()&lt;/code&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;ftxui::ResizableSplitTop()&lt;/code&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;ftxui::ResizableSplitBottom()&lt;/code&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://arthursonzogni.github.io/FTXUI/examples_2component_2resizable_split_8cpp-example.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;代码
+    
+    &lt;span style=&#34;white-space: nowrap;&#34;&gt;&lt;svg width=&#34;.7em&#34;
+        height=&#34;.7em&#34; viewBox=&#34;0 0 21 21&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34;&gt;
+        &lt;path d=&#34;m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z&#34; fill=&#34;currentColor&#34; /&gt;
+        &lt;path d=&#34;M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z&#34;
+            fill=&#34;currentColor&#34;&gt;
+    &lt;/svg&gt;&lt;/span&gt;
+    
+&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;强制一个帧重新绘制&#34;&gt;强制一个帧重新绘制
+&lt;/h2&gt;&lt;p&gt;通常 &lt;code&gt;ftxui::ScreenInteractive::Loop()&lt;/code&gt; 负责在处理完新的一组事件（例如键盘、鼠标、窗口大小调整等）时绘制新帧。但是，您可能希望对 FTXUI 未知的任意事件做出反应。为此，您必须通过线程使用 &lt;code&gt;ftxui::ScreenInteractive::PostEvent&lt;/code&gt; 这是线程安全的发布事件。您将不得不发布事件 &lt;code&gt;ftxui::Event::Custom&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;示例&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-cpp&#34; data-lang=&#34;cpp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;screen&lt;span style=&#34;color:#f92672&#34;&gt;-&amp;gt;&lt;/span&gt;PostEvent(Event&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;Custom);
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;如果您不需要处理新事件，可以使用:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-cpp&#34; data-lang=&#34;cpp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;screen&lt;span style=&#34;color:#f92672&#34;&gt;-&amp;gt;&lt;/span&gt;RequestAnimationFrame();
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;代替&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>FTXUI Dom 模块</title>
         <link>https://example.org/post/programmingtechnology/ftxui-self-study-guide/ftxui-dom/</link>
         <pubDate>Sat, 30 Aug 2025 17:46:00 +0800</pubDate>

@@ -2,7 +2,7 @@
 title = 'FTXUI Dom 模块'
 description = '本篇文章主要讲解一下 FTXUI Dom 模块'
 tags = ['FTXUI Self-Study Guide', 'C++', '编程教程', 'TUI']
-keywords = ['FTXUI Self-Study Guide', 'C++', '编程教程', '后端开发', '零基础', '计算机编程', '开发环境配置', 'GCC', 'GDB', 'CMake', 'VS Code', 'CLion', 'TUI']
+keywords = ['FTXUI Self-Study Guide', 'C++', '编程教程', '后端开发', '零基础', '计算机编程', 'GCC', 'GDB', 'CMake', 'VS Code', 'CLion', 'TUI']
 date = 2025-08-30T17:46:00+08:00
 categories = ['FTXUI 自学指南']
 +++

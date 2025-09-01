@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="本篇文章主要讲解 FTXUI 框架所支持的构建系统与包管理器的集成方式">
-<meta name="keywords" content="FTXUI Self-Study Guide, C&#43;&#43;, 编程教程, 后端开发, 零基础, 计算机编程, GCC, GDB, CMake, VS Code, CLion, TUI"><title>FTXUI 安装</title>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="本篇文章主要讲解一下 FTXUI Component 模块">
+<meta name="keywords" content="FTXUI Self-Study Guide, C&#43;&#43;, 编程教程, 后端开发, 零基础, 计算机编程, FTXUI, GCC, GDB, CMake, VS Code, CLion, TUI"><title>FTXUI Component 模块</title>
 
-<link rel='canonical' href='https://example.org/post/programmingtechnology/ftxui-self-study-guide/ftxui-installation/'>
+<link rel='canonical' href='https://example.org/post/programmingtechnology/ftxui-self-study-guide/ftxui-component/'>
 
-<link rel="stylesheet" href="/scss/style.min.cf5bd8ad7228821a8cdf460008a6c97b2813dfe0f4ce99b79f5167a386427cad.css"><meta property='og:title' content="FTXUI 安装">
-<meta property='og:description' content="本篇文章主要讲解 FTXUI 框架所支持的构建系统与包管理器的集成方式">
-<meta property='og:url' content='https://example.org/post/programmingtechnology/ftxui-self-study-guide/ftxui-installation/'>
+<link rel="stylesheet" href="/scss/style.min.cf5bd8ad7228821a8cdf460008a6c97b2813dfe0f4ce99b79f5167a386427cad.css"><meta property='og:title' content="FTXUI Component 模块">
+<meta property='og:description' content="本篇文章主要讲解一下 FTXUI Component 模块">
+<meta property='og:url' content='https://example.org/post/programmingtechnology/ftxui-self-study-guide/ftxui-component/'>
 <meta property='og:site_name' content='Styx Blog'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='FTXUI Self-Study Guide' /><meta property='article:tag' content='C&#43;&#43;' /><meta property='article:tag' content='编程教程' /><meta property='article:tag' content='TUI' /><meta property='article:published_time' content='2025-08-27T20:30:00&#43;08:00'/><meta property='article:modified_time' content='2025-08-27T20:30:00&#43;08:00'/>
-<meta name="twitter:title" content="FTXUI 安装">
-<meta name="twitter:description" content="本篇文章主要讲解 FTXUI 框架所支持的构建系统与包管理器的集成方式">
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='FTXUI Self-Study Guide' /><meta property='article:tag' content='C&#43;&#43;' /><meta property='article:tag' content='编程教程' /><meta property='article:tag' content='TUI' /><meta property='article:published_time' content='2025-09-01T13:50:00&#43;08:00'/><meta property='article:modified_time' content='2025-09-01T13:50:00&#43;08:00'/>
+<meta name="twitter:title" content="FTXUI Component 模块">
+<meta name="twitter:description" content="本篇文章主要讲解一下 FTXUI Component 模块">
     <link rel="shortcut icon" href="/mask.svg" />
 
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5303132509036035" crossorigin="anonymous"></script>
@@ -338,28 +338,30 @@
         <div class="widget--toc">
             <nav id="TableOfContents">
   <ul>
-    <li><a href="#所支持的方式">所支持的方式</a></li>
-    <li><a href="#cmake">CMake</a>
+    <li><a href="#input">Input</a>
       <ul>
-        <li><a href="#使用-fetchcontent">使用 FetchContent</a></li>
-        <li><a href="#使用-find_package">使用 find_package</a></li>
-        <li><a href="#使用-git-submodule">使用 git submodule</a></li>
-        <li><a href="#可选-cmake-选项">可选 CMake 选项</a></li>
+        <li><a href="#过滤输入">过滤输入</a></li>
       </ul>
     </li>
-    <li><a href="#bazel">Bazel</a>
+    <li><a href="#menu">Menu</a></li>
+    <li><a href="#toggle">Toggle</a></li>
+    <li><a href="#checkbox">CheckBox</a></li>
+    <li><a href="#radiobox">RadioBox</a></li>
+    <li><a href="#dropdown">Dropdown</a></li>
+    <li><a href="#slider">Slider</a></li>
+    <li><a href="#renderer">Renderer</a></li>
+    <li><a href="#catchevent">CatchEvent</a></li>
+    <li><a href="#collapsible">Collapsible</a></li>
+    <li><a href="#maybe">Maybe</a></li>
+    <li><a href="#container">Container</a>
       <ul>
-        <li><a href="#modulebzael">MODULE.Bzael</a></li>
-        <li><a href="#buildbazel">BUILD.Bazel</a></li>
+        <li><a href="#horizontal">Horizontal</a></li>
+        <li><a href="#vertical">Vertical</a></li>
+        <li><a href="#tab">Tab</a></li>
       </ul>
     </li>
-    <li><a href="#vcpkg">VcPkg</a>
-      <ul>
-        <li><a href="#使用-vcpkg-安装-ftxui">使用 VcPkg 安装 FTXUI</a></li>
-        <li><a href="#配置构建系统">配置构建系统</a></li>
-      </ul>
-    </li>
-    <li><a href="#debianubuntu">Debian/Ubuntu</a></li>
+    <li><a href="#resizablesplit">ResizableSplit</a></li>
+    <li><a href="#强制一个帧重新绘制">强制一个帧重新绘制</a></li>
   </ul>
 </nav>
         </div>
@@ -387,12 +389,12 @@
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
-            <a href="/post/programmingtechnology/ftxui-self-study-guide/ftxui-installation/">FTXUI 安装</a>
+            <a href="/post/programmingtechnology/ftxui-self-study-guide/ftxui-component/">FTXUI Component 模块</a>
         </h2>
     
         
         <h3 class="article-subtitle">
-            本篇文章主要讲解 FTXUI 框架所支持的构建系统与包管理器的集成方式
+            本篇文章主要讲解一下 FTXUI Component 模块
         </h3>
         
     </div>
@@ -413,7 +415,7 @@
   <path d="M3 11h16" />
   <path d="M18 16.496v1.504l1 1" />
 </svg>
-                <time class="article-time--published">Aug 27, 2025</time>
+                <time class="article-time--published">Sep 01, 2025</time>
             </div>
         
 
@@ -443,111 +445,20 @@
     <section class="article-content">
     
     
-    <p>FTXUI 可以使用多种构建系统和包管理器集成到您的项目中</p>
-<h2 id="所支持的方式">所支持的方式
-</h2><ul>
-<li><a class="link" href="#cmake" ><strong>CMake</strong>
-    
-</a></li>
-<li><a class="link" href="#bazel" ><strong>Bazel</strong>
-    
-</a></li>
-<li><a class="link" href="#vcpkg" ><strong>VcPkg</strong>
-    
-</a></li>
-<li><a class="link" href="#debianubuntu" ><strong>Debian/Ubuntu</strong>
-    
-</a></li>
+    <p><code>ftxui::Component</code> 模块定义了生成交互式组件的逻辑，这些组件可以响应用户发起的事件(鼠标、键盘)。</p>
+<p><code>ftxui::ScreenInteractive</code> 定义了一个渲染组件的主循环。
+<code>ftxui::Component</code> 是 <code>ftxui::ComponentBase</code> 的共享指针。后者定义了:</p>
+<ul>
+<li><strong><code>ftxui::ComponentBase::Render()</code></strong> 如何渲染界面</li>
+<li><strong><code>ftxui::ComponentBase::OnEvent()</code></strong> 如何响应事件</li>
+<li><strong><code>ftxui::ComponentBase::Add()</code></strong> 两个组件之间构建父子关系，组件树用于定义如何使用键盘导航。</li>
 </ul>
-<h2 id="cmake">CMake
-</h2><p>使用 CMake 的三种集成 FTXUI 方式</p>
-<h3 id="使用-fetchcontent">使用 FetchContent
-</h3><p>这种方式会在编译时自动下载 FTXUI，不需要在系统上安装</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cmake" data-lang="cmake"><span style="display:flex;"><span>include(<span style="color:#e6db74">FetchContent</span>)<span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span> <span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span>FetchContent_Declare(<span style="color:#e6db74">ftxui</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">GIT_REPOSITORY</span> <span style="color:#e6db74">https://github.com/ArthurSonzogni/FTXUI</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">GIT_TAG</span> <span style="color:#e6db74">v6.1.9</span>  <span style="color:#75715e"># Replace with a version, tag, or commit hash
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>)<span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span> <span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span>FetchContent_MakeAvailable(<span style="color:#e6db74">ftxui</span>)<span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span> <span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span>add_executable(<span style="color:#e6db74">main</span> <span style="color:#e6db74">main.cpp</span>)<span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span>target_link_libraries(<span style="color:#e6db74">main</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">PRIVATE</span> <span style="color:#e6db74">ftxui::screen</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">PRIVATE</span> <span style="color:#e6db74">ftxui::dom</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">PRIVATE</span> <span style="color:#e6db74">ftxui::component</span>
-</span></span><span style="display:flex;"><span>)<span style="color:#960050;background-color:#1e0010">
-</span></span></span></code></pre></div><h3 id="使用-find_package">使用 find_package
-</h3><p>如果 FTXUI 已系统上安装或通过包管理器（例如 VcPkg 或 Conan）安装，您可以使用此方式</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cmake" data-lang="cmake"><span style="display:flex;"><span>find_package(<span style="color:#e6db74">ftxui</span> <span style="color:#e6db74">REQUIRED</span>)<span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span> <span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span>add_executable(<span style="color:#e6db74">main</span> <span style="color:#e6db74">main.cpp</span>)<span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span>target_link_libraries(<span style="color:#e6db74">main</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">PRIVATE</span> <span style="color:#e6db74">ftxui::screen</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">PRIVATE</span> <span style="color:#e6db74">ftxui::dom</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">PRIVATE</span> <span style="color:#e6db74">ftxui::component</span>
-</span></span><span style="display:flex;"><span>)<span style="color:#960050;background-color:#1e0010">
-</span></span></span></code></pre></div><h3 id="使用-git-submodule">使用 git submodule
-</h3><p>将 FTXUI 添加为 Git 子模块，使其成为您仓库的一部分</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git submodule add https://github.com/ArthurSonzogni/FTXUI external/ftxui
-</span></span><span style="display:flex;"><span>git submodule update --init --recursive
-</span></span></code></pre></div><p>当克隆一个已经包含 FTXUI 作为子模块的仓库时，请确保使用以下命令获取子模块</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git clone --recurse-submodules &lt;your-repo&gt;
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Or, if already cloned:</span>
-</span></span><span style="display:flex;"><span>git submodule update --init --recursive
-</span></span></code></pre></div><p>然后在您的 <code>CMakeLists.txt</code> 中添加</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cmake" data-lang="cmake"><span style="display:flex;"><span>add_subdirectory(<span style="color:#e6db74">external/ftxui</span>)<span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span> <span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span>add_executable(<span style="color:#e6db74">main</span> <span style="color:#e6db74">main.cpp</span>)<span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span>target_link_libraries(<span style="color:#e6db74">main</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">PRIVATE</span> <span style="color:#e6db74">ftxui::screen</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">PRIVATE</span> <span style="color:#e6db74">ftxui::dom</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">PRIVATE</span> <span style="color:#e6db74">ftxui::component</span>
-</span></span><span style="display:flex;"><span>)<span style="color:#960050;background-color:#1e0010">
-</span></span></span></code></pre></div><h3 id="可选-cmake-选项">可选 CMake 选项
-</h3><p>FTXUI 支持以下 CMake 选项</p>
-<div class="table-wrapper"><table>
-<thead>
-<tr>
-<th>选项</th>
-<th>描述</th>
-<th>默认</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>FTXUI_BUILD_EXAMPLES</td>
-<td>构建捆绑示例</td>
-<td>OFF</td>
-</tr>
-<tr>
-<td>FTXUI_BUILD_DOCS</td>
-<td>构建文档</td>
-<td>OFF</td>
-</tr>
-<tr>
-<td>FTXUI_BUILD_TESTS</td>
-<td>启用测试</td>
-<td>OFF</td>
-</tr>
-<tr>
-<td>FTXUI_ENABLE_INSTALL</td>
-<td>生成安装目标</td>
-<td>OFF</td>
-</tr>
-<tr>
-<td>FTXUI_MICROSOFT_TERMINAL_FALLBACK</td>
-<td>改进 Windows 兼容性</td>
-<td>ON/OFF</td>
-</tr>
-</tbody>
-</table></div>
-<p>如果要启用一个选项:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cmake -DFTXUI_BUILD_EXAMPLES<span style="color:#f92672">=</span>ON ..
-</span></span></code></pre></div><h2 id="bazel">Bazel
-</h2><p>FTXUI 可以使用 <a class="link" href="https://bazel.build/"  target="_blank" rel="noopener"
-    >Bazel
+<p><code>ftxui::Element</code> 用于渲染单个帧
+<code>ftxui::Component</code> 用于渲染动态用户界面 生成多个帧 并在事件发生时更新其状态。</p>
+<h2 id="input">Input
+</h2><p>用于实现用户输入框</p>
+<p><a class="link" href="https://arthursonzogni.github.io/FTXUI/examples_2component_2input_8cpp-example.html"  target="_blank" rel="noopener"
+    >代码
     
     <span style="white-space: nowrap;"><svg width=".7em"
         height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
@@ -556,8 +467,35 @@
             fill="currentColor">
     </svg></span>
     
-</a> 和 BzlMod 集成到您的项目中，该库已在 <a class="link" href="https://registry.bazel.build/modules/ftxui"  target="_blank" rel="noopener"
-    >Bazel Central Registry
+</a></p>
+<p><img src="/Image/FTXUI%20Self-Study%20Guide/Input%20Demo.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="Input Demo"
+	
+	
+></p>
+<h3 id="过滤输入">过滤输入
+</h3><p>可以使用 <code>ftxui::CatchEvent</code> 过滤输入组件接收到的字符</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span>std<span style="color:#f92672">::</span>string phone_number;
+</span></span><span style="display:flex;"><span>Component input <span style="color:#f92672">=</span> Input(<span style="color:#f92672">&amp;</span>phone_number, <span style="color:#e6db74">&#34;phone number&#34;</span>);
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 过滤掉非数字字符
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>input <span style="color:#f92672">|=</span> CatchEvent([<span style="color:#f92672">&amp;</span>](Event event) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> event.is_character() <span style="color:#f92672">&amp;&amp;</span> <span style="color:#f92672">!</span>std<span style="color:#f92672">::</span>isdigit(event.character()[<span style="color:#ae81ff">0</span>]);
+</span></span><span style="display:flex;"><span>});
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 过滤掉第10个字符之后的字符
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>input <span style="color:#f92672">|=</span> CatchEvent([<span style="color:#f92672">&amp;</span>](Event event) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> event.is_character() <span style="color:#f92672">&amp;&amp;</span> phone_number.size() <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">10</span>;
+</span></span><span style="display:flex;"><span>});
+</span></span></code></pre></div><h2 id="menu">Menu
+</h2><p>定义一个菜单对象，它包含一个条目列表。</p>
+<p><a class="link" href="https://arthursonzogni.github.io/FTXUI/examples_2component_2menu_8cpp-example.html"  target="_blank" rel="noopener"
+    >代码
     
     <span style="white-space: nowrap;"><svg width=".7em"
         height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
@@ -566,77 +504,181 @@
             fill="currentColor">
     </svg></span>
     
-</a> 中注册</p>
-<h3 id="modulebzael">MODULE.Bzael
-</h3><pre tabindex="0"><code class="language-bazel" data-lang="bazel">bazel_dep(name = &#34;ftxui&#34;, version = &#34;6.1.9&#34;)
-</code></pre><h3 id="buildbazel">BUILD.Bazel
-</h3><pre tabindex="0"><code class="language-bazel" data-lang="bazel">cc_binary(
-    name = &#34;main&#34;,
-    srcs = [&#34;main.cpp&#34;],
-    deps = [
-        &#34;@ftxui//:component&#34;,
-        &#34;@ftxui//:dom&#34;,
-        &#34;@ftxui//:screen&#34;,
-    ],
-)
-</code></pre><h2 id="vcpkg">VcPkg
-</h2><p>要在 VcPkg 中使用 FTXUI 库，你可以将以下内容稍作修改后添加到你的 <code>VcPkg.Json</code> 中:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;your-project&#34;</span>,
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;version-string&#34;</span>: <span style="color:#e6db74">&#34;0.1.0&#34;</span>,
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;dependencies&#34;</span>: [
-</span></span><span style="display:flex;"><span>    {
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;ftxui&#34;</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;version&gt;=&#34;</span>: <span style="color:#e6db74">&#34;6.1.9&#34;</span>
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>  ]
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><h3 id="使用-vcpkg-安装-ftxui">使用 VcPkg 安装 FTXUI
-</h3><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>vcpkg install --triplet x64-linux  <span style="color:#75715e"># 或 x64-windows / arm64-osx 等.</span>
-</span></span></code></pre></div><h3 id="配置构建系统">配置构建系统
-</h3><p>如果您正在使用 CMake，您可以在 <code>CMakeLists.txt</code> 中使用以下内容:</p>
-<p><strong>CMakeLists.txt</strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cmake" data-lang="cmake"><span style="display:flex;"><span>cmake_minimum_required(<span style="color:#e6db74">VERSION</span> <span style="color:#e6db74">3.15</span>)<span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span>project(<span style="color:#e6db74">my_project</span>)<span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span> <span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#75715e"># Make sure vcpkg toolchain file is passed at configure time
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>find_package(<span style="color:#e6db74">ftxui</span> <span style="color:#e6db74">CONFIG</span> <span style="color:#e6db74">REQUIRED</span>)<span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span> <span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span>add_executable(<span style="color:#e6db74">main</span> <span style="color:#e6db74">main.cpp</span>)<span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span>target_link_libraries(<span style="color:#e6db74">main</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">PRIVATE</span> <span style="color:#e6db74">ftxui::screen</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">PRIVATE</span> <span style="color:#e6db74">ftxui::dom</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">PRIVATE</span> <span style="color:#e6db74">ftxui::component</span>
-</span></span><span style="display:flex;"><span>)<span style="color:#960050;background-color:#1e0010">
-</span></span></span></code></pre></div><p><strong>Main.CPP</strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;ftxui/component/screen_interactive.hpp&gt;</span><span style="color:#75715e">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;ftxui/component/component.hpp&gt;</span><span style="color:#75715e">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;ftxui/component/component_options.hpp&gt;</span><span style="color:#75715e">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span> 
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() {
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> ftxui;
+</a></p>
+<h2 id="toggle">Toggle
+</h2><p>一种特殊菜单 条目水平显示</p>
+<p><a class="link" href="https://arthursonzogni.github.io/FTXUI/examples_2component_2toggle_8cpp-example.html"  target="_blank" rel="noopener"
+    >代码
+    
+    <span style="white-space: nowrap;"><svg width=".7em"
+        height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
+        <path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+        <path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+            fill="currentColor">
+    </svg></span>
+    
+</a></p>
+<h2 id="checkbox">CheckBox
+</h2><p>定义一个复选框(多选框)</p>
+<p><a class="link" href="https://arthursonzogni.github.io/FTXUI/examples_2component_2checkbox_8cpp-example.html"  target="_blank" rel="noopener"
+    >代码
+    
+    <span style="white-space: nowrap;"><svg width=".7em"
+        height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
+        <path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+        <path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+            fill="currentColor">
+    </svg></span>
+    
+</a></p>
+<h2 id="radiobox">RadioBox
+</h2><p>定义一个单选框</p>
+<p><a class="link" href="https://arthursonzogni.github.io/FTXUI/examples_2component_2radiobox_8cpp-example.html"  target="_blank" rel="noopener"
+    >代码
+    
+    <span style="white-space: nowrap;"><svg width=".7em"
+        height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
+        <path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+        <path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+            fill="currentColor">
+    </svg></span>
+    
+</a></p>
+<h2 id="dropdown">Dropdown
+</h2><p>下拉菜单组件</p>
+<p><a class="link" href="https://arthursonzogni.github.io/FTXUI/examples_2component_2dropdown_8cpp-example.html"  target="_blank" rel="noopener"
+    >代码
+    
+    <span style="white-space: nowrap;"><svg width=".7em"
+        height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
+        <path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+        <path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+            fill="currentColor">
+    </svg></span>
+    
+</a></p>
+<h2 id="slider">Slider
+</h2><p>滑块组件</p>
+<p><a class="link" href="https://arthursonzogni.github.io/FTXUI/examples_2component_2slider_8cpp-example.html"  target="_blank" rel="noopener"
+    >代码
+    
+    <span style="white-space: nowrap;"><svg width=".7em"
+        height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
+        <path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+        <path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+            fill="currentColor">
+    </svg></span>
+    
+</a></p>
+<h2 id="renderer">Renderer
+</h2><p>通过使用不同的函数来渲染界面装饰另一个组件</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">auto</span> inner <span style="color:#f92672">=</span> [...]
 </span></span><span style="display:flex;"><span> 
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">auto</span> screen <span style="color:#f92672">=</span> ScreenInteractive<span style="color:#f92672">::</span>TerminalOutput();
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">auto</span> button <span style="color:#f92672">=</span> Button(<span style="color:#e6db74">&#34;Click me&#34;</span>, [] { std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;Clicked!</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>; });
-</span></span><span style="display:flex;"><span> 
-</span></span><span style="display:flex;"><span>  screen.Loop(button);
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><p><strong>配置并构建项目</strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cmake -B build -S . -DCMAKE_TOOLCHAIN_FILE<span style="color:#f92672">=</span>/path/to/vcpkg/scripts/buildsystems/vcpkg.cmake
-</span></span><span style="display:flex;"><span>cmake --build build
-</span></span><span style="display:flex;"><span>./build/main
-</span></span></code></pre></div><h2 id="debianubuntu">Debian/Ubuntu
-</h2><p>在终端中使用以下命令进行安装</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo apt-get install libftxui-dev
-</span></span></code></pre></div><p>安装后可将以下内容添加到 <code>CMakeLists.txt</code> 中:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cmake" data-lang="cmake"><span style="display:flex;"><span>find_package(<span style="color:#e6db74">ftxui</span> <span style="color:#e6db74">REQUIRED</span>)<span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span>add_executable(<span style="color:#e6db74">main</span> <span style="color:#e6db74">main.cpp</span>)<span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span>target_link_libraries(<span style="color:#e6db74">main</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">PRIVATE</span> <span style="color:#e6db74">ftxui::screen</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">PRIVATE</span> <span style="color:#e6db74">ftxui::dom</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">PRIVATE</span> <span style="color:#e6db74">ftxui::component</span>
-</span></span><span style="display:flex;"><span>)<span style="color:#960050;background-color:#1e0010">
-</span></span></span></code></pre></div>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">auto</span> renderer <span style="color:#f92672">=</span> Renderer(inner, [<span style="color:#f92672">&amp;</span>] {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> inner<span style="color:#f92672">-&gt;</span>Render() <span style="color:#f92672">|</span> border
+</span></span><span style="display:flex;"><span>});
+</span></span></code></pre></div><p>装饰器模式</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">auto</span> component <span style="color:#f92672">=</span> [...]
+</span></span><span style="display:flex;"><span>component <span style="color:#f92672">=</span> component
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">|</span> Renderer([](Element e) { <span style="color:#66d9ef">return</span> e <span style="color:#f92672">|</span> border))
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">|</span> Renderer(bold)
+</span></span></code></pre></div><p>组件与装饰器组合</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">auto</span> component <span style="color:#f92672">=</span> [...]
+</span></span><span style="display:flex;"><span>component <span style="color:#f92672">=</span> component <span style="color:#f92672">|</span> border <span style="color:#f92672">|</span> bold;
+</span></span></code></pre></div><h2 id="catchevent">CatchEvent
+</h2><p>在底层组件之前捕获事件</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">auto</span> screen <span style="color:#f92672">=</span> ScreenInteractive<span style="color:#f92672">::</span>TerminalOutput();
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">auto</span> renderer <span style="color:#f92672">=</span> Renderer([] {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">text</span>(<span style="color:#e6db74">&#34;My interface&#34;</span>);
+</span></span><span style="display:flex;"><span>});
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">auto</span> component <span style="color:#f92672">=</span> CatchEvent(renderer, [<span style="color:#f92672">&amp;</span>](Event event) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> (event <span style="color:#f92672">==</span> Event<span style="color:#f92672">::</span>Character(<span style="color:#e6db74">&#39;q&#39;</span>)) {
+</span></span><span style="display:flex;"><span>    screen.ExitLoopClosure()();
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> true;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> false;
+</span></span><span style="display:flex;"><span>});
+</span></span><span style="display:flex;"><span>screen.Loop(component);
+</span></span></code></pre></div><p>用作装饰器</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span>component <span style="color:#f92672">=</span> component
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">|</span> CatchEvent(handler_1)
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">|</span> CatchEvent(handler_2)
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">|</span> CatchEvent(handler_3)
+</span></span><span style="display:flex;"><span>  ;
+</span></span></code></pre></div><h2 id="collapsible">Collapsible
+</h2><p>对于用户可以切换可见性的视觉元素很有用，本质上这是 <code>ftxui::Checkbox()</code> 和 <code>ftxui::Maybe()</code> 组件的组合</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">auto</span> collapsible <span style="color:#f92672">=</span> Collapsible(<span style="color:#e6db74">&#34;Show more&#34;</span>, inner_element);
+</span></span></code></pre></div><h2 id="maybe">Maybe
+</h2><p>此组件可以通过布尔值或谓词来显示/隐藏任何其它组件</p>
+<p>布尔值示例:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">bool</span> show <span style="color:#f92672">=</span> true;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">auto</span> component <span style="color:#f92672">=</span> Renderer([]{ <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;Hello World!&#34;</span>; });
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">auto</span> maybe_component <span style="color:#f92672">=</span> Maybe(component, <span style="color:#f92672">&amp;</span>show)
+</span></span></code></pre></div><p>谓词示例:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">auto</span> component <span style="color:#f92672">=</span> Renderer([]{ <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;Hello World!&#34;</span>; });
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">auto</span> maybe_component <span style="color:#f92672">=</span> Maybe(component, [<span style="color:#f92672">&amp;</span>] { <span style="color:#66d9ef">return</span> time <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">10</span>; })
+</span></span></code></pre></div><p>装饰器示例:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span>component <span style="color:#f92672">=</span> component
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">|</span> Maybe(<span style="color:#f92672">&amp;</span>a_boolean)
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">|</span> Maybe([<span style="color:#f92672">&amp;</span>] { <span style="color:#66d9ef">return</span> time <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">10</span>; })
+</span></span><span style="display:flex;"><span>  ;
+</span></span></code></pre></div><h2 id="container">Container
+</h2><h3 id="horizontal">Horizontal
+</h3><p>它水平显示组件列表</p>
+<h3 id="vertical">Vertical
+</h3><p>它垂直显示组件列表</p>
+<h3 id="tab">Tab
+</h3><p>它接受一个组件列表并只显示其中一个</p>
+<p><a class="link" href="https://arthursonzogni.github.io/FTXUI/examples_2component_2tab_vertical_8cpp-example.html"  target="_blank" rel="noopener"
+    >垂直列表代码
+    
+    <span style="white-space: nowrap;"><svg width=".7em"
+        height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
+        <path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+        <path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+            fill="currentColor">
+    </svg></span>
+    
+</a></p>
+<p><a class="link" href="https://arthursonzogni.github.io/FTXUI/examples_2component_2tab_horizontal_8cpp-example.html"  target="_blank" rel="noopener"
+    >水平列表代码
+    
+    <span style="white-space: nowrap;"><svg width=".7em"
+        height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
+        <path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+        <path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+            fill="currentColor">
+    </svg></span>
+    
+</a></p>
+<h2 id="resizablesplit">ResizableSplit
+</h2><p>它定义了两个子组件之间的水平或垂直分隔，其分隔位置是可变的，并可以使用鼠标控制。</p>
+<p>四种分隔方式:</p>
+<ul>
+<li><strong><code>ftxui::ResizableSplitLeft()</code></strong></li>
+<li><strong><code>ftxui::ResizableSplitRight()</code></strong></li>
+<li><strong><code>ftxui::ResizableSplitTop()</code></strong></li>
+<li><strong><code>ftxui::ResizableSplitBottom()</code></strong></li>
+</ul>
+<p><a class="link" href="https://arthursonzogni.github.io/FTXUI/examples_2component_2resizable_split_8cpp-example.html"  target="_blank" rel="noopener"
+    >代码
+    
+    <span style="white-space: nowrap;"><svg width=".7em"
+        height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
+        <path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+        <path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+            fill="currentColor">
+    </svg></span>
+    
+</a></p>
+<h2 id="强制一个帧重新绘制">强制一个帧重新绘制
+</h2><p>通常 <code>ftxui::ScreenInteractive::Loop()</code> 负责在处理完新的一组事件（例如键盘、鼠标、窗口大小调整等）时绘制新帧。但是，您可能希望对 FTXUI 未知的任意事件做出反应。为此，您必须通过线程使用 <code>ftxui::ScreenInteractive::PostEvent</code> 这是线程安全的发布事件。您将不得不发布事件 <code>ftxui::Event::Custom</code></p>
+<p><strong>示例</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span>screen<span style="color:#f92672">-&gt;</span>PostEvent(Event<span style="color:#f92672">::</span>Custom);
+</span></span></code></pre></div><p>如果您不需要处理新事件，可以使用:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span>screen<span style="color:#f92672">-&gt;</span>RequestAnimationFrame();
+</span></span></code></pre></div><p>代替</p>
+
 </section>
 
 
@@ -684,6 +726,45 @@
             
                 
 <article class="">
+    <a href="/post/programmingtechnology/ftxui-self-study-guide/ftxui-dom/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">FTXUI Dom 模块</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/post/programmingtechnology/ftxui-self-study-guide/ftxui-screen/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">FTXUI Screen 模块</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/post/programmingtechnology/ftxui-self-study-guide/ftxui-installation/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">FTXUI 安装</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
     <a href="/post/programmingtechnology/ftxui-self-study-guide/ftxui-introduction/">
         
         
@@ -703,45 +784,6 @@
 
         <div class="article-details">
             <h2 class="article-title">开发环境搭建</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="">
-    <a href="/post/programmingtechnology/developmentdocumentation/telegrambotapi/">
-        
-        
-
-        <div class="article-details">
-            <h2 class="article-title">Telegram Bot API</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="">
-    <a href="/post/programmingtechnology/classicalcryptography/adfgvx/">
-        
-        
-
-        <div class="article-details">
-            <h2 class="article-title">ADFGVX密码</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="">
-    <a href="/post/programmingtechnology/classicalcryptography/polybius/">
-        
-        
-
-        <div class="article-details">
-            <h2 class="article-title">波利比奥斯方阵密码</h2>
         </div>
     </a>
 </article>

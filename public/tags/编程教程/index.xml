@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>编程教程 on Styx Blog</title>
-        <link>https://example.org/tags/%E7%BC%96%E7%A8%8B%E6%95%99%E7%A8%8B/</link>
+        <link>http://localhost:1313/tags/%E7%BC%96%E7%A8%8B%E6%95%99%E7%A8%8B/</link>
         <description>Recent content in 编程教程 on Styx Blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <lastBuildDate>Mon, 01 Sep 2025 13:50:00 +0800</lastBuildDate><atom:link href="https://example.org/tags/%E7%BC%96%E7%A8%8B%E6%95%99%E7%A8%8B/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Mon, 01 Sep 2025 13:50:00 +0800</lastBuildDate><atom:link href="http://localhost:1313/tags/%E7%BC%96%E7%A8%8B%E6%95%99%E7%A8%8B/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>FTXUI Component 模块</title>
-        <link>https://example.org/post/programmingtechnology/ftxui-self-study-guide/ftxui-component/</link>
+        <link>http://localhost:1313/post/programmingtechnology/ftxui-self-study-guide/ftxui-component/</link>
         <pubDate>Mon, 01 Sep 2025 13:50:00 +0800</pubDate>
         
-        <guid>https://example.org/post/programmingtechnology/ftxui-self-study-guide/ftxui-component/</guid>
+        <guid>http://localhost:1313/post/programmingtechnology/ftxui-self-study-guide/ftxui-component/</guid>
         <description>&lt;p&gt;&lt;code&gt;ftxui::Component&lt;/code&gt; 模块定义了生成交互式组件的逻辑，这些组件可以响应用户发起的事件(鼠标、键盘)。&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;ftxui::ScreenInteractive&lt;/code&gt; 定义了一个渲染组件的主循环。
 &lt;code&gt;ftxui::Component&lt;/code&gt; 是 &lt;code&gt;ftxui::ComponentBase&lt;/code&gt; 的共享指针。后者定义了:&lt;/p&gt;
@@ -35,7 +35,7 @@
     &lt;/svg&gt;&lt;/span&gt;
     
 &lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://example.org/Image/FTXUI%20Self-Study%20Guide/Input%20Demo.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/Image/FTXUI%20Self-Study%20Guide/Input%20Demo.png&#34;
 	
 	
 	
@@ -249,10 +249,10 @@
         </item>
         <item>
         <title>FTXUI Dom 模块</title>
-        <link>https://example.org/post/programmingtechnology/ftxui-self-study-guide/ftxui-dom/</link>
+        <link>http://localhost:1313/post/programmingtechnology/ftxui-self-study-guide/ftxui-dom/</link>
         <pubDate>Sat, 30 Aug 2025 17:46:00 +0800</pubDate>
         
-        <guid>https://example.org/post/programmingtechnology/ftxui-self-study-guide/ftxui-dom/</guid>
+        <guid>http://localhost:1313/post/programmingtechnology/ftxui-self-study-guide/ftxui-dom/</guid>
         <description>&lt;p&gt;该模块定义了一组层级化的 &lt;code&gt;ftxui::Element&lt;/code&gt; 。一个元素（Element）可以管理布局，并且能够响应终端尺寸的变化。请注意以下示例，其中该模块被用来通过若干操作符创建一个简单的布局:&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;示例&lt;/strong&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-cpp&#34; data-lang=&#34;cpp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;namespace&lt;/span&gt; ftxui {
@@ -504,7 +504,7 @@ O
 &lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;paragraph&#34;&gt;Paragraph
 &lt;/h2&gt;&lt;p&gt;类似于 &lt;code&gt;ftxui::text&lt;/code&gt; 但单词会根据容器的宽度自动换行到多行。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-cpp&#34; data-lang=&#34;cpp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;paragraph(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;A very long text&amp;#34;&lt;/span&gt;);
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://example.org/Image/FTXUI%20Self-Study%20Guide/Paragraph%20Demo.gif&#34;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/Image/FTXUI%20Self-Study%20Guide/Paragraph%20Demo.gif&#34;
 	
 	
 	
@@ -611,7 +611,7 @@ O
 &lt;/h2&gt;&lt;p&gt;在终端显示彩色文本和彩色背景，FTXUI 支持所有调色板:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-cpp&#34; data-lang=&#34;cpp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Decorator &lt;span style=&#34;color:#a6e22e&#34;&gt;color&lt;/span&gt;(Color);
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Decorator &lt;span style=&#34;color:#a6e22e&#34;&gt;bgcolor&lt;/span&gt;(Color);
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://example.org/Image/FTXUI%20Self-Study%20Guide/Colors%20Demo.png&#34;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/Image/FTXUI%20Self-Study%20Guide/Colors%20Demo.png&#34;
 	
 	
 	
@@ -716,7 +716,7 @@ O
 &lt;li&gt;&lt;strong&gt;沿着特定方向换行&lt;/strong&gt; &lt;code&gt;ftxui::flexbox&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;使用 &lt;code&gt;ftxui::hbox&lt;/code&gt; &lt;code&gt;ftxui::vbox&lt;/code&gt; &lt;code&gt;ftxui::filler&lt;/code&gt; 示例:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://example.org/Image/FTXUI%20Self-Study%20Guide/Layout%20Demo.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/Image/FTXUI%20Self-Study%20Guide/Layout%20Demo.png&#34;
 	
 	
 	
@@ -814,7 +814,7 @@ O
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt; 
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://example.org/Image/FTXUI%20Self-Study%20Guide/Table%20Demo.png&#34;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/Image/FTXUI%20Self-Study%20Guide/Table%20Demo.png&#34;
 	
 	
 	
@@ -837,7 +837,7 @@ O
     &lt;/svg&gt;&lt;/span&gt;
     
 &lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://example.org/Image/FTXUI%20Self-Study%20Guide/Canvas%20Demo.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/Image/FTXUI%20Self-Study%20Guide/Canvas%20Demo.png&#34;
 	
 	
 	
@@ -851,10 +851,10 @@ O
         </item>
         <item>
         <title>FTXUI Screen 模块</title>
-        <link>https://example.org/post/programmingtechnology/ftxui-self-study-guide/ftxui-screen/</link>
+        <link>http://localhost:1313/post/programmingtechnology/ftxui-self-study-guide/ftxui-screen/</link>
         <pubDate>Wed, 27 Aug 2025 21:35:00 +0800</pubDate>
         
-        <guid>https://example.org/post/programmingtechnology/ftxui-self-study-guide/ftxui-screen/</guid>
+        <guid>http://localhost:1313/post/programmingtechnology/ftxui-self-study-guide/ftxui-screen/</guid>
         <description>&lt;p&gt;&lt;code&gt;ftxui::screen&lt;/code&gt; 模块是 FTXUI 框架的底层核心，它可以独立使用，但主要设计用于与 &lt;code&gt;ftxui::dom&lt;/code&gt; 和 &lt;code&gt;ftxui::component&lt;/code&gt; 模块一起使用&lt;/p&gt;
 &lt;h2 id=&#34;ftxuiscreen&#34;&gt;FTXUI::Screen
 &lt;/h2&gt;&lt;p&gt;&lt;code&gt;ftxui::Screen&lt;/code&gt; 类表示一个二维的样式化字符网格，可以渲染到终端，它提供了创建屏幕，访问像素和渲染元素的方法。&lt;/p&gt;
@@ -1000,10 +1000,10 @@ O
         </item>
         <item>
         <title>FTXUI 安装</title>
-        <link>https://example.org/post/programmingtechnology/ftxui-self-study-guide/ftxui-installation/</link>
+        <link>http://localhost:1313/post/programmingtechnology/ftxui-self-study-guide/ftxui-installation/</link>
         <pubDate>Wed, 27 Aug 2025 20:30:00 +0800</pubDate>
         
-        <guid>https://example.org/post/programmingtechnology/ftxui-self-study-guide/ftxui-installation/</guid>
+        <guid>http://localhost:1313/post/programmingtechnology/ftxui-self-study-guide/ftxui-installation/</guid>
         <description>&lt;p&gt;FTXUI 可以使用多种构建系统和包管理器集成到您的项目中&lt;/p&gt;
 &lt;h2 id=&#34;所支持的方式&#34;&gt;所支持的方式
 &lt;/h2&gt;&lt;ul&gt;
@@ -1201,11 +1201,11 @@ O
         </item>
         <item>
         <title>FTXUI 介绍</title>
-        <link>https://example.org/post/programmingtechnology/ftxui-self-study-guide/ftxui-introduction/</link>
+        <link>http://localhost:1313/post/programmingtechnology/ftxui-self-study-guide/ftxui-introduction/</link>
         <pubDate>Wed, 27 Aug 2025 20:00:00 +0800</pubDate>
         
-        <guid>https://example.org/post/programmingtechnology/ftxui-self-study-guide/ftxui-introduction/</guid>
-        <description>&lt;p&gt;&lt;img src=&#34;https://example.org/Image/FTXUI%20Self-Study%20Guide/FTXUI%20Demo.gif&#34;
+        <guid>http://localhost:1313/post/programmingtechnology/ftxui-self-study-guide/ftxui-introduction/</guid>
+        <description>&lt;p&gt;&lt;img src=&#34;http://localhost:1313/Image/FTXUI%20Self-Study%20Guide/FTXUI%20Demo.gif&#34;
 	
 	
 	
@@ -1260,10 +1260,10 @@ O
         </item>
         <item>
         <title>开发环境搭建</title>
-        <link>https://example.org/post/programmingtechnology/c&#43;&#43;-self-study-guide/development-environment/</link>
+        <link>http://localhost:1313/post/programmingtechnology/c&#43;&#43;-self-study-guide/development-environment/</link>
         <pubDate>Sun, 17 Aug 2025 16:30:00 +0800</pubDate>
         
-        <guid>https://example.org/post/programmingtechnology/c&#43;&#43;-self-study-guide/development-environment/</guid>
+        <guid>http://localhost:1313/post/programmingtechnology/c&#43;&#43;-self-study-guide/development-environment/</guid>
         <description>&lt;h2 id=&#34;什么是开发环境&#34;&gt;什么是开发环境？
 &lt;/h2&gt;&lt;p&gt;在计算机编程领域，开发环境（Development Environment）是指一套允许程序员编写、编译、调试和运行代码的工具和设置的集合。它不仅仅是您编写代码的文本编辑器，更是一个集成了编译器、调试器、构建系统、版本控制工具等多种组件的综合性平台。没有一个完整的开发环境，您所编写的代码将仅仅是普通的文本文件，无法被计算机理解和执行。&lt;/p&gt;
 &lt;p&gt;一个典型的 C++ 开发环境通常包括以下核心组件：&lt;/p&gt;

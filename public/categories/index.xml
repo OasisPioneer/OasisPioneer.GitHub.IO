@@ -2,65 +2,65 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>所有分类 on Styx Blog</title>
-        <link>https://example.org/categories/</link>
+        <link>http://localhost:1313/categories/</link>
         <description>Recent content in 所有分类 on Styx Blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <lastBuildDate>Mon, 01 Sep 2025 13:50:00 +0800</lastBuildDate><atom:link href="https://example.org/categories/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Mon, 01 Sep 2025 13:50:00 +0800</lastBuildDate><atom:link href="http://localhost:1313/categories/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>FTXUI 自学指南</title>
-        <link>https://example.org/categories/ftxui-%E8%87%AA%E5%AD%A6%E6%8C%87%E5%8D%97/</link>
+        <link>http://localhost:1313/categories/ftxui-%E8%87%AA%E5%AD%A6%E6%8C%87%E5%8D%97/</link>
         <pubDate>Mon, 01 Sep 2025 13:50:00 +0800</pubDate>
         
-        <guid>https://example.org/categories/ftxui-%E8%87%AA%E5%AD%A6%E6%8C%87%E5%8D%97/</guid>
-        <description>&lt;img src="https://example.org/Image/Cover/hacker.jpg" alt="Featured image of post FTXUI 自学指南" /&gt;</description>
+        <guid>http://localhost:1313/categories/ftxui-%E8%87%AA%E5%AD%A6%E6%8C%87%E5%8D%97/</guid>
+        <description>&lt;img src="http://localhost:1313/Image/Cover/hacker.jpg" alt="Featured image of post FTXUI 自学指南" /&gt;</description>
         </item>
         <item>
         <title>开源脚本</title>
-        <link>https://example.org/categories/%E5%BC%80%E6%BA%90%E8%84%9A%E6%9C%AC/</link>
+        <link>http://localhost:1313/categories/%E5%BC%80%E6%BA%90%E8%84%9A%E6%9C%AC/</link>
         <pubDate>Mon, 25 Aug 2025 18:19:08 +0800</pubDate>
         
-        <guid>https://example.org/categories/%E5%BC%80%E6%BA%90%E8%84%9A%E6%9C%AC/</guid>
-        <description>&lt;img src="https://example.org/Image/Cover/Hacker.png" alt="Featured image of post 开源脚本" /&gt;</description>
+        <guid>http://localhost:1313/categories/%E5%BC%80%E6%BA%90%E8%84%9A%E6%9C%AC/</guid>
+        <description>&lt;img src="http://localhost:1313/Image/Cover/Hacker.png" alt="Featured image of post 开源脚本" /&gt;</description>
         </item>
         <item>
         <title>开发工具</title>
-        <link>https://example.org/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/</link>
+        <link>http://localhost:1313/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/</link>
         <pubDate>Fri, 22 Aug 2025 15:15:00 +0800</pubDate>
         
-        <guid>https://example.org/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/</guid>
-        <description>&lt;img src="https://example.org/Image/Cover/Computer.png" alt="Featured image of post 开发工具" /&gt;</description>
+        <guid>http://localhost:1313/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/</guid>
+        <description>&lt;img src="http://localhost:1313/Image/Cover/Computer.png" alt="Featured image of post 开发工具" /&gt;</description>
         </item>
         <item>
         <title>古典密码</title>
-        <link>https://example.org/categories/%E5%8F%A4%E5%85%B8%E5%AF%86%E7%A0%81/</link>
+        <link>http://localhost:1313/categories/%E5%8F%A4%E5%85%B8%E5%AF%86%E7%A0%81/</link>
         <pubDate>Thu, 21 Aug 2025 17:37:00 +0800</pubDate>
         
-        <guid>https://example.org/categories/%E5%8F%A4%E5%85%B8%E5%AF%86%E7%A0%81/</guid>
-        <description>&lt;img src="https://example.org/Image/Cover/Robot.jpeg" alt="Featured image of post 古典密码" /&gt;</description>
+        <guid>http://localhost:1313/categories/%E5%8F%A4%E5%85%B8%E5%AF%86%E7%A0%81/</guid>
+        <description>&lt;img src="http://localhost:1313/Image/Cover/Robot.jpeg" alt="Featured image of post 古典密码" /&gt;</description>
         </item>
         <item>
         <title>开发文档</title>
-        <link>https://example.org/categories/%E5%BC%80%E5%8F%91%E6%96%87%E6%A1%A3/</link>
+        <link>http://localhost:1313/categories/%E5%BC%80%E5%8F%91%E6%96%87%E6%A1%A3/</link>
         <pubDate>Mon, 18 Aug 2025 18:26:08 +0800</pubDate>
         
-        <guid>https://example.org/categories/%E5%BC%80%E5%8F%91%E6%96%87%E6%A1%A3/</guid>
-        <description>&lt;img src="https://example.org/Image/Cover/Programmer.jpg" alt="Featured image of post 开发文档" /&gt;</description>
+        <guid>http://localhost:1313/categories/%E5%BC%80%E5%8F%91%E6%96%87%E6%A1%A3/</guid>
+        <description>&lt;img src="http://localhost:1313/Image/Cover/Programmer.jpg" alt="Featured image of post 开发文档" /&gt;</description>
         </item>
         <item>
         <title>C&#43;&#43; 自学指南</title>
-        <link>https://example.org/categories/c&#43;&#43;-%E8%87%AA%E5%AD%A6%E6%8C%87%E5%8D%97/</link>
+        <link>http://localhost:1313/categories/c&#43;&#43;-%E8%87%AA%E5%AD%A6%E6%8C%87%E5%8D%97/</link>
         <pubDate>Sun, 17 Aug 2025 16:30:00 +0800</pubDate>
         
-        <guid>https://example.org/categories/c&#43;&#43;-%E8%87%AA%E5%AD%A6%E6%8C%87%E5%8D%97/</guid>
-        <description>&lt;img src="https://example.org/Image/Cover/ISO_C&#43;&#43;_LOGO.svg" alt="Featured image of post C&#43;&#43; 自学指南" /&gt;</description>
+        <guid>http://localhost:1313/categories/c&#43;&#43;-%E8%87%AA%E5%AD%A6%E6%8C%87%E5%8D%97/</guid>
+        <description>&lt;img src="http://localhost:1313/Image/Cover/ISO_C&#43;&#43;_LOGO.svg" alt="Featured image of post C&#43;&#43; 自学指南" /&gt;</description>
         </item>
         <item>
         <title>加密货币</title>
-        <link>https://example.org/categories/%E5%8A%A0%E5%AF%86%E8%B4%A7%E5%B8%81/</link>
+        <link>http://localhost:1313/categories/%E5%8A%A0%E5%AF%86%E8%B4%A7%E5%B8%81/</link>
         <pubDate>Thu, 14 Aug 2025 17:10:00 +0800</pubDate>
         
-        <guid>https://example.org/categories/%E5%8A%A0%E5%AF%86%E8%B4%A7%E5%B8%81/</guid>
-        <description>&lt;img src="https://example.org/Image/Cover/Cryptocurrency.jpg" alt="Featured image of post 加密货币" /&gt;</description>
+        <guid>http://localhost:1313/categories/%E5%8A%A0%E5%AF%86%E8%B4%A7%E5%B8%81/</guid>
+        <description>&lt;img src="http://localhost:1313/Image/Cover/Cryptocurrency.jpg" alt="Featured image of post 加密货币" /&gt;</description>
         </item>
         
     </channel>

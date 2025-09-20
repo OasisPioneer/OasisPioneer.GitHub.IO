@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>C&#43;&#43; 自学指南 on Styx Blog</title>
-        <link>https://example.org/categories/c&#43;&#43;-%E8%87%AA%E5%AD%A6%E6%8C%87%E5%8D%97/</link>
+        <link>http://localhost:1313/categories/c&#43;&#43;-%E8%87%AA%E5%AD%A6%E6%8C%87%E5%8D%97/</link>
         <description>Recent content in C&#43;&#43; 自学指南 on Styx Blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <lastBuildDate>Sun, 17 Aug 2025 16:30:00 +0800</lastBuildDate><atom:link href="https://example.org/categories/c++-%E8%87%AA%E5%AD%A6%E6%8C%87%E5%8D%97/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sun, 17 Aug 2025 16:30:00 +0800</lastBuildDate><atom:link href="http://localhost:1313/categories/c++-%E8%87%AA%E5%AD%A6%E6%8C%87%E5%8D%97/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>开发环境搭建</title>
-        <link>https://example.org/post/programmingtechnology/c&#43;&#43;-self-study-guide/development-environment/</link>
+        <link>http://localhost:1313/post/programmingtechnology/c&#43;&#43;-self-study-guide/development-environment/</link>
         <pubDate>Sun, 17 Aug 2025 16:30:00 +0800</pubDate>
         
-        <guid>https://example.org/post/programmingtechnology/c&#43;&#43;-self-study-guide/development-environment/</guid>
+        <guid>http://localhost:1313/post/programmingtechnology/c&#43;&#43;-self-study-guide/development-environment/</guid>
         <description>&lt;h2 id=&#34;什么是开发环境&#34;&gt;什么是开发环境？
 &lt;/h2&gt;&lt;p&gt;在计算机编程领域，开发环境（Development Environment）是指一套允许程序员编写、编译、调试和运行代码的工具和设置的集合。它不仅仅是您编写代码的文本编辑器，更是一个集成了编译器、调试器、构建系统、版本控制工具等多种组件的综合性平台。没有一个完整的开发环境，您所编写的代码将仅仅是普通的文本文件，无法被计算机理解和执行。&lt;/p&gt;
 &lt;p&gt;一个典型的 C++ 开发环境通常包括以下核心组件：&lt;/p&gt;

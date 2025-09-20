@@ -2,144 +2,144 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Tags on Styx Blog</title>
-        <link>https://example.org/tags/</link>
+        <link>http://localhost:1313/tags/</link>
         <description>Recent content in Tags on Styx Blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <lastBuildDate>Mon, 01 Sep 2025 13:50:00 +0800</lastBuildDate><atom:link href="https://example.org/tags/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Mon, 01 Sep 2025 13:50:00 +0800</lastBuildDate><atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>C&#43;&#43;</title>
-        <link>https://example.org/tags/c&#43;&#43;/</link>
+        <link>http://localhost:1313/tags/c&#43;&#43;/</link>
         <pubDate>Mon, 01 Sep 2025 13:50:00 +0800</pubDate>
         
-        <guid>https://example.org/tags/c&#43;&#43;/</guid>
+        <guid>http://localhost:1313/tags/c&#43;&#43;/</guid>
         <description></description>
         </item>
         <item>
         <title>FTXUI Self-Study Guide</title>
-        <link>https://example.org/tags/ftxui-self-study-guide/</link>
+        <link>http://localhost:1313/tags/ftxui-self-study-guide/</link>
         <pubDate>Mon, 01 Sep 2025 13:50:00 +0800</pubDate>
         
-        <guid>https://example.org/tags/ftxui-self-study-guide/</guid>
+        <guid>http://localhost:1313/tags/ftxui-self-study-guide/</guid>
         <description></description>
         </item>
         <item>
         <title>TUI</title>
-        <link>https://example.org/tags/tui/</link>
+        <link>http://localhost:1313/tags/tui/</link>
         <pubDate>Mon, 01 Sep 2025 13:50:00 +0800</pubDate>
         
-        <guid>https://example.org/tags/tui/</guid>
+        <guid>http://localhost:1313/tags/tui/</guid>
         <description></description>
         </item>
         <item>
         <title>编程教程</title>
-        <link>https://example.org/tags/%E7%BC%96%E7%A8%8B%E6%95%99%E7%A8%8B/</link>
+        <link>http://localhost:1313/tags/%E7%BC%96%E7%A8%8B%E6%95%99%E7%A8%8B/</link>
         <pubDate>Mon, 01 Sep 2025 13:50:00 +0800</pubDate>
         
-        <guid>https://example.org/tags/%E7%BC%96%E7%A8%8B%E6%95%99%E7%A8%8B/</guid>
+        <guid>http://localhost:1313/tags/%E7%BC%96%E7%A8%8B%E6%95%99%E7%A8%8B/</guid>
         <description></description>
         </item>
         <item>
         <title>HTTP/HTTPS</title>
-        <link>https://example.org/tags/http/https/</link>
+        <link>http://localhost:1313/tags/http/https/</link>
         <pubDate>Mon, 25 Aug 2025 18:19:08 +0800</pubDate>
         
-        <guid>https://example.org/tags/http/https/</guid>
+        <guid>http://localhost:1313/tags/http/https/</guid>
         <description></description>
         </item>
         <item>
         <title>Python</title>
-        <link>https://example.org/tags/python/</link>
+        <link>http://localhost:1313/tags/python/</link>
         <pubDate>Mon, 25 Aug 2025 18:19:08 +0800</pubDate>
         
-        <guid>https://example.org/tags/python/</guid>
+        <guid>http://localhost:1313/tags/python/</guid>
         <description></description>
         </item>
         <item>
         <title>爬虫</title>
-        <link>https://example.org/tags/%E7%88%AC%E8%99%AB/</link>
+        <link>http://localhost:1313/tags/%E7%88%AC%E8%99%AB/</link>
         <pubDate>Mon, 25 Aug 2025 18:19:08 +0800</pubDate>
         
-        <guid>https://example.org/tags/%E7%88%AC%E8%99%AB/</guid>
+        <guid>http://localhost:1313/tags/%E7%88%AC%E8%99%AB/</guid>
         <description></description>
         </item>
         <item>
         <title>安装配置</title>
-        <link>https://example.org/tags/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/</link>
+        <link>http://localhost:1313/tags/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/</link>
         <pubDate>Fri, 22 Aug 2025 15:15:00 +0800</pubDate>
         
-        <guid>https://example.org/tags/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/</guid>
+        <guid>http://localhost:1313/tags/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/</guid>
         <description></description>
         </item>
         <item>
         <title>开发工具</title>
-        <link>https://example.org/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/</link>
+        <link>http://localhost:1313/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/</link>
         <pubDate>Fri, 22 Aug 2025 15:15:00 +0800</pubDate>
         
-        <guid>https://example.org/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/</guid>
+        <guid>http://localhost:1313/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/</guid>
         <description></description>
         </item>
         <item>
         <title>古典密码学</title>
-        <link>https://example.org/tags/%E5%8F%A4%E5%85%B8%E5%AF%86%E7%A0%81%E5%AD%A6/</link>
+        <link>http://localhost:1313/tags/%E5%8F%A4%E5%85%B8%E5%AF%86%E7%A0%81%E5%AD%A6/</link>
         <pubDate>Thu, 21 Aug 2025 17:37:00 +0800</pubDate>
         
-        <guid>https://example.org/tags/%E5%8F%A4%E5%85%B8%E5%AF%86%E7%A0%81%E5%AD%A6/</guid>
+        <guid>http://localhost:1313/tags/%E5%8F%A4%E5%85%B8%E5%AF%86%E7%A0%81%E5%AD%A6/</guid>
         <description></description>
         </item>
         <item>
         <title>API</title>
-        <link>https://example.org/tags/api/</link>
+        <link>http://localhost:1313/tags/api/</link>
         <pubDate>Mon, 18 Aug 2025 18:26:08 +0800</pubDate>
         
-        <guid>https://example.org/tags/api/</guid>
+        <guid>http://localhost:1313/tags/api/</guid>
         <description></description>
         </item>
         <item>
         <title>Docs</title>
-        <link>https://example.org/tags/docs/</link>
+        <link>http://localhost:1313/tags/docs/</link>
         <pubDate>Mon, 18 Aug 2025 18:26:08 +0800</pubDate>
         
-        <guid>https://example.org/tags/docs/</guid>
+        <guid>http://localhost:1313/tags/docs/</guid>
         <description></description>
         </item>
         <item>
         <title>Telegram Bot API</title>
-        <link>https://example.org/tags/telegram-bot-api/</link>
+        <link>http://localhost:1313/tags/telegram-bot-api/</link>
         <pubDate>Mon, 18 Aug 2025 18:26:08 +0800</pubDate>
         
-        <guid>https://example.org/tags/telegram-bot-api/</guid>
+        <guid>http://localhost:1313/tags/telegram-bot-api/</guid>
         <description></description>
         </item>
         <item>
         <title>C&#43;&#43; Self-Study Guide</title>
-        <link>https://example.org/tags/c&#43;&#43;-self-study-guide/</link>
+        <link>http://localhost:1313/tags/c&#43;&#43;-self-study-guide/</link>
         <pubDate>Sun, 17 Aug 2025 16:30:00 +0800</pubDate>
         
-        <guid>https://example.org/tags/c&#43;&#43;-self-study-guide/</guid>
+        <guid>http://localhost:1313/tags/c&#43;&#43;-self-study-guide/</guid>
         <description></description>
         </item>
         <item>
         <title>开发环境</title>
-        <link>https://example.org/tags/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/</link>
+        <link>http://localhost:1313/tags/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/</link>
         <pubDate>Sun, 17 Aug 2025 16:30:00 +0800</pubDate>
         
-        <guid>https://example.org/tags/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/</guid>
+        <guid>http://localhost:1313/tags/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/</guid>
         <description></description>
         </item>
         <item>
         <title>加密货币</title>
-        <link>https://example.org/tags/%E5%8A%A0%E5%AF%86%E8%B4%A7%E5%B8%81/</link>
+        <link>http://localhost:1313/tags/%E5%8A%A0%E5%AF%86%E8%B4%A7%E5%B8%81/</link>
         <pubDate>Thu, 14 Aug 2025 17:10:00 +0800</pubDate>
         
-        <guid>https://example.org/tags/%E5%8A%A0%E5%AF%86%E8%B4%A7%E5%B8%81/</guid>
+        <guid>http://localhost:1313/tags/%E5%8A%A0%E5%AF%86%E8%B4%A7%E5%B8%81/</guid>
         <description></description>
         </item>
         <item>
         <title>钱包</title>
-        <link>https://example.org/tags/%E9%92%B1%E5%8C%85/</link>
+        <link>http://localhost:1313/tags/%E9%92%B1%E5%8C%85/</link>
         <pubDate>Thu, 14 Aug 2025 17:10:00 +0800</pubDate>
         
-        <guid>https://example.org/tags/%E9%92%B1%E5%8C%85/</guid>
+        <guid>http://localhost:1313/tags/%E9%92%B1%E5%8C%85/</guid>
         <description></description>
         </item>
         

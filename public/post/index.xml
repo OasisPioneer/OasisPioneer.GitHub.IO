@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Posts on Styx Blog</title>
-        <link>https://example.org/post/</link>
+        <link>http://localhost:1313/post/</link>
         <description>Recent content in Posts on Styx Blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <lastBuildDate>Mon, 01 Sep 2025 13:50:00 +0800</lastBuildDate><atom:link href="https://example.org/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Mon, 01 Sep 2025 13:50:00 +0800</lastBuildDate><atom:link href="http://localhost:1313/post/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>FTXUI Component 模块</title>
-        <link>https://example.org/post/programmingtechnology/ftxui-self-study-guide/ftxui-component/</link>
+        <link>http://localhost:1313/post/programmingtechnology/ftxui-self-study-guide/ftxui-component/</link>
         <pubDate>Mon, 01 Sep 2025 13:50:00 +0800</pubDate>
         
-        <guid>https://example.org/post/programmingtechnology/ftxui-self-study-guide/ftxui-component/</guid>
+        <guid>http://localhost:1313/post/programmingtechnology/ftxui-self-study-guide/ftxui-component/</guid>
         <description>&lt;p&gt;&lt;code&gt;ftxui::Component&lt;/code&gt; 模块定义了生成交互式组件的逻辑，这些组件可以响应用户发起的事件(鼠标、键盘)。&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;ftxui::ScreenInteractive&lt;/code&gt; 定义了一个渲染组件的主循环。
 &lt;code&gt;ftxui::Component&lt;/code&gt; 是 &lt;code&gt;ftxui::ComponentBase&lt;/code&gt; 的共享指针。后者定义了:&lt;/p&gt;
@@ -35,7 +35,7 @@
     &lt;/svg&gt;&lt;/span&gt;
     
 &lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://example.org/Image/FTXUI%20Self-Study%20Guide/Input%20Demo.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/Image/FTXUI%20Self-Study%20Guide/Input%20Demo.png&#34;
 	
 	
 	
@@ -249,10 +249,10 @@
         </item>
         <item>
         <title>FTXUI Dom 模块</title>
-        <link>https://example.org/post/programmingtechnology/ftxui-self-study-guide/ftxui-dom/</link>
+        <link>http://localhost:1313/post/programmingtechnology/ftxui-self-study-guide/ftxui-dom/</link>
         <pubDate>Sat, 30 Aug 2025 17:46:00 +0800</pubDate>
         
-        <guid>https://example.org/post/programmingtechnology/ftxui-self-study-guide/ftxui-dom/</guid>
+        <guid>http://localhost:1313/post/programmingtechnology/ftxui-self-study-guide/ftxui-dom/</guid>
         <description>&lt;p&gt;该模块定义了一组层级化的 &lt;code&gt;ftxui::Element&lt;/code&gt; 。一个元素（Element）可以管理布局，并且能够响应终端尺寸的变化。请注意以下示例，其中该模块被用来通过若干操作符创建一个简单的布局:&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;示例&lt;/strong&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-cpp&#34; data-lang=&#34;cpp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;namespace&lt;/span&gt; ftxui {
@@ -504,7 +504,7 @@ O
 &lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;paragraph&#34;&gt;Paragraph
 &lt;/h2&gt;&lt;p&gt;类似于 &lt;code&gt;ftxui::text&lt;/code&gt; 但单词会根据容器的宽度自动换行到多行。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-cpp&#34; data-lang=&#34;cpp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;paragraph(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;A very long text&amp;#34;&lt;/span&gt;);
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://example.org/Image/FTXUI%20Self-Study%20Guide/Paragraph%20Demo.gif&#34;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/Image/FTXUI%20Self-Study%20Guide/Paragraph%20Demo.gif&#34;
 	
 	
 	
@@ -611,7 +611,7 @@ O
 &lt;/h2&gt;&lt;p&gt;在终端显示彩色文本和彩色背景，FTXUI 支持所有调色板:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-cpp&#34; data-lang=&#34;cpp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Decorator &lt;span style=&#34;color:#a6e22e&#34;&gt;color&lt;/span&gt;(Color);
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Decorator &lt;span style=&#34;color:#a6e22e&#34;&gt;bgcolor&lt;/span&gt;(Color);
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://example.org/Image/FTXUI%20Self-Study%20Guide/Colors%20Demo.png&#34;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/Image/FTXUI%20Self-Study%20Guide/Colors%20Demo.png&#34;
 	
 	
 	
@@ -716,7 +716,7 @@ O
 &lt;li&gt;&lt;strong&gt;沿着特定方向换行&lt;/strong&gt; &lt;code&gt;ftxui::flexbox&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;使用 &lt;code&gt;ftxui::hbox&lt;/code&gt; &lt;code&gt;ftxui::vbox&lt;/code&gt; &lt;code&gt;ftxui::filler&lt;/code&gt; 示例:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://example.org/Image/FTXUI%20Self-Study%20Guide/Layout%20Demo.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/Image/FTXUI%20Self-Study%20Guide/Layout%20Demo.png&#34;
 	
 	
 	
@@ -814,7 +814,7 @@ O
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt; 
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://example.org/Image/FTXUI%20Self-Study%20Guide/Table%20Demo.png&#34;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/Image/FTXUI%20Self-Study%20Guide/Table%20Demo.png&#34;
 	
 	
 	
@@ -837,7 +837,7 @@ O
     &lt;/svg&gt;&lt;/span&gt;
     
 &lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://example.org/Image/FTXUI%20Self-Study%20Guide/Canvas%20Demo.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/Image/FTXUI%20Self-Study%20Guide/Canvas%20Demo.png&#34;
 	
 	
 	
@@ -851,10 +851,10 @@ O
         </item>
         <item>
         <title>FTXUI Screen 模块</title>
-        <link>https://example.org/post/programmingtechnology/ftxui-self-study-guide/ftxui-screen/</link>
+        <link>http://localhost:1313/post/programmingtechnology/ftxui-self-study-guide/ftxui-screen/</link>
         <pubDate>Wed, 27 Aug 2025 21:35:00 +0800</pubDate>
         
-        <guid>https://example.org/post/programmingtechnology/ftxui-self-study-guide/ftxui-screen/</guid>
+        <guid>http://localhost:1313/post/programmingtechnology/ftxui-self-study-guide/ftxui-screen/</guid>
         <description>&lt;p&gt;&lt;code&gt;ftxui::screen&lt;/code&gt; 模块是 FTXUI 框架的底层核心，它可以独立使用，但主要设计用于与 &lt;code&gt;ftxui::dom&lt;/code&gt; 和 &lt;code&gt;ftxui::component&lt;/code&gt; 模块一起使用&lt;/p&gt;
 &lt;h2 id=&#34;ftxuiscreen&#34;&gt;FTXUI::Screen
 &lt;/h2&gt;&lt;p&gt;&lt;code&gt;ftxui::Screen&lt;/code&gt; 类表示一个二维的样式化字符网格，可以渲染到终端，它提供了创建屏幕，访问像素和渲染元素的方法。&lt;/p&gt;
@@ -1000,10 +1000,10 @@ O
         </item>
         <item>
         <title>FTXUI 安装</title>
-        <link>https://example.org/post/programmingtechnology/ftxui-self-study-guide/ftxui-installation/</link>
+        <link>http://localhost:1313/post/programmingtechnology/ftxui-self-study-guide/ftxui-installation/</link>
         <pubDate>Wed, 27 Aug 2025 20:30:00 +0800</pubDate>
         
-        <guid>https://example.org/post/programmingtechnology/ftxui-self-study-guide/ftxui-installation/</guid>
+        <guid>http://localhost:1313/post/programmingtechnology/ftxui-self-study-guide/ftxui-installation/</guid>
         <description>&lt;p&gt;FTXUI 可以使用多种构建系统和包管理器集成到您的项目中&lt;/p&gt;
 &lt;h2 id=&#34;所支持的方式&#34;&gt;所支持的方式
 &lt;/h2&gt;&lt;ul&gt;
@@ -1201,11 +1201,11 @@ O
         </item>
         <item>
         <title>FTXUI 介绍</title>
-        <link>https://example.org/post/programmingtechnology/ftxui-self-study-guide/ftxui-introduction/</link>
+        <link>http://localhost:1313/post/programmingtechnology/ftxui-self-study-guide/ftxui-introduction/</link>
         <pubDate>Wed, 27 Aug 2025 20:00:00 +0800</pubDate>
         
-        <guid>https://example.org/post/programmingtechnology/ftxui-self-study-guide/ftxui-introduction/</guid>
-        <description>&lt;p&gt;&lt;img src=&#34;https://example.org/Image/FTXUI%20Self-Study%20Guide/FTXUI%20Demo.gif&#34;
+        <guid>http://localhost:1313/post/programmingtechnology/ftxui-self-study-guide/ftxui-introduction/</guid>
+        <description>&lt;p&gt;&lt;img src=&#34;http://localhost:1313/Image/FTXUI%20Self-Study%20Guide/FTXUI%20Demo.gif&#34;
 	
 	
 	
@@ -1260,10 +1260,10 @@ O
         </item>
         <item>
         <title>[爬虫脚本] 基于Python的网站爬虫实战：全自动下载优品PPT模板</title>
-        <link>https://example.org/post/programmingtechnology/opensourcescripts/premiumproductsppt/</link>
+        <link>http://localhost:1313/post/programmingtechnology/opensourcescripts/premiumproductsppt/</link>
         <pubDate>Mon, 25 Aug 2025 18:19:08 +0800</pubDate>
         
-        <guid>https://example.org/post/programmingtechnology/opensourcescripts/premiumproductsppt/</guid>
+        <guid>http://localhost:1313/post/programmingtechnology/opensourcescripts/premiumproductsppt/</guid>
         <description>&lt;h2 id=&#34;项目背景&#34;&gt;项目背景
 &lt;/h2&gt;&lt;p&gt;在许多工作与学习场景中，高质量的PPT模板是提升演示文稿专业度的关键资源。“优品PPT”（ypppt.com）是一个提供大量免费、优质PPT模板的公开网站。然而，当需要批量获取或按分类归档这些资源时，手动下载的方式效率低下且过程繁琐。&lt;/p&gt;
 &lt;p&gt;为了解决这一痛点，本文将通过一个完整的实战项目，演示如何利用Python构建一个自动化爬虫，实现对该网站PPT模板的批量下载和分类归档。&lt;/p&gt;
@@ -1579,10 +1579,10 @@ O
         </item>
         <item>
         <title>Emacs</title>
-        <link>https://example.org/post/developmenttools/emacs/</link>
+        <link>http://localhost:1313/post/developmenttools/emacs/</link>
         <pubDate>Fri, 22 Aug 2025 15:15:00 +0800</pubDate>
         
-        <guid>https://example.org/post/developmenttools/emacs/</guid>
+        <guid>http://localhost:1313/post/developmenttools/emacs/</guid>
         <description>&lt;h2 id=&#34;什么是-emacs&#34;&gt;什么是 Emacs
 &lt;/h2&gt;&lt;p&gt;Emacs 是一个功能极其强大的、可扩展的文本编辑器。&lt;/p&gt;
 &lt;p&gt;Emacs诞生于1970年代，由著名的计算机科学家理查德·斯托曼（Richard Stallman）创造。它是自由软件运动的标志性项目之一，对后来的很多软件开发理念产生了深远影响。&lt;/p&gt;
@@ -1604,7 +1604,7 @@ O
 &lt;/h2&gt;&lt;p&gt;以 Ubuntu/Debian 为例，按下快捷键 &lt;kbd&gt;CTRL&lt;/kbd&gt; + &lt;kbd&gt;ALT&lt;/kbd&gt; + &lt;kbd&gt;T&lt;/kbd&gt; 打开终端(控制台)，输入如下命令:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo apt-get update					&lt;span style=&#34;color:#75715e&#34;&gt;# 更新本地软件列表&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo apt-get install emacs 			&lt;span style=&#34;color:#75715e&#34;&gt;# 安装 Emacs&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://example.org/Image/DevelopmentTools/InstallationProcess/Emacs/Email%20Configuration.png&#34;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/Image/DevelopmentTools/InstallationProcess/Emacs/Email%20Configuration.png&#34;
 	
 	
 	
@@ -1626,10 +1626,10 @@ O
         </item>
         <item>
         <title>ADFGVX密码</title>
-        <link>https://example.org/post/programmingtechnology/classicalcryptography/adfgvx/</link>
+        <link>http://localhost:1313/post/programmingtechnology/classicalcryptography/adfgvx/</link>
         <pubDate>Thu, 21 Aug 2025 17:37:00 +0800</pubDate>
         
-        <guid>https://example.org/post/programmingtechnology/classicalcryptography/adfgvx/</guid>
+        <guid>http://localhost:1313/post/programmingtechnology/classicalcryptography/adfgvx/</guid>
         <description>&lt;h2 id=&#34;什么是adfgvx密码&#34;&gt;什么是ADFGVX密码？
 &lt;/h2&gt;&lt;p&gt;ADFGVX密码是一种在第一次世界大战期间由德国陆军使用的&lt;strong&gt;分段密码（Fractionating Cipher）&lt;/strong&gt;，它结合了**替换（Substitution）&lt;strong&gt;和&lt;/strong&gt;换位（Transposition）**两种加密方式。这种密码由德国军官弗里茨·内贝尔（Fritz Nebel）于1918年发明，最初的版本是ADFGX密码，后来为了增加数字的加密能力，加入了字母V，演变为ADFGVX密码。&lt;/p&gt;
 &lt;p&gt;ADFGVX密码的名称来源于其密文使用的六个字母：A、D、F、G、V、X。选择这些字母是为了避免在摩尔斯电码传输时出现混淆，因为它们的摩尔斯电码差异较大。&lt;/p&gt;
@@ -2103,10 +2103,10 @@ A (DC) E (GD) G (AG) M (AG) N (DI) R (GD)&lt;/p&gt;
         </item>
         <item>
         <title>Telegram Bot API</title>
-        <link>https://example.org/post/programmingtechnology/developmentdocumentation/telegrambotapi/</link>
+        <link>http://localhost:1313/post/programmingtechnology/developmentdocumentation/telegrambotapi/</link>
         <pubDate>Mon, 18 Aug 2025 18:26:08 +0800</pubDate>
         
-        <guid>https://example.org/post/programmingtechnology/developmentdocumentation/telegrambotapi/</guid>
+        <guid>http://localhost:1313/post/programmingtechnology/developmentdocumentation/telegrambotapi/</guid>
         <description>&lt;h2 id=&#34;创建-telegram-bot&#34;&gt;创建 Telegram Bot
 &lt;/h2&gt;&lt;ol&gt;
 &lt;li&gt;在 Telegram 中搜索 &lt;a class=&#34;link&#34; href=&#34;https://t.me/BotFather&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
@@ -2390,10 +2390,10 @@ A (DC) E (GD) G (AG) M (AG) N (DI) R (GD)&lt;/p&gt;
         </item>
         <item>
         <title>开发环境搭建</title>
-        <link>https://example.org/post/programmingtechnology/c&#43;&#43;-self-study-guide/development-environment/</link>
+        <link>http://localhost:1313/post/programmingtechnology/c&#43;&#43;-self-study-guide/development-environment/</link>
         <pubDate>Sun, 17 Aug 2025 16:30:00 +0800</pubDate>
         
-        <guid>https://example.org/post/programmingtechnology/c&#43;&#43;-self-study-guide/development-environment/</guid>
+        <guid>http://localhost:1313/post/programmingtechnology/c&#43;&#43;-self-study-guide/development-environment/</guid>
         <description>&lt;h2 id=&#34;什么是开发环境&#34;&gt;什么是开发环境？
 &lt;/h2&gt;&lt;p&gt;在计算机编程领域，开发环境（Development Environment）是指一套允许程序员编写、编译、调试和运行代码的工具和设置的集合。它不仅仅是您编写代码的文本编辑器，更是一个集成了编译器、调试器、构建系统、版本控制工具等多种组件的综合性平台。没有一个完整的开发环境，您所编写的代码将仅仅是普通的文本文件，无法被计算机理解和执行。&lt;/p&gt;
 &lt;p&gt;一个典型的 C++ 开发环境通常包括以下核心组件：&lt;/p&gt;
@@ -2677,10 +2677,10 @@ CMake是一个跨平台的构建系统生成器。它不直接构建项目，而
         </item>
         <item>
         <title>波利比奥斯方阵密码</title>
-        <link>https://example.org/post/programmingtechnology/classicalcryptography/polybius/</link>
+        <link>http://localhost:1313/post/programmingtechnology/classicalcryptography/polybius/</link>
         <pubDate>Thu, 14 Aug 2025 17:34:00 +0800</pubDate>
         
-        <guid>https://example.org/post/programmingtechnology/classicalcryptography/polybius/</guid>
+        <guid>http://localhost:1313/post/programmingtechnology/classicalcryptography/polybius/</guid>
         <description>&lt;h2 id=&#34;什么是波利比奥斯方阵密码&#34;&gt;什么是波利比奥斯方阵密码？
 &lt;/h2&gt;&lt;p&gt;波利比奥斯方阵密码（Polybius Square Cipher），又称棋盘密码，是一种&lt;strong&gt;替换密码（Substitution Cipher）&lt;/strong&gt;，由古希腊历史学家波利比奥斯（Polybius）在公元前2世纪发明。它将字母映射到数字对，从而实现加密。这种密码最初是为了通过火炬信号进行远距离通信而设计的，每个字母通过其在方阵中的坐标来表示。&lt;/p&gt;
 &lt;p&gt;波利比奥斯方阵通常是一个5x5的网格，包含了25个英文字母。由于英文字母有26个，通常会将字母 &lt;code&gt;I&lt;/code&gt; 和 &lt;code&gt;J&lt;/code&gt; 合并处理，或者将 &lt;code&gt;K&lt;/code&gt; 替换为 &lt;code&gt;C&lt;/code&gt; 等，以适应25个格子的限制。每个字母由其所在的行号和列号组成的数字对来表示。&lt;/p&gt;
@@ -2977,10 +2977,10 @@ CMake是一个跨平台的构建系统生成器。它不直接构建项目，而
         </item>
         <item>
         <title>选择钱包</title>
-        <link>https://example.org/post/cryptocurrency/choosewallet/</link>
+        <link>http://localhost:1313/post/cryptocurrency/choosewallet/</link>
         <pubDate>Thu, 14 Aug 2025 17:10:00 +0800</pubDate>
         
-        <guid>https://example.org/post/cryptocurrency/choosewallet/</guid>
+        <guid>http://localhost:1313/post/cryptocurrency/choosewallet/</guid>
         <description>&lt;h2 id=&#34;前言为什么钱包选择至关重要&#34;&gt;前言：为什么钱包选择至关重要？
 &lt;/h2&gt;&lt;p&gt;在 Web3 和加密货币的世界里，你的钱包就是你的银行账户、身份凭证和保险箱。与传统银行不同，这里没有客服电话可以帮你重置密码或追回被盗资金。你必须成为自己资产的唯一守护者。因此，选择一个安全可靠的钱包，是进入这个领域最重要的一步。&lt;/p&gt;
 &lt;h2 id=&#34;钱包的核心热钱包-vs-冷钱包&#34;&gt;钱包的核心：热钱包 vs. 冷钱包
@@ -3115,10 +3115,10 @@ CMake是一个跨平台的构建系统生成器。它不直接构建项目，而
         </item>
         <item>
         <title>一次性密码本</title>
-        <link>https://example.org/post/programmingtechnology/classicalcryptography/one-timepad/</link>
+        <link>http://localhost:1313/post/programmingtechnology/classicalcryptography/one-timepad/</link>
         <pubDate>Wed, 13 Aug 2025 23:41:29 +0800</pubDate>
         
-        <guid>https://example.org/post/programmingtechnology/classicalcryptography/one-timepad/</guid>
+        <guid>http://localhost:1313/post/programmingtechnology/classicalcryptography/one-timepad/</guid>
         <description>&lt;h2 id=&#34;什么是一次性密码本&#34;&gt;什么是一次性密码本？
 &lt;/h2&gt;&lt;p&gt;一次性密码本（One-Time Pad, OTP），又称“一次一密”，是古典密码学中一种理论上被证明&lt;strong&gt;绝对安全&lt;/strong&gt;的加密算法。它由美国电话电报公司的吉尔伯特·维纳姆（Gilbert Vernam）于1917年发明，并由克劳德·香农（Claude Shannon）在信息论中证明了其不可破译性。&lt;/p&gt;
 &lt;p&gt;一次性密码本的核心思想是使用一个&lt;strong&gt;与明文等长、完全随机且只使用一次的密钥&lt;/strong&gt;。加密过程是将明文与密钥进行逐位（或逐字符）的异或（XOR）运算。由于密钥的随机性、等长性和一次性，即使攻击者截获了密文，也无法从中获取任何关于明文的信息。&lt;/p&gt;
@@ -3333,10 +3333,10 @@ $$ P_i = (C_i - K_i + 26) \pmod{26} $$&lt;/p&gt;
         </item>
         <item>
         <title>维吉尼亚密码</title>
-        <link>https://example.org/post/programmingtechnology/classicalcryptography/vigenerecipher/</link>
+        <link>http://localhost:1313/post/programmingtechnology/classicalcryptography/vigenerecipher/</link>
         <pubDate>Wed, 13 Aug 2025 23:36:51 +0800</pubDate>
         
-        <guid>https://example.org/post/programmingtechnology/classicalcryptography/vigenerecipher/</guid>
+        <guid>http://localhost:1313/post/programmingtechnology/classicalcryptography/vigenerecipher/</guid>
         <description>&lt;h2 id=&#34;什么是维吉尼亚密码&#34;&gt;什么是维吉尼亚密码？
 &lt;/h2&gt;&lt;p&gt;维吉尼亚密码（Vigenère cipher）是一种&lt;strong&gt;多表替换密码（Polyalphabetic Substitution Cipher）&lt;/strong&gt;，它使用一系列凯撒密码组成密码字母表。与凯撒密码（单表替换密码）不同，维吉尼亚密码的加密不再是简单的固定移位，而是根据一个**密钥（Keyword）**的字母来决定每个明文字母的移位量。&lt;/p&gt;
 &lt;p&gt;维吉尼亚密码在16世纪由意大利外交官吉奥万·巴蒂斯塔·贝拉索（Giovan Battista Bellaso）发明，但后来被误认为是法国密码学家布莱斯·德·维吉尼亚（Blaise de Vigenère）的发明，因此得名。它在密码学史上具有重要地位，因为它在很长一段时间内被认为是不可破解的，被称为“不可破译的密码”（le chiffre indéchiffrable）。&lt;/p&gt;
@@ -3503,10 +3503,10 @@ $$ P_i = (C_i - K_i + 26) \pmod{26} $$&lt;/p&gt;
         </item>
         <item>
         <title>ROT13密码</title>
-        <link>https://example.org/post/programmingtechnology/classicalcryptography/rot13cipher/</link>
+        <link>http://localhost:1313/post/programmingtechnology/classicalcryptography/rot13cipher/</link>
         <pubDate>Wed, 13 Aug 2025 23:28:33 +0800</pubDate>
         
-        <guid>https://example.org/post/programmingtechnology/classicalcryptography/rot13cipher/</guid>
+        <guid>http://localhost:1313/post/programmingtechnology/classicalcryptography/rot13cipher/</guid>
         <description>&lt;h2 id=&#34;什么是rot13密码&#34;&gt;什么是ROT13密码？
 &lt;/h2&gt;&lt;p&gt;ROT13（“rotate by 13 places”的缩写，意为“循环左移13位”）是一种&lt;strong&gt;替换密码（Substitution Cipher）&lt;/strong&gt;，它是凯撒密码的一种特殊形式。它的加密过程非常简单：将明文中的每一个字母，用字母表上向后移动13位的另一个字母来替换。&lt;/p&gt;
 &lt;p&gt;由于英文字母表共有26个字母，而13正好是26的一半，这意味着对一个字母进行两次ROT13加密，就会回到原始字母。因此，ROT13既可以用于加密，也可以用于解密。&lt;/p&gt;
@@ -3595,10 +3595,10 @@ $$ P = (C + 13) \pmod{26} $$&lt;/p&gt;
         </item>
         <item>
         <title>阿特巴希密码</title>
-        <link>https://example.org/post/programmingtechnology/classicalcryptography/atbashcipher/</link>
+        <link>http://localhost:1313/post/programmingtechnology/classicalcryptography/atbashcipher/</link>
         <pubDate>Wed, 13 Aug 2025 23:13:40 +0800</pubDate>
         
-        <guid>https://example.org/post/programmingtechnology/classicalcryptography/atbashcipher/</guid>
+        <guid>http://localhost:1313/post/programmingtechnology/classicalcryptography/atbashcipher/</guid>
         <description>&lt;h2 id=&#34;什么是阿特巴希密码&#34;&gt;什么是阿特巴希密码？
 &lt;/h2&gt;&lt;p&gt;阿特巴希密码（Atbash Cipher）是一种&lt;strong&gt;替换密码（Substitution Cipher）&lt;/strong&gt;，也是已知最早的密码系统之一。它的加密原理非常简单：将字母表中的第一个字母替换为最后一个字母，第二个字母替换为倒数第二个字母，以此类推，形成一种反向的映射关系。&lt;/p&gt;
 &lt;p&gt;例如，在拉丁字母表中：&lt;/p&gt;
@@ -3684,10 +3684,10 @@ $$ P = (25 - C) \pmod{26} $$&lt;/p&gt;
         </item>
         <item>
         <title>仿射密码</title>
-        <link>https://example.org/post/programmingtechnology/classicalcryptography/affinecipher/</link>
+        <link>http://localhost:1313/post/programmingtechnology/classicalcryptography/affinecipher/</link>
         <pubDate>Tue, 12 Aug 2025 17:15:00 +0800</pubDate>
         
-        <guid>https://example.org/post/programmingtechnology/classicalcryptography/affinecipher/</guid>
+        <guid>http://localhost:1313/post/programmingtechnology/classicalcryptography/affinecipher/</guid>
         <description>&lt;h2 id=&#34;什么是仿射密码&#34;&gt;什么是仿射密码？
 &lt;/h2&gt;&lt;p&gt;仿射密码是一种&lt;strong&gt;替换密码（Substitution Cipher）&lt;/strong&gt;，它是凯撒密码的扩展，引入了更为复杂的数学运算。与凯撒密码仅仅通过加法进行位移不同，仿射密码结合了乘法和加法的线性变换。其核心在于将字母表中的每个字母映射到一个数值（通常A=0，B=1，&amp;hellip;，Z=25），然后通过一个仿射函数进行变换，最后再将变换后的数值映射回字母。&lt;/p&gt;
 &lt;h2 id=&#34;仿射密码的数学表示&#34;&gt;仿射密码的数学表示
@@ -3891,10 +3891,10 @@ A: D(0) = 21(0 - 8) mod 26 = 21 * (-8) mod 26 = -168 mod 26 = 10 * 26 - 168 mod 
         </item>
         <item>
         <title>凯撒密码</title>
-        <link>https://example.org/post/programmingtechnology/classicalcryptography/caesarcipher/</link>
+        <link>http://localhost:1313/post/programmingtechnology/classicalcryptography/caesarcipher/</link>
         <pubDate>Mon, 11 Aug 2025 16:34:53 +0800</pubDate>
         
-        <guid>https://example.org/post/programmingtechnology/classicalcryptography/caesarcipher/</guid>
+        <guid>http://localhost:1313/post/programmingtechnology/classicalcryptography/caesarcipher/</guid>
         <description>&lt;h2 id=&#34;什么是凯撒密码&#34;&gt;什么是凯撒密码？
 &lt;/h2&gt;&lt;p&gt;凯撒密码是一种&lt;strong&gt;替换密码（Substitution Cipher）&lt;/strong&gt;，也被称为&lt;strong&gt;移位密码（Shift Cipher）&lt;/strong&gt;。它的加密过程非常简单：将明文中的每一个字母，用字母表上固定距离的另一个字母来替换。&lt;/p&gt;
 &lt;p&gt;这个“固定的距离”就是加密的&lt;strong&gt;密钥（Key）&lt;/strong&gt;。&lt;/p&gt;

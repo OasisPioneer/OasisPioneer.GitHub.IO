@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>古典密码 on Styx Blog</title>
-        <link>https://example.org/categories/%E5%8F%A4%E5%85%B8%E5%AF%86%E7%A0%81/</link>
+        <link>http://localhost:1313/categories/%E5%8F%A4%E5%85%B8%E5%AF%86%E7%A0%81/</link>
         <description>Recent content in 古典密码 on Styx Blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <lastBuildDate>Thu, 21 Aug 2025 17:37:00 +0800</lastBuildDate><atom:link href="https://example.org/categories/%E5%8F%A4%E5%85%B8%E5%AF%86%E7%A0%81/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Thu, 21 Aug 2025 17:37:00 +0800</lastBuildDate><atom:link href="http://localhost:1313/categories/%E5%8F%A4%E5%85%B8%E5%AF%86%E7%A0%81/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>ADFGVX密码</title>
-        <link>https://example.org/post/programmingtechnology/classicalcryptography/adfgvx/</link>
+        <link>http://localhost:1313/post/programmingtechnology/classicalcryptography/adfgvx/</link>
         <pubDate>Thu, 21 Aug 2025 17:37:00 +0800</pubDate>
         
-        <guid>https://example.org/post/programmingtechnology/classicalcryptography/adfgvx/</guid>
+        <guid>http://localhost:1313/post/programmingtechnology/classicalcryptography/adfgvx/</guid>
         <description>&lt;h2 id=&#34;什么是adfgvx密码&#34;&gt;什么是ADFGVX密码？
 &lt;/h2&gt;&lt;p&gt;ADFGVX密码是一种在第一次世界大战期间由德国陆军使用的&lt;strong&gt;分段密码（Fractionating Cipher）&lt;/strong&gt;，它结合了**替换（Substitution）&lt;strong&gt;和&lt;/strong&gt;换位（Transposition）**两种加密方式。这种密码由德国军官弗里茨·内贝尔（Fritz Nebel）于1918年发明，最初的版本是ADFGX密码，后来为了增加数字的加密能力，加入了字母V，演变为ADFGVX密码。&lt;/p&gt;
 &lt;p&gt;ADFGVX密码的名称来源于其密文使用的六个字母：A、D、F、G、V、X。选择这些字母是为了避免在摩尔斯电码传输时出现混淆，因为它们的摩尔斯电码差异较大。&lt;/p&gt;
@@ -485,10 +485,10 @@ A (DC) E (GD) G (AG) M (AG) N (DI) R (GD)&lt;/p&gt;
         </item>
         <item>
         <title>波利比奥斯方阵密码</title>
-        <link>https://example.org/post/programmingtechnology/classicalcryptography/polybius/</link>
+        <link>http://localhost:1313/post/programmingtechnology/classicalcryptography/polybius/</link>
         <pubDate>Thu, 14 Aug 2025 17:34:00 +0800</pubDate>
         
-        <guid>https://example.org/post/programmingtechnology/classicalcryptography/polybius/</guid>
+        <guid>http://localhost:1313/post/programmingtechnology/classicalcryptography/polybius/</guid>
         <description>&lt;h2 id=&#34;什么是波利比奥斯方阵密码&#34;&gt;什么是波利比奥斯方阵密码？
 &lt;/h2&gt;&lt;p&gt;波利比奥斯方阵密码（Polybius Square Cipher），又称棋盘密码，是一种&lt;strong&gt;替换密码（Substitution Cipher）&lt;/strong&gt;，由古希腊历史学家波利比奥斯（Polybius）在公元前2世纪发明。它将字母映射到数字对，从而实现加密。这种密码最初是为了通过火炬信号进行远距离通信而设计的，每个字母通过其在方阵中的坐标来表示。&lt;/p&gt;
 &lt;p&gt;波利比奥斯方阵通常是一个5x5的网格，包含了25个英文字母。由于英文字母有26个，通常会将字母 &lt;code&gt;I&lt;/code&gt; 和 &lt;code&gt;J&lt;/code&gt; 合并处理，或者将 &lt;code&gt;K&lt;/code&gt; 替换为 &lt;code&gt;C&lt;/code&gt; 等，以适应25个格子的限制。每个字母由其所在的行号和列号组成的数字对来表示。&lt;/p&gt;
@@ -785,10 +785,10 @@ A (DC) E (GD) G (AG) M (AG) N (DI) R (GD)&lt;/p&gt;
         </item>
         <item>
         <title>一次性密码本</title>
-        <link>https://example.org/post/programmingtechnology/classicalcryptography/one-timepad/</link>
+        <link>http://localhost:1313/post/programmingtechnology/classicalcryptography/one-timepad/</link>
         <pubDate>Wed, 13 Aug 2025 23:41:29 +0800</pubDate>
         
-        <guid>https://example.org/post/programmingtechnology/classicalcryptography/one-timepad/</guid>
+        <guid>http://localhost:1313/post/programmingtechnology/classicalcryptography/one-timepad/</guid>
         <description>&lt;h2 id=&#34;什么是一次性密码本&#34;&gt;什么是一次性密码本？
 &lt;/h2&gt;&lt;p&gt;一次性密码本（One-Time Pad, OTP），又称“一次一密”，是古典密码学中一种理论上被证明&lt;strong&gt;绝对安全&lt;/strong&gt;的加密算法。它由美国电话电报公司的吉尔伯特·维纳姆（Gilbert Vernam）于1917年发明，并由克劳德·香农（Claude Shannon）在信息论中证明了其不可破译性。&lt;/p&gt;
 &lt;p&gt;一次性密码本的核心思想是使用一个&lt;strong&gt;与明文等长、完全随机且只使用一次的密钥&lt;/strong&gt;。加密过程是将明文与密钥进行逐位（或逐字符）的异或（XOR）运算。由于密钥的随机性、等长性和一次性，即使攻击者截获了密文，也无法从中获取任何关于明文的信息。&lt;/p&gt;
@@ -1003,10 +1003,10 @@ $$ P_i = (C_i - K_i + 26) \pmod{26} $$&lt;/p&gt;
         </item>
         <item>
         <title>维吉尼亚密码</title>
-        <link>https://example.org/post/programmingtechnology/classicalcryptography/vigenerecipher/</link>
+        <link>http://localhost:1313/post/programmingtechnology/classicalcryptography/vigenerecipher/</link>
         <pubDate>Wed, 13 Aug 2025 23:36:51 +0800</pubDate>
         
-        <guid>https://example.org/post/programmingtechnology/classicalcryptography/vigenerecipher/</guid>
+        <guid>http://localhost:1313/post/programmingtechnology/classicalcryptography/vigenerecipher/</guid>
         <description>&lt;h2 id=&#34;什么是维吉尼亚密码&#34;&gt;什么是维吉尼亚密码？
 &lt;/h2&gt;&lt;p&gt;维吉尼亚密码（Vigenère cipher）是一种&lt;strong&gt;多表替换密码（Polyalphabetic Substitution Cipher）&lt;/strong&gt;，它使用一系列凯撒密码组成密码字母表。与凯撒密码（单表替换密码）不同，维吉尼亚密码的加密不再是简单的固定移位，而是根据一个**密钥（Keyword）**的字母来决定每个明文字母的移位量。&lt;/p&gt;
 &lt;p&gt;维吉尼亚密码在16世纪由意大利外交官吉奥万·巴蒂斯塔·贝拉索（Giovan Battista Bellaso）发明，但后来被误认为是法国密码学家布莱斯·德·维吉尼亚（Blaise de Vigenère）的发明，因此得名。它在密码学史上具有重要地位，因为它在很长一段时间内被认为是不可破解的，被称为“不可破译的密码”（le chiffre indéchiffrable）。&lt;/p&gt;
@@ -1173,10 +1173,10 @@ $$ P_i = (C_i - K_i + 26) \pmod{26} $$&lt;/p&gt;
         </item>
         <item>
         <title>ROT13密码</title>
-        <link>https://example.org/post/programmingtechnology/classicalcryptography/rot13cipher/</link>
+        <link>http://localhost:1313/post/programmingtechnology/classicalcryptography/rot13cipher/</link>
         <pubDate>Wed, 13 Aug 2025 23:28:33 +0800</pubDate>
         
-        <guid>https://example.org/post/programmingtechnology/classicalcryptography/rot13cipher/</guid>
+        <guid>http://localhost:1313/post/programmingtechnology/classicalcryptography/rot13cipher/</guid>
         <description>&lt;h2 id=&#34;什么是rot13密码&#34;&gt;什么是ROT13密码？
 &lt;/h2&gt;&lt;p&gt;ROT13（“rotate by 13 places”的缩写，意为“循环左移13位”）是一种&lt;strong&gt;替换密码（Substitution Cipher）&lt;/strong&gt;，它是凯撒密码的一种特殊形式。它的加密过程非常简单：将明文中的每一个字母，用字母表上向后移动13位的另一个字母来替换。&lt;/p&gt;
 &lt;p&gt;由于英文字母表共有26个字母，而13正好是26的一半，这意味着对一个字母进行两次ROT13加密，就会回到原始字母。因此，ROT13既可以用于加密，也可以用于解密。&lt;/p&gt;
@@ -1265,10 +1265,10 @@ $$ P = (C + 13) \pmod{26} $$&lt;/p&gt;
         </item>
         <item>
         <title>阿特巴希密码</title>
-        <link>https://example.org/post/programmingtechnology/classicalcryptography/atbashcipher/</link>
+        <link>http://localhost:1313/post/programmingtechnology/classicalcryptography/atbashcipher/</link>
         <pubDate>Wed, 13 Aug 2025 23:13:40 +0800</pubDate>
         
-        <guid>https://example.org/post/programmingtechnology/classicalcryptography/atbashcipher/</guid>
+        <guid>http://localhost:1313/post/programmingtechnology/classicalcryptography/atbashcipher/</guid>
         <description>&lt;h2 id=&#34;什么是阿特巴希密码&#34;&gt;什么是阿特巴希密码？
 &lt;/h2&gt;&lt;p&gt;阿特巴希密码（Atbash Cipher）是一种&lt;strong&gt;替换密码（Substitution Cipher）&lt;/strong&gt;，也是已知最早的密码系统之一。它的加密原理非常简单：将字母表中的第一个字母替换为最后一个字母，第二个字母替换为倒数第二个字母，以此类推，形成一种反向的映射关系。&lt;/p&gt;
 &lt;p&gt;例如，在拉丁字母表中：&lt;/p&gt;
@@ -1354,10 +1354,10 @@ $$ P = (25 - C) \pmod{26} $$&lt;/p&gt;
         </item>
         <item>
         <title>仿射密码</title>
-        <link>https://example.org/post/programmingtechnology/classicalcryptography/affinecipher/</link>
+        <link>http://localhost:1313/post/programmingtechnology/classicalcryptography/affinecipher/</link>
         <pubDate>Tue, 12 Aug 2025 17:15:00 +0800</pubDate>
         
-        <guid>https://example.org/post/programmingtechnology/classicalcryptography/affinecipher/</guid>
+        <guid>http://localhost:1313/post/programmingtechnology/classicalcryptography/affinecipher/</guid>
         <description>&lt;h2 id=&#34;什么是仿射密码&#34;&gt;什么是仿射密码？
 &lt;/h2&gt;&lt;p&gt;仿射密码是一种&lt;strong&gt;替换密码（Substitution Cipher）&lt;/strong&gt;，它是凯撒密码的扩展，引入了更为复杂的数学运算。与凯撒密码仅仅通过加法进行位移不同，仿射密码结合了乘法和加法的线性变换。其核心在于将字母表中的每个字母映射到一个数值（通常A=0，B=1，&amp;hellip;，Z=25），然后通过一个仿射函数进行变换，最后再将变换后的数值映射回字母。&lt;/p&gt;
 &lt;h2 id=&#34;仿射密码的数学表示&#34;&gt;仿射密码的数学表示
@@ -1561,10 +1561,10 @@ A: D(0) = 21(0 - 8) mod 26 = 21 * (-8) mod 26 = -168 mod 26 = 10 * 26 - 168 mod 
         </item>
         <item>
         <title>凯撒密码</title>
-        <link>https://example.org/post/programmingtechnology/classicalcryptography/caesarcipher/</link>
+        <link>http://localhost:1313/post/programmingtechnology/classicalcryptography/caesarcipher/</link>
         <pubDate>Mon, 11 Aug 2025 16:34:53 +0800</pubDate>
         
-        <guid>https://example.org/post/programmingtechnology/classicalcryptography/caesarcipher/</guid>
+        <guid>http://localhost:1313/post/programmingtechnology/classicalcryptography/caesarcipher/</guid>
         <description>&lt;h2 id=&#34;什么是凯撒密码&#34;&gt;什么是凯撒密码？
 &lt;/h2&gt;&lt;p&gt;凯撒密码是一种&lt;strong&gt;替换密码（Substitution Cipher）&lt;/strong&gt;，也被称为&lt;strong&gt;移位密码（Shift Cipher）&lt;/strong&gt;。它的加密过程非常简单：将明文中的每一个字母，用字母表上固定距离的另一个字母来替换。&lt;/p&gt;
 &lt;p&gt;这个“固定的距离”就是加密的&lt;strong&gt;密钥（Key）&lt;/strong&gt;。&lt;/p&gt;

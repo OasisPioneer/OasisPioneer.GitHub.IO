@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>开发工具 on Styx Blog</title>
-        <link>https://example.org/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/</link>
+        <link>http://localhost:1313/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/</link>
         <description>Recent content in 开发工具 on Styx Blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <lastBuildDate>Fri, 22 Aug 2025 15:15:00 +0800</lastBuildDate><atom:link href="https://example.org/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Fri, 22 Aug 2025 15:15:00 +0800</lastBuildDate><atom:link href="http://localhost:1313/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Emacs</title>
-        <link>https://example.org/post/developmenttools/emacs/</link>
+        <link>http://localhost:1313/post/developmenttools/emacs/</link>
         <pubDate>Fri, 22 Aug 2025 15:15:00 +0800</pubDate>
         
-        <guid>https://example.org/post/developmenttools/emacs/</guid>
+        <guid>http://localhost:1313/post/developmenttools/emacs/</guid>
         <description>&lt;h2 id=&#34;什么是-emacs&#34;&gt;什么是 Emacs
 &lt;/h2&gt;&lt;p&gt;Emacs 是一个功能极其强大的、可扩展的文本编辑器。&lt;/p&gt;
 &lt;p&gt;Emacs诞生于1970年代，由著名的计算机科学家理查德·斯托曼（Richard Stallman）创造。它是自由软件运动的标志性项目之一，对后来的很多软件开发理念产生了深远影响。&lt;/p&gt;
@@ -33,7 +33,7 @@
 &lt;/h2&gt;&lt;p&gt;以 Ubuntu/Debian 为例，按下快捷键 &lt;kbd&gt;CTRL&lt;/kbd&gt; + &lt;kbd&gt;ALT&lt;/kbd&gt; + &lt;kbd&gt;T&lt;/kbd&gt; 打开终端(控制台)，输入如下命令:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo apt-get update					&lt;span style=&#34;color:#75715e&#34;&gt;# 更新本地软件列表&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo apt-get install emacs 			&lt;span style=&#34;color:#75715e&#34;&gt;# 安装 Emacs&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://example.org/Image/DevelopmentTools/InstallationProcess/Emacs/Email%20Configuration.png&#34;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/Image/DevelopmentTools/InstallationProcess/Emacs/Email%20Configuration.png&#34;
 	
 	
 	

@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Python on Styx Blog</title>
-        <link>https://example.org/tags/python/</link>
+        <link>http://localhost:1313/tags/python/</link>
         <description>Recent content in Python on Styx Blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <lastBuildDate>Mon, 25 Aug 2025 18:19:08 +0800</lastBuildDate><atom:link href="https://example.org/tags/python/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Mon, 25 Aug 2025 18:19:08 +0800</lastBuildDate><atom:link href="http://localhost:1313/tags/python/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>[爬虫脚本] 基于Python的网站爬虫实战：全自动下载优品PPT模板</title>
-        <link>https://example.org/post/programmingtechnology/opensourcescripts/premiumproductsppt/</link>
+        <link>http://localhost:1313/post/programmingtechnology/opensourcescripts/premiumproductsppt/</link>
         <pubDate>Mon, 25 Aug 2025 18:19:08 +0800</pubDate>
         
-        <guid>https://example.org/post/programmingtechnology/opensourcescripts/premiumproductsppt/</guid>
+        <guid>http://localhost:1313/post/programmingtechnology/opensourcescripts/premiumproductsppt/</guid>
         <description>&lt;h2 id=&#34;项目背景&#34;&gt;项目背景
 &lt;/h2&gt;&lt;p&gt;在许多工作与学习场景中，高质量的PPT模板是提升演示文稿专业度的关键资源。“优品PPT”（ypppt.com）是一个提供大量免费、优质PPT模板的公开网站。然而，当需要批量获取或按分类归档这些资源时，手动下载的方式效率低下且过程繁琐。&lt;/p&gt;
 &lt;p&gt;为了解决这一痛点，本文将通过一个完整的实战项目，演示如何利用Python构建一个自动化爬虫，实现对该网站PPT模板的批量下载和分类归档。&lt;/p&gt;

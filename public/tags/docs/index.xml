@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Docs on Styx Blog</title>
-        <link>https://example.org/tags/docs/</link>
+        <link>http://localhost:1313/tags/docs/</link>
         <description>Recent content in Docs on Styx Blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <lastBuildDate>Mon, 18 Aug 2025 18:26:08 +0800</lastBuildDate><atom:link href="https://example.org/tags/docs/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Mon, 18 Aug 2025 18:26:08 +0800</lastBuildDate><atom:link href="http://localhost:1313/tags/docs/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Telegram Bot API</title>
-        <link>https://example.org/post/programmingtechnology/developmentdocumentation/telegrambotapi/</link>
+        <link>http://localhost:1313/post/programmingtechnology/developmentdocumentation/telegrambotapi/</link>
         <pubDate>Mon, 18 Aug 2025 18:26:08 +0800</pubDate>
         
-        <guid>https://example.org/post/programmingtechnology/developmentdocumentation/telegrambotapi/</guid>
+        <guid>http://localhost:1313/post/programmingtechnology/developmentdocumentation/telegrambotapi/</guid>
         <description>&lt;h2 id=&#34;创建-telegram-bot&#34;&gt;创建 Telegram Bot
 &lt;/h2&gt;&lt;ol&gt;
 &lt;li&gt;在 Telegram 中搜索 &lt;a class=&#34;link&#34; href=&#34;https://t.me/BotFather&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;

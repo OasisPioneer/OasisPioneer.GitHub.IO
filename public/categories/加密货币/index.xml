@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>加密货币 on Styx Blog</title>
-        <link>https://example.org/categories/%E5%8A%A0%E5%AF%86%E8%B4%A7%E5%B8%81/</link>
+        <link>http://localhost:1313/categories/%E5%8A%A0%E5%AF%86%E8%B4%A7%E5%B8%81/</link>
         <description>Recent content in 加密货币 on Styx Blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <lastBuildDate>Thu, 14 Aug 2025 17:10:00 +0800</lastBuildDate><atom:link href="https://example.org/categories/%E5%8A%A0%E5%AF%86%E8%B4%A7%E5%B8%81/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Thu, 14 Aug 2025 17:10:00 +0800</lastBuildDate><atom:link href="http://localhost:1313/categories/%E5%8A%A0%E5%AF%86%E8%B4%A7%E5%B8%81/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>选择钱包</title>
-        <link>https://example.org/post/cryptocurrency/choosewallet/</link>
+        <link>http://localhost:1313/post/cryptocurrency/choosewallet/</link>
         <pubDate>Thu, 14 Aug 2025 17:10:00 +0800</pubDate>
         
-        <guid>https://example.org/post/cryptocurrency/choosewallet/</guid>
+        <guid>http://localhost:1313/post/cryptocurrency/choosewallet/</guid>
         <description>&lt;h2 id=&#34;前言为什么钱包选择至关重要&#34;&gt;前言：为什么钱包选择至关重要？
 &lt;/h2&gt;&lt;p&gt;在 Web3 和加密货币的世界里，你的钱包就是你的银行账户、身份凭证和保险箱。与传统银行不同，这里没有客服电话可以帮你重置密码或追回被盗资金。你必须成为自己资产的唯一守护者。因此，选择一个安全可靠的钱包，是进入这个领域最重要的一步。&lt;/p&gt;
 &lt;h2 id=&#34;钱包的核心热钱包-vs-冷钱包&#34;&gt;钱包的核心：热钱包 vs. 冷钱包

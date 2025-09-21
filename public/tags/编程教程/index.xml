@@ -1274,7 +1274,7 @@ O
 &lt;li&gt;&lt;strong&gt;代码编辑器/集成开发环境（IDE）&lt;/strong&gt;：提供编写代码的界面，并通常集成了编译器、调试器、构建系统等功能，提供代码高亮、自动补全、错误检查等高级特性，极大地提升开发效率。例如，CLion、Visual Studio Code、Visual Studio等。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;选择和配置合适的开发环境，将直接影响您的开发体验和效率。&lt;/p&gt;
-&lt;h2 id=&#34;操作系统选择为什么推荐linux&#34;&gt;操作系统选择：为什么推荐Linux？
+&lt;h2 id=&#34;操作系统推荐&#34;&gt;操作系统推荐
 &lt;/h2&gt;&lt;p&gt;尽管任何操作系统理论上都可以进行编程，但为了追求更高的开发效率、程序运行的稳定性以及第三方库安装的便捷性，强烈推荐使用基于 Linux 内核的操作系统进行 C++ 开发。在众多 Linux 发行版中，&lt;strong&gt;Ubuntu&lt;/strong&gt; 因其庞大的用户社区、丰富的软件仓库和对新手友好的特性，成为初学者的理想选择。&lt;/p&gt;
 &lt;h3 id=&#34;linux的优势&#34;&gt;Linux的优势
 &lt;/h3&gt;&lt;ul&gt;
@@ -1359,9 +1359,34 @@ CMake是一个跨平台的构建系统生成器。它不直接构建项目，而
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;h3 id=&#34;自动化安装不推荐&#34;&gt;自动化安装（不推荐）
-&lt;/h3&gt;&lt;p&gt;如果您希望一次性安装所有常用的C/C++开发工具，可以使用&lt;code&gt;build-essential&lt;/code&gt;软件包。它是一个元软件包，包含了GCC、G++、Make以及其他一些常用的开发库和工具。这是一种更便捷的安装方式，但不适合初学者，因为如果想要学习配置开发环境并且让自己有一个深刻的印象的话并不推荐这个方式。&lt;/p&gt;
+&lt;/h3&gt;&lt;p&gt;如果您希望一次性安装所有常用的C/C++开发工具，可以使用&lt;code&gt;build-essential&lt;/code&gt;软件包。它是一个元软件包，包含了GCC、G++、Make以及其他一些常用的开发库和工具。这是一种更便捷的安装方式，但不适合初学者，因为如果想要学习配置开发环境并且让自己有一个深刻的印象的话这个方式显然不行，他无法让你深刻的记住每个必备的组件都是什么。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo apt-get install build-essential
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;安装完成后，您可以通过在终端输入相应命令（如&lt;code&gt;g++ --version&lt;/code&gt;、&lt;code&gt;gdb --version&lt;/code&gt;、&lt;code&gt;make --version&lt;/code&gt;、&lt;code&gt;cmake --version&lt;/code&gt;）来验证这些工具是否成功安装并查看其版本信息。&lt;/p&gt;
+&lt;h3 id=&#34;验证安装&#34;&gt;验证安装
+&lt;/h3&gt;&lt;p&gt;安装完成后，您可以通过在终端输入以下命令来验证这些工具是否成功安装并查看其版本信息：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;验证GCC版本&lt;/strong&gt;：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;gcc --version
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;验证G++版本&lt;/strong&gt;：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;g++ --version
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;验证GDB版本&lt;/strong&gt;：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;gdb --version
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;验证Make版本&lt;/strong&gt;：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;make --version
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;验证CMake版本&lt;/strong&gt;：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;cmake --version
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;如果命令成功执行并显示版本信息，则表明相应的工具已正确安装。如果遇到“command not found”或其他错误，请检查您的拼写，并确保在安装过程中没有出现错误。&lt;/p&gt;
 &lt;h2 id=&#34;高效的开发工具工欲善其事必先利其器&#34;&gt;高效的开发工具：工欲善其事，必先利其器
 &lt;/h2&gt;&lt;p&gt;编写代码离不开一个好用的开发工具。一个适合自己的代码编辑器或集成开发环境（IDE）能够极大地提升您的编程体验和效率。正所谓“工欲善其事，必先利其器”，选择一个趁手的工具对于C++的学习和开发至关重要。&lt;/p&gt;
 &lt;h3 id=&#34;集成开发环境ide&#34;&gt;集成开发环境（IDE）
@@ -1424,16 +1449,38 @@ CMake是一个跨平台的构建系统生成器。它不直接构建项目，而
 &lt;li&gt;&lt;strong&gt;Linux用户&lt;/strong&gt;：&lt;strong&gt;CLion&lt;/strong&gt;和&lt;strong&gt;VS Code&lt;/strong&gt;都是极佳的选择，也可以直接使用命令行工具和文本编辑器（如Vim/Emacs）。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;最重要的是选择一个您用起来舒适、能够提高效率的工具。建议您可以尝试几种不同的工具，找到最适合自己的那一款。&lt;/p&gt;
-&lt;h2 id=&#34;总结与展望&#34;&gt;总结与展望
-&lt;/h2&gt;&lt;p&gt;配置C++开发环境是您编程旅程中的第一步，也是至关重要的一步。一个稳定、高效的开发环境能够让您更专注于代码逻辑本身，而不是被工具问题所困扰。本指南详细介绍了开发环境的组成、推荐的操作系统（尤其是Linux/Ubuntu）、核心工具链的安装方法以及多种代码编辑工具的选择。&lt;/p&gt;
-&lt;p&gt;我们强烈建议您从推荐的Linux发行版（如Ubuntu）开始，并安装&lt;code&gt;build-essential&lt;/code&gt;软件包以快速搭建基础开发环境。在代码编辑工具方面，&lt;strong&gt;CLion&lt;/strong&gt;和&lt;strong&gt;Visual Studio Code&lt;/strong&gt;是功能强大且用户友好的选择，无论您是初学者还是经验丰富的开发者，都能从中找到适合自己的工作流。&lt;/p&gt;
-&lt;p&gt;随着您C++学习的深入，您可能会接触到更多的开发工具和技术，例如：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;包管理器&lt;/strong&gt;：如Conan、vcpkg，用于管理和分发C++库。&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;静态分析工具&lt;/strong&gt;：如Clang-Tidy、Cppcheck，用于发现代码中的潜在问题。&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;单元测试框架&lt;/strong&gt;：如Google Test、Catch2，用于编写和运行自动化测试。&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;版本控制系统&lt;/strong&gt;：如Git，用于管理代码版本和团队协作。&lt;/li&gt;
+&lt;h2 id=&#34;编写并编译您的第一个c程序&#34;&gt;编写并编译您的第一个C++程序
+&lt;/h2&gt;&lt;p&gt;配置好开发环境后，让我们来编写并编译您的第一个C++程序，以验证所有工具是否协同工作。&lt;/p&gt;
+&lt;h3 id=&#34;编写源代码&#34;&gt;编写源代码
+&lt;/h3&gt;&lt;p&gt;首先，创建一个名为 &lt;code&gt;hello_world.cpp&lt;/code&gt; 的文件，并写入以下代码：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-cpp&#34; data-lang=&#34;cpp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#include&lt;/span&gt; &lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;iostream&amp;gt;&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;main&lt;/span&gt;() {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    std&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;cout &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Hello, World!&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; std&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;endl;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;#include &amp;lt;iostream&amp;gt;&lt;/code&gt;：这是一个预处理指令，告诉编译器包含 &lt;code&gt;iostream&lt;/code&gt; 库，它提供了输入/输出流功能，例如 &lt;code&gt;std::cout&lt;/code&gt; 用于向控制台输出文本。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;int main() { ... }&lt;/code&gt;：这是C++程序的入口点。所有C++程序都从 &lt;code&gt;main&lt;/code&gt; 函数开始执行。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;std::cout &amp;lt;&amp;lt; &amp;quot;Hello, World!&amp;quot; &amp;lt;&amp;lt; std::endl;&lt;/code&gt;：这行代码使用 &lt;code&gt;std::cout&lt;/code&gt; 对象将字符串 &amp;ldquo;Hello, World!&amp;rdquo; 输出到标准输出（通常是终端），&lt;code&gt;std::endl&lt;/code&gt; 用于插入一个换行符并刷新输出缓冲区。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;return 0;&lt;/code&gt;：表示程序成功执行并退出。&lt;/li&gt;
 &lt;/ul&gt;
+&lt;h3 id=&#34;编译程序&#34;&gt;编译程序
+&lt;/h3&gt;&lt;p&gt;保存文件后，打开终端，导航到您保存 &lt;code&gt;hello_world.cpp&lt;/code&gt; 文件的目录。然后使用G++编译器编译您的程序：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;g++ hello_world.cpp -o hello_world
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;g++&lt;/code&gt;：调用C++编译器。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;hello_world.cpp&lt;/code&gt;：指定要编译的源文件。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;-o hello_world&lt;/code&gt;：指定输出可执行文件的名称为 &lt;code&gt;hello_world&lt;/code&gt;。如果您省略此选项，可执行文件将默认为 &lt;code&gt;a.out&lt;/code&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;如果编译成功，您将不会看到任何输出。如果出现错误，编译器会显示相应的错误信息，您需要根据提示修改代码。&lt;/p&gt;
+&lt;h3 id=&#34;运行程序&#34;&gt;运行程序
+&lt;/h3&gt;&lt;p&gt;编译成功后，您可以通过以下命令运行生成的可执行文件：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;./hello_world
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;您应该会在终端看到输出：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;Hello, World!
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;恭喜您！您已经成功配置了C++开发环境，并编写、编译、运行了您的第一个C++程序。这标志着您C++学习之旅的正式开始。&lt;/p&gt;
+&lt;hr&gt;
 &lt;h2 id=&#34;参考资料&#34;&gt;参考资料
 &lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.ubuntu.com/download/desktop&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
@@ -1492,62 +1539,6 @@ CMake是一个跨平台的构建系统生成器。它不直接构建项目，而
     
 &lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;验证安装&#34;&gt;验证安装
-&lt;/h3&gt;&lt;p&gt;安装完成后，您可以通过在终端输入以下命令来验证这些工具是否成功安装并查看其版本信息：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;验证GCC版本&lt;/strong&gt;：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;gcc --version
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;验证G++版本&lt;/strong&gt;：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;g++ --version
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;验证GDB版本&lt;/strong&gt;：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;gdb --version
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;验证Make版本&lt;/strong&gt;：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;make --version
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;验证CMake版本&lt;/strong&gt;：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;cmake --version
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;如果命令成功执行并显示版本信息，则表明相应的工具已正确安装。如果遇到“command not found”或其他错误，请检查您的拼写，并确保在安装过程中没有出现错误。&lt;/p&gt;
-&lt;h2 id=&#34;编写并编译您的第一个c程序&#34;&gt;编写并编译您的第一个C++程序
-&lt;/h2&gt;&lt;p&gt;配置好开发环境后，让我们来编写并编译您的第一个C++程序，以验证所有工具是否协同工作。&lt;/p&gt;
-&lt;h3 id=&#34;编写源代码&#34;&gt;编写源代码
-&lt;/h3&gt;&lt;p&gt;首先，创建一个名为 &lt;code&gt;hello_world.cpp&lt;/code&gt; 的文件，并使用您喜欢的文本编辑器（例如 &lt;code&gt;nano&lt;/code&gt; 或 &lt;code&gt;vim&lt;/code&gt;，或者直接在VS Code中）输入以下代码：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-cpp&#34; data-lang=&#34;cpp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#include&lt;/span&gt; &lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;iostream&amp;gt;&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;main&lt;/span&gt;() {
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    std&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;cout &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Hello, World!&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; std&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;endl;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;#include &amp;lt;iostream&amp;gt;&lt;/code&gt;：这是一个预处理指令，告诉编译器包含 &lt;code&gt;iostream&lt;/code&gt; 库，它提供了输入/输出流功能，例如 &lt;code&gt;std::cout&lt;/code&gt; 用于向控制台输出文本。&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;int main() { ... }&lt;/code&gt;：这是C++程序的入口点。所有C++程序都从 &lt;code&gt;main&lt;/code&gt; 函数开始执行。&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;std::cout &amp;lt;&amp;lt; &amp;quot;Hello, World!&amp;quot; &amp;lt;&amp;lt; std::endl;&lt;/code&gt;：这行代码使用 &lt;code&gt;std::cout&lt;/code&gt; 对象将字符串 &amp;ldquo;Hello, World!&amp;rdquo; 输出到标准输出（通常是终端），&lt;code&gt;std::endl&lt;/code&gt; 用于插入一个换行符并刷新输出缓冲区。&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;return 0;&lt;/code&gt;：表示程序成功执行并退出。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&#34;编译程序&#34;&gt;编译程序
-&lt;/h3&gt;&lt;p&gt;保存文件后，打开终端，导航到您保存 &lt;code&gt;hello_world.cpp&lt;/code&gt; 文件的目录。然后使用G++编译器编译您的程序：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;g++ hello_world.cpp -o hello_world
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;g++&lt;/code&gt;：调用C++编译器。&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;hello_world.cpp&lt;/code&gt;：指定要编译的源文件。&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;-o hello_world&lt;/code&gt;：指定输出可执行文件的名称为 &lt;code&gt;hello_world&lt;/code&gt;。如果您省略此选项，可执行文件将默认为 &lt;code&gt;a.out&lt;/code&gt;。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;如果编译成功，您将不会看到任何输出。如果出现错误，编译器会显示相应的错误信息，您需要根据提示修改代码。&lt;/p&gt;
-&lt;h3 id=&#34;运行程序&#34;&gt;运行程序
-&lt;/h3&gt;&lt;p&gt;编译成功后，您可以通过以下命令运行生成的可执行文件：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;./hello_world
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;您应该会在终端看到输出：&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;Hello, World!
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;恭喜您！您已经成功配置了C++开发环境，并编写、编译、运行了您的第一个C++程序。这标志着您C++学习之旅的正式开始。&lt;/p&gt;
 </description>
         </item>
         

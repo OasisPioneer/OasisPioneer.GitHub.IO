@@ -339,7 +339,7 @@
             <nav id="TableOfContents">
   <ul>
     <li><a href="#什么是开发环境">什么是开发环境？</a></li>
-    <li><a href="#操作系统选择为什么推荐linux">操作系统选择：为什么推荐Linux？</a>
+    <li><a href="#操作系统推荐">操作系统推荐</a>
       <ul>
         <li><a href="#linux的优势">Linux的优势</a></li>
         <li><a href="#ubuntu下载与安装">Ubuntu下载与安装</a></li>
@@ -351,6 +351,7 @@
         <li><a href="#打开终端">打开终端</a></li>
         <li><a href="#安装核心组件">安装核心组件</a></li>
         <li><a href="#自动化安装不推荐">自动化安装（不推荐）</a></li>
+        <li><a href="#验证安装">验证安装</a></li>
       </ul>
     </li>
     <li><a href="#高效的开发工具工欲善其事必先利其器">高效的开发工具：工欲善其事，必先利其器</a>
@@ -360,12 +361,6 @@
         <li><a href="#如何选择">如何选择？</a></li>
       </ul>
     </li>
-    <li><a href="#总结与展望">总结与展望</a></li>
-    <li><a href="#参考资料">参考资料</a>
-      <ul>
-        <li><a href="#验证安装">验证安装</a></li>
-      </ul>
-    </li>
     <li><a href="#编写并编译您的第一个c程序">编写并编译您的第一个C++程序</a>
       <ul>
         <li><a href="#编写源代码">编写源代码</a></li>
@@ -373,6 +368,7 @@
         <li><a href="#运行程序">运行程序</a></li>
       </ul>
     </li>
+    <li><a href="#参考资料">参考资料</a></li>
   </ul>
 </nav>
         </div>
@@ -466,7 +462,7 @@
 <li><strong>代码编辑器/集成开发环境（IDE）</strong>：提供编写代码的界面，并通常集成了编译器、调试器、构建系统等功能，提供代码高亮、自动补全、错误检查等高级特性，极大地提升开发效率。例如，CLion、Visual Studio Code、Visual Studio等。</li>
 </ul>
 <p>选择和配置合适的开发环境，将直接影响您的开发体验和效率。</p>
-<h2 id="操作系统选择为什么推荐linux">操作系统选择：为什么推荐Linux？
+<h2 id="操作系统推荐">操作系统推荐
 </h2><p>尽管任何操作系统理论上都可以进行编程，但为了追求更高的开发效率、程序运行的稳定性以及第三方库安装的便捷性，强烈推荐使用基于 Linux 内核的操作系统进行 C++ 开发。在众多 Linux 发行版中，<strong>Ubuntu</strong> 因其庞大的用户社区、丰富的软件仓库和对新手友好的特性，成为初学者的理想选择。</p>
 <h3 id="linux的优势">Linux的优势
 </h3><ul>
@@ -551,9 +547,34 @@ CMake是一个跨平台的构建系统生成器。它不直接构建项目，而
 </span></span></code></pre></div></li>
 </ol>
 <h3 id="自动化安装不推荐">自动化安装（不推荐）
-</h3><p>如果您希望一次性安装所有常用的C/C++开发工具，可以使用<code>build-essential</code>软件包。它是一个元软件包，包含了GCC、G++、Make以及其他一些常用的开发库和工具。这是一种更便捷的安装方式，但不适合初学者，因为如果想要学习配置开发环境并且让自己有一个深刻的印象的话并不推荐这个方式。</p>
+</h3><p>如果您希望一次性安装所有常用的C/C++开发工具，可以使用<code>build-essential</code>软件包。它是一个元软件包，包含了GCC、G++、Make以及其他一些常用的开发库和工具。这是一种更便捷的安装方式，但不适合初学者，因为如果想要学习配置开发环境并且让自己有一个深刻的印象的话这个方式显然不行，他无法让你深刻的记住每个必备的组件都是什么。</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo apt-get install build-essential
 </span></span></code></pre></div><p>安装完成后，您可以通过在终端输入相应命令（如<code>g++ --version</code>、<code>gdb --version</code>、<code>make --version</code>、<code>cmake --version</code>）来验证这些工具是否成功安装并查看其版本信息。</p>
+<h3 id="验证安装">验证安装
+</h3><p>安装完成后，您可以通过在终端输入以下命令来验证这些工具是否成功安装并查看其版本信息：</p>
+<ul>
+<li>
+<p><strong>验证GCC版本</strong>：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>gcc --version
+</span></span></code></pre></div></li>
+<li>
+<p><strong>验证G++版本</strong>：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>g++ --version
+</span></span></code></pre></div></li>
+<li>
+<p><strong>验证GDB版本</strong>：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>gdb --version
+</span></span></code></pre></div></li>
+<li>
+<p><strong>验证Make版本</strong>：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>make --version
+</span></span></code></pre></div></li>
+<li>
+<p><strong>验证CMake版本</strong>：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cmake --version
+</span></span></code></pre></div></li>
+</ul>
+<p>如果命令成功执行并显示版本信息，则表明相应的工具已正确安装。如果遇到“command not found”或其他错误，请检查您的拼写，并确保在安装过程中没有出现错误。</p>
 <h2 id="高效的开发工具工欲善其事必先利其器">高效的开发工具：工欲善其事，必先利其器
 </h2><p>编写代码离不开一个好用的开发工具。一个适合自己的代码编辑器或集成开发环境（IDE）能够极大地提升您的编程体验和效率。正所谓“工欲善其事，必先利其器”，选择一个趁手的工具对于C++的学习和开发至关重要。</p>
 <h3 id="集成开发环境ide">集成开发环境（IDE）
@@ -616,16 +637,38 @@ CMake是一个跨平台的构建系统生成器。它不直接构建项目，而
 <li><strong>Linux用户</strong>：<strong>CLion</strong>和<strong>VS Code</strong>都是极佳的选择，也可以直接使用命令行工具和文本编辑器（如Vim/Emacs）。</li>
 </ul>
 <p>最重要的是选择一个您用起来舒适、能够提高效率的工具。建议您可以尝试几种不同的工具，找到最适合自己的那一款。</p>
-<h2 id="总结与展望">总结与展望
-</h2><p>配置C++开发环境是您编程旅程中的第一步，也是至关重要的一步。一个稳定、高效的开发环境能够让您更专注于代码逻辑本身，而不是被工具问题所困扰。本指南详细介绍了开发环境的组成、推荐的操作系统（尤其是Linux/Ubuntu）、核心工具链的安装方法以及多种代码编辑工具的选择。</p>
-<p>我们强烈建议您从推荐的Linux发行版（如Ubuntu）开始，并安装<code>build-essential</code>软件包以快速搭建基础开发环境。在代码编辑工具方面，<strong>CLion</strong>和<strong>Visual Studio Code</strong>是功能强大且用户友好的选择，无论您是初学者还是经验丰富的开发者，都能从中找到适合自己的工作流。</p>
-<p>随着您C++学习的深入，您可能会接触到更多的开发工具和技术，例如：</p>
-<ul>
-<li><strong>包管理器</strong>：如Conan、vcpkg，用于管理和分发C++库。</li>
-<li><strong>静态分析工具</strong>：如Clang-Tidy、Cppcheck，用于发现代码中的潜在问题。</li>
-<li><strong>单元测试框架</strong>：如Google Test、Catch2，用于编写和运行自动化测试。</li>
-<li><strong>版本控制系统</strong>：如Git，用于管理代码版本和团队协作。</li>
+<h2 id="编写并编译您的第一个c程序">编写并编译您的第一个C++程序
+</h2><p>配置好开发环境后，让我们来编写并编译您的第一个C++程序，以验证所有工具是否协同工作。</p>
+<h3 id="编写源代码">编写源代码
+</h3><p>首先，创建一个名为 <code>hello_world.cpp</code> 的文件，并写入以下代码：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>    std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;Hello, World!&#34;</span> <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><ul>
+<li><code>#include &lt;iostream&gt;</code>：这是一个预处理指令，告诉编译器包含 <code>iostream</code> 库，它提供了输入/输出流功能，例如 <code>std::cout</code> 用于向控制台输出文本。</li>
+<li><code>int main() { ... }</code>：这是C++程序的入口点。所有C++程序都从 <code>main</code> 函数开始执行。</li>
+<li><code>std::cout &lt;&lt; &quot;Hello, World!&quot; &lt;&lt; std::endl;</code>：这行代码使用 <code>std::cout</code> 对象将字符串 &ldquo;Hello, World!&rdquo; 输出到标准输出（通常是终端），<code>std::endl</code> 用于插入一个换行符并刷新输出缓冲区。</li>
+<li><code>return 0;</code>：表示程序成功执行并退出。</li>
 </ul>
+<h3 id="编译程序">编译程序
+</h3><p>保存文件后，打开终端，导航到您保存 <code>hello_world.cpp</code> 文件的目录。然后使用G++编译器编译您的程序：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>g++ hello_world.cpp -o hello_world
+</span></span></code></pre></div><ul>
+<li><code>g++</code>：调用C++编译器。</li>
+<li><code>hello_world.cpp</code>：指定要编译的源文件。</li>
+<li><code>-o hello_world</code>：指定输出可执行文件的名称为 <code>hello_world</code>。如果您省略此选项，可执行文件将默认为 <code>a.out</code>。</li>
+</ul>
+<p>如果编译成功，您将不会看到任何输出。如果出现错误，编译器会显示相应的错误信息，您需要根据提示修改代码。</p>
+<h3 id="运行程序">运行程序
+</h3><p>编译成功后，您可以通过以下命令运行生成的可执行文件：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>./hello_world
+</span></span></code></pre></div><p>您应该会在终端看到输出：</p>
+<pre tabindex="0"><code>Hello, World!
+</code></pre><p>恭喜您！您已经成功配置了C++开发环境，并编写、编译、运行了您的第一个C++程序。这标志着您C++学习之旅的正式开始。</p>
+<hr>
 <h2 id="参考资料">参考资料
 </h2><ul>
 <li><a class="link" href="https://www.ubuntu.com/download/desktop"  target="_blank" rel="noopener"
@@ -684,57 +727,6 @@ CMake是一个跨平台的构建系统生成器。它不直接构建项目，而
     
 </a></li>
 </ul>
-<h3 id="验证安装">验证安装
-</h3><p>安装完成后，您可以通过在终端输入以下命令来验证这些工具是否成功安装并查看其版本信息：</p>
-<ul>
-<li><strong>验证GCC版本</strong>：
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>gcc --version
-</span></span></code></pre></div></li>
-<li><strong>验证G++版本</strong>：
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>g++ --version
-</span></span></code></pre></div></li>
-<li><strong>验证GDB版本</strong>：
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>gdb --version
-</span></span></code></pre></div></li>
-<li><strong>验证Make版本</strong>：
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>make --version
-</span></span></code></pre></div></li>
-<li><strong>验证CMake版本</strong>：
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cmake --version
-</span></span></code></pre></div></li>
-</ul>
-<p>如果命令成功执行并显示版本信息，则表明相应的工具已正确安装。如果遇到“command not found”或其他错误，请检查您的拼写，并确保在安装过程中没有出现错误。</p>
-<h2 id="编写并编译您的第一个c程序">编写并编译您的第一个C++程序
-</h2><p>配置好开发环境后，让我们来编写并编译您的第一个C++程序，以验证所有工具是否协同工作。</p>
-<h3 id="编写源代码">编写源代码
-</h3><p>首先，创建一个名为 <code>hello_world.cpp</code> 的文件，并使用您喜欢的文本编辑器（例如 <code>nano</code> 或 <code>vim</code>，或者直接在VS Code中）输入以下代码：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() {
-</span></span><span style="display:flex;"><span>    std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;Hello, World!&#34;</span> <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl;
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><ul>
-<li><code>#include &lt;iostream&gt;</code>：这是一个预处理指令，告诉编译器包含 <code>iostream</code> 库，它提供了输入/输出流功能，例如 <code>std::cout</code> 用于向控制台输出文本。</li>
-<li><code>int main() { ... }</code>：这是C++程序的入口点。所有C++程序都从 <code>main</code> 函数开始执行。</li>
-<li><code>std::cout &lt;&lt; &quot;Hello, World!&quot; &lt;&lt; std::endl;</code>：这行代码使用 <code>std::cout</code> 对象将字符串 &ldquo;Hello, World!&rdquo; 输出到标准输出（通常是终端），<code>std::endl</code> 用于插入一个换行符并刷新输出缓冲区。</li>
-<li><code>return 0;</code>：表示程序成功执行并退出。</li>
-</ul>
-<h3 id="编译程序">编译程序
-</h3><p>保存文件后，打开终端，导航到您保存 <code>hello_world.cpp</code> 文件的目录。然后使用G++编译器编译您的程序：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>g++ hello_world.cpp -o hello_world
-</span></span></code></pre></div><ul>
-<li><code>g++</code>：调用C++编译器。</li>
-<li><code>hello_world.cpp</code>：指定要编译的源文件。</li>
-<li><code>-o hello_world</code>：指定输出可执行文件的名称为 <code>hello_world</code>。如果您省略此选项，可执行文件将默认为 <code>a.out</code>。</li>
-</ul>
-<p>如果编译成功，您将不会看到任何输出。如果出现错误，编译器会显示相应的错误信息，您需要根据提示修改代码。</p>
-<h3 id="运行程序">运行程序
-</h3><p>编译成功后，您可以通过以下命令运行生成的可执行文件：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>./hello_world
-</span></span></code></pre></div><p>您应该会在终端看到输出：</p>
-<pre tabindex="0"><code>Hello, World!
-</code></pre><p>恭喜您！您已经成功配置了C++开发环境，并编写、编译、运行了您的第一个C++程序。这标志着您C++学习之旅的正式开始。</p>
 
 </section>
 
@@ -975,7 +967,7 @@ CMake是一个跨平台的构建系统生成器。它不直接构建项目，而
             
         
         发表了18篇文章 · 
-        总计8.75k字
+        总计8.73k字
     </section>
 
 </footer>

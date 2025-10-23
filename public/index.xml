@@ -6,7 +6,188 @@
         <description>Recent content on Styx Blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <lastBuildDate>Mon, 01 Sep 2025 13:50:00 +0800</lastBuildDate><atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Thu, 23 Oct 2025 09:57:00 +0800</lastBuildDate><atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>C&#43;&#43; 性能优化之递归</title>
+        <link>http://localhost:1313/post/programmingtechnology/c&#43;&#43;-performance-optimization/development-environment/</link>
+        <pubDate>Thu, 23 Oct 2025 09:57:00 +0800</pubDate>
+        
+        <guid>http://localhost:1313/post/programmingtechnology/c&#43;&#43;-performance-optimization/development-environment/</guid>
+        <description>&lt;p&gt;递归（recursion）在 C++ 中本质上是函数调用自身，因此性能瓶颈主要来自以下几点：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;函数调用栈的开销（保存返回地址、参数、局部变量等）&lt;/li&gt;
+&lt;li&gt;每次调用的指令跳转&lt;/li&gt;
+&lt;li&gt;编译器优化（例如尾递归优化）&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;一递归性能低的根源&#34;&gt;一、递归性能低的根源
+&lt;/h2&gt;&lt;p&gt;假设你有一个简单的递归函数：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-cpp&#34; data-lang=&#34;cpp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;factorial&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; n) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (n &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;) &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; n &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; factorial(n &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;这里的每次调用都要：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;压栈 &lt;code&gt;n&lt;/code&gt; 的值；&lt;/li&gt;
+&lt;li&gt;压栈返回地址；&lt;/li&gt;
+&lt;li&gt;创建新的栈帧；&lt;/li&gt;
+&lt;li&gt;执行函数跳转；&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;因此，递归调用多层后性能下降明显，甚至会触发栈溢出。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;二高性能递归的关键优化策略&#34;&gt;二、高性能递归的关键优化策略
+&lt;/h2&gt;&lt;h3 id=&#34;-1-尾递归优化tail-recursion-optimization&#34;&gt;✅ 1. &lt;strong&gt;尾递归优化（Tail Recursion Optimization）&lt;/strong&gt;
+&lt;/h3&gt;&lt;p&gt;尾递归是最常见的“高性能递归”技巧。
+当一个函数的&lt;strong&gt;最后一步操作是调用自身&lt;/strong&gt;，编译器可以将递归转换为循环，避免栈增长。&lt;/p&gt;
+&lt;p&gt;例：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-cpp&#34; data-lang=&#34;cpp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;factorial_tail&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; n, &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; acc &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (n &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;) &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; acc;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; factorial_tail(n &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;, acc &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; n);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;如果编译器支持 &lt;strong&gt;尾调用优化 (TCO)&lt;/strong&gt;，这段代码性能几乎等同于循环。
+不过：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;MSVC&lt;/strong&gt; 不会优化尾递归；&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Clang / GCC&lt;/strong&gt; 在 &lt;code&gt;-O2&lt;/code&gt; 或更高优化等级时会自动优化；&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;🔹 &lt;strong&gt;强制优化方式：&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;g++ -O3 -foptimize-sibling-calls main.cpp -o main
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;hr&gt;
+&lt;h3 id=&#34;-2-将递归改写为迭代显式栈模拟&#34;&gt;✅ 2. &lt;strong&gt;将递归改写为迭代（显式栈模拟）&lt;/strong&gt;
+&lt;/h3&gt;&lt;p&gt;当尾递归优化不可用时，可以手动用栈代替系统调用栈。&lt;/p&gt;
+&lt;p&gt;例：DFS 遍历递归改为迭代&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-cpp&#34; data-lang=&#34;cpp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;dfs_iterative&lt;/span&gt;(Node&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; root) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    std&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;stack&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;Node&lt;span style=&#34;color:#f92672&#34;&gt;*&amp;gt;&lt;/span&gt; stack;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    stack.push(root);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;while&lt;/span&gt; (&lt;span style=&#34;color:#f92672&#34;&gt;!&lt;/span&gt;stack.empty()) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        Node&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; node &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; stack.top();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        stack.pop();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#75715e&#34;&gt;// 访问节点
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (&lt;span style=&#34;color:#66d9ef&#34;&gt;auto&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt; child : node&lt;span style=&#34;color:#f92672&#34;&gt;-&amp;gt;&lt;/span&gt;children)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            stack.push(child);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;这样就可以完全避免递归调用的栈开销。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;-3-使用模板元编程编译期递归&#34;&gt;✅ 3. &lt;strong&gt;使用模板元编程（编译期递归）&lt;/strong&gt;
+&lt;/h3&gt;&lt;p&gt;对于能在编译期计算的递归（例如斐波那契常数、阶乘），可以使用 &lt;code&gt;constexpr&lt;/code&gt; 或模板元编程。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-cpp&#34; data-lang=&#34;cpp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;constexpr&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;factorial_constexpr&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; n) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; n &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;?&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; n &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; factorial_constexpr(n &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;这种递归在编译期完成计算，&lt;strong&gt;运行时几乎零开销&lt;/strong&gt;。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;-4-内联递归inline&#34;&gt;✅ 4. &lt;strong&gt;内联递归（inline）&lt;/strong&gt;
+&lt;/h3&gt;&lt;p&gt;在少量递归层次时，可尝试 &lt;code&gt;inline&lt;/code&gt; 提示编译器展开（不过递归一般不会被完全展开）。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-cpp&#34; data-lang=&#34;cpp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;inline&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;sum&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; n) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; n &lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;?&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; n &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; sum(n &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
+&lt;p&gt;但多数情况下编译器不会展开真正递归函数，只在递归深度较浅的地方展开。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;-5-记忆化memoization&#34;&gt;✅ 5. &lt;strong&gt;记忆化（Memoization）&lt;/strong&gt;
+&lt;/h3&gt;&lt;p&gt;对重复子问题的递归（如斐波那契数列）使用缓存表避免重复计算：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-cpp&#34; data-lang=&#34;cpp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;fib_memo&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; n, std&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;vector&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&amp;amp;&lt;/span&gt; cache) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (n &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;) &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; n;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (cache[n] &lt;span style=&#34;color:#f92672&#34;&gt;!=&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;) &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; cache[n];
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; cache[n] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; fib_memo(n&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;, cache) &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; fib_memo(n&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;, cache);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;缓存结果可以让复杂度从 O(2ⁿ) 降为 O(n)。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;-6-手动展开少量递归层级&#34;&gt;✅ 6. &lt;strong&gt;手动展开少量递归层级&lt;/strong&gt;
+&lt;/h3&gt;&lt;p&gt;有时可以手动展开前几层调用，减少函数跳转次数：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-cpp&#34; data-lang=&#34;cpp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;sum&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; n) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (n &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;4&lt;/span&gt;) &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; (n &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; (n &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;)) &lt;span style=&#34;color:#f92672&#34;&gt;/&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; n &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; (n&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;) &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; (n&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;) &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; (n&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;) &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; sum(n &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;4&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;这在数学递归（例如分治算法）中有效。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;-7-使用尾调用风格的-lambda&#34;&gt;✅ 7. &lt;strong&gt;使用尾调用风格的 Lambda&lt;/strong&gt;
+&lt;/h3&gt;&lt;p&gt;C++17 起支持“内联递归 lambda”：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-cpp&#34; data-lang=&#34;cpp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;auto&lt;/span&gt; factorial &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; [](&lt;span style=&#34;color:#66d9ef&#34;&gt;auto&lt;/span&gt; self, &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; n, &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; acc &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;) &lt;span style=&#34;color:#f92672&#34;&gt;-&amp;gt;&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (n &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;) &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; acc;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;self&lt;/span&gt;(self, n &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;, acc &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; n);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;};
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; result &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; factorial(factorial, &lt;span style=&#34;color:#ae81ff&#34;&gt;10&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;配合 &lt;code&gt;-O3&lt;/code&gt; 编译，性能与普通尾递归一致。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;三性能对比以-gcc-13---o3-测试&#34;&gt;三、性能对比（以 GCC 13 / -O3 测试）
+&lt;/h2&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;实现方式&lt;/th&gt;
+&lt;th&gt;平均耗时（n=10^6）&lt;/th&gt;
+&lt;th&gt;栈消耗&lt;/th&gt;
+&lt;th&gt;可优化性&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;普通递归&lt;/td&gt;
+&lt;td&gt;❌ 极慢 (爆栈风险)&lt;/td&gt;
+&lt;td&gt;高&lt;/td&gt;
+&lt;td&gt;差&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;尾递归（优化）&lt;/td&gt;
+&lt;td&gt;✅ 接近循环&lt;/td&gt;
+&lt;td&gt;低&lt;/td&gt;
+&lt;td&gt;好&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;显式栈迭代&lt;/td&gt;
+&lt;td&gt;✅ 稍快&lt;/td&gt;
+&lt;td&gt;可控&lt;/td&gt;
+&lt;td&gt;高&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;constexpr / 模板&lt;/td&gt;
+&lt;td&gt;⚡ 编译期完成&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;极高&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Memoization&lt;/td&gt;
+&lt;td&gt;✅ 极快（适合重复子问题）&lt;/td&gt;
+&lt;td&gt;中&lt;/td&gt;
+&lt;td&gt;高&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;-结论总结&#34;&gt;✅ 结论总结
+&lt;/h2&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;场景&lt;/th&gt;
+&lt;th&gt;推荐方式&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;数学递归（阶乘、斐波那契）&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;constexpr&lt;/code&gt; 或 尾递归优化&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;树/图遍历&lt;/td&gt;
+&lt;td&gt;手动栈 + 迭代实现&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;深度不大、结构清晰&lt;/td&gt;
+&lt;td&gt;普通递归即可&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;重复子问题&lt;/td&gt;
+&lt;td&gt;记忆化递归&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;编译器不支持尾调用&lt;/td&gt;
+&lt;td&gt;显式循环重写&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+</description>
+        </item>
+        <item>
         <title>FTXUI Component 模块</title>
         <link>http://localhost:1313/post/programmingtechnology/ftxui-self-study-guide/ftxui-component/</link>
         <pubDate>Mon, 01 Sep 2025 13:50:00 +0800</pubDate>
